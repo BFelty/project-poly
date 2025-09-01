@@ -20,8 +20,9 @@ public partial class Player : CharacterBody2D
 		}
 		else
 		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed / 5);
-			velocity.Y = Mathf.MoveToward(Velocity.Y, 0, Speed / 5);
+			float decelerationRate = Speed * (float)delta * 10; // 1/6th of a second
+			velocity.X = Mathf.MoveToward(Velocity.X, 0, decelerationRate);
+			velocity.Y = Mathf.MoveToward(Velocity.Y, 0, decelerationRate);
 		}
 
 		Velocity = velocity;
