@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://osokqpha3208"]
+
+[ext_resource type="Script" uid="uid://b55jdx6k24sp" path="res://entities/player/Player.cs" id="1_symyc"]
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_symyc")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.3, 1, 1, 1)
+polygon = PackedVector2Array(0, 0, 5, 2.5, 0, 5)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0.25, 0.376)
+scale = Vector2(0.849769, 0.849769)
+polygon = PackedVector2Array(0, 0, 5, 2.5, 0, 5)
