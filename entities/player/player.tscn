@@ -1,11 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://osokqpha3208"]
+[gd_scene load_steps=3 format=3 uid="uid://osokqpha3208"]
 
 [ext_resource type="Script" uid="uid://b55jdx6k24sp" path="res://entities/player/Player.cs" id="1_symyc"]
+[ext_resource type="PackedScene" uid="uid://dhkrftqkqybko" path="res://entities/projectile/bullet.tscn" id="2_abrql"]
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 11
 motion_mode = 1
 script = ExtResource("1_symyc")
+Speed = 300.0
+Weapon = ExtResource("2_abrql")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(0.3, 1, 1, 1)

@@ -1,10 +1,24 @@
+using System;
 using Godot;
+using LastPolygon.Weapon;
+
+namespace LastPolygon.Player;
 
 public partial class Player : CharacterBody2D
 {
-	public const float Speed = 300.0f;
+	[Export]
+	public float Speed { get; set; }
+
+	[Export]
+	public PackedScene Weapon { get; set; }
 
 	public override void _PhysicsProcess(double delta)
+	{
+		HandleMovement(delta);
+		HandleShooting();
+	}
+
+	private void HandleMovement(double delta)
 	{
 		Vector2 velocity = Velocity;
 
@@ -27,5 +41,14 @@ public partial class Player : CharacterBody2D
 
 		Velocity = velocity;
 		MoveAndSlide();
+	}
+
+	private void HandleShooting()
+	{
+		if (Input.IsActionPressed("shoot"))
+		{
+			//AddChild(Bullet);
+			GD.Print("BOOM BANG POW!");
+		}
 	}
 }
