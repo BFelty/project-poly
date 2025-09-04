@@ -47,8 +47,10 @@ public partial class Player : CharacterBody2D
 	{
 		if (Input.IsActionPressed("shoot"))
 		{
-			//AddChild(Bullet);
-			GD.Print("BOOM BANG POW!");
+			Bullet bullet = Weapon.Instantiate() as Bullet;
+			Vector2 bulletOffset = new(4, 0); // 4 pixels to the right of the player
+			bullet.GlobalPosition = Position + bulletOffset;
+			GetParent().AddChild(bullet);
 		}
 	}
 }

@@ -4,11 +4,22 @@ namespace LastPolygon.Weapon;
 
 public partial class Bullet : Area2D
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready() { }
+	[Export]
+	public float Speed { get; set; }
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta) { }
+	public override void _PhysicsProcess(double delta)
+	{
+		HandleMovement(delta);
+	}
 
-	public override void _PhysicsProcess(double delta) { }
+	private void HandleMovement(double delta)
+	{
+		Vector2 velocity = Vector2.Right * Speed;
+		Translate(velocity * (float)delta);
+	}
+
+	private void OnVisibleOnScreenNotifier2DScreenExited()
+	{
+		QueueFree();
+	}
 }

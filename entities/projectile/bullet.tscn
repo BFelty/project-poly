@@ -6,9 +6,15 @@
 collision_layer = 4
 collision_mask = 10
 script = ExtResource("1_hhtrk")
+Speed = 800.0
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(-1, -1, 2, -1, 2, 1, -1, 1)
+polygon = PackedVector2Array(-1, 0, 2, 0, 2, 1, -1, 1)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-1, -1, 2, -1, 2, 1, -1, 1)
+polygon = PackedVector2Array(-1, 0, 2, 0, 2, 1, -1, 1)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-1, 0, 3, 1)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="OnVisibleOnScreenNotifier2DScreenExited"]
