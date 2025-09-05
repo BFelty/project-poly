@@ -22,4 +22,9 @@ public partial class Bullet : Area2D
 	{
 		QueueFree();
 	}
+
+	private void OnBodyEntered(Node2D body)
+	{
+		QueueFree();
+	}
 }
