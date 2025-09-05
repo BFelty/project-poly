@@ -40,6 +40,10 @@ public partial class Player : CharacterBody2D
 		}
 
 		Velocity = velocity;
+
+		// ! Potentially put MoveAndSlide in _Process for smoother gameplay
+		// ! Probably affects physics negatively in a way I don't understand
+		// TODO Follow Godot documentation for physics interpolation
 		MoveAndSlide();
 	}
 
