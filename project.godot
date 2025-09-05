@@ -74,6 +74,11 @@ shoot={
 2d_physics/layer_4="wall"
 2d_physics/layer_5="troop_spawner"
 
+[physics]
+
+common/physics_jitter_fix=0.0
+common/physics_interpolation=true
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

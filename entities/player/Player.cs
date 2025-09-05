@@ -40,20 +40,21 @@ public partial class Player : CharacterBody2D
 		}
 
 		Velocity = velocity;
-
-		// ! Potentially put MoveAndSlide in _Process for smoother gameplay
-		// ! Probably affects physics negatively in a way I don't understand
-		// TODO Follow Godot documentation for physics interpolation
 		MoveAndSlide();
 	}
 
+	// ! Something is weird with the physics interpolation and the bullet
+	// ! Fix it later when polishing
 	private void HandleShooting()
 	{
 		if (Input.IsActionPressed("shoot"))
 		{
 			Bullet bullet = Weapon.Instantiate() as Bullet;
-			Vector2 bulletOffset = new(4, 0); // 4 pixels to the right of the player
+
+			// Set bullet position 4 pixels right of the player's origin
+			Vector2 bulletOffset = new(4, 0);
 			bullet.GlobalPosition = Position + bulletOffset;
+
 			GetParent().AddChild(bullet);
 		}
 	}
