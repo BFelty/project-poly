@@ -20,4 +20,7 @@ autostart = true
 position = Vector2(76.8026, 271.529)
 scale = Vector2(1.00249, 1)
 
+[node name="PlayerPickupSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(645, 90)
+
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="OnEnemySpawnTimerTimeout"]
