@@ -11,6 +11,8 @@ public partial class Player : CharacterBody2D
 	[Export]
 	public PackedScene Weapon { get; set; }
 
+	private Vector2 _target;
+
 	public override void _PhysicsProcess(double delta)
 	{
 		HandleMovement(delta);
@@ -19,27 +21,12 @@ public partial class Player : CharacterBody2D
 
 	private void HandleMovement(double delta)
 	{
-		Vector2 velocity = Velocity;
-
-		// Get the input direction and handle the movement/deceleration.
-		Vector2 direction = Input
-			.GetVector("move_left", "move_right", "move_up", "move_down")
-			.Normalized();
-
-		if (direction != Vector2.Zero)
+		_target = GetGlobalMousePosition();
+		Velocity = Position.DirectionTo(_target) * Speed;
+		if (Position.DistanceTo(_target) > 4)
 		{
-			velocity.X = direction.X * Speed;
-			velocity.Y = direction.Y * Speed;
+			MoveAndSlide();
 		}
-		else
-		{
-			float decelerationRate = Speed * (float)delta * 10; // 1/6th of a second
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, decelerationRate);
-			velocity.Y = Mathf.MoveToward(Velocity.Y, 0, decelerationRate);
-		}
-
-		Velocity = velocity;
-		MoveAndSlide();
 
 		// Keep the player from exiting the viewport
 		Position = Position.Clamp(Vector2.Zero, GetViewportRect().Size);
