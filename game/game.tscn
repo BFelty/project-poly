@@ -13,6 +13,11 @@ script = ExtResource("1_l1rk1")
 [node name="EnemySpawner" parent="." instance=ExtResource("3_4fuuu")]
 position = Vector2(644.705, 270.074)
 
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+autostart = true
+
 [node name="Player" parent="." instance=ExtResource("2_vasa2")]
 position = Vector2(76.8026, 271.529)
 scale = Vector2(1.00249, 1)
+
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="OnEnemySpawnTimerTimeout"]
