@@ -16,3 +16,5 @@ polygon = PackedVector2Array(-5, -80, 5, -80, 5, 80, -5, 80)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ipsoi")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
