@@ -23,6 +23,7 @@ public partial class PlayerPickup : Area2D
 	{
 		if (body is Player)
 		{
+			// TODO - Probably emit signal that PlayerManager can respond to
 			QueueFree();
 		}
 	}
