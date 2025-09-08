@@ -40,6 +40,9 @@ public partial class Player : CharacterBody2D
 
 		Velocity = velocity;
 		MoveAndSlide();
+
+		// Keep the player from exiting the viewport
+		Position = Position.Clamp(Vector2.Zero, GetViewportRect().Size);
 	}
 
 	// ! Something is weird with the physics interpolation and the bullet
