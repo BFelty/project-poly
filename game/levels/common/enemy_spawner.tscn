@@ -1,3 +1,14 @@
-[gd_scene format=3 uid="uid://c5oh5iipspoew"]
+[gd_scene load_steps=3 format=3 uid="uid://c5oh5iipspoew"]
 
-[node name="EnemySpawner" type="Node2D"]
+[ext_resource type="Script" uid="uid://c25olje5hg628" path="res://game/levels/common/EnemySpawner.cs" id="1_yco6m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gij1u"]
+size = Vector2(10, 160)
+
+[node name="EnemySpawner" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_yco6m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gij1u")

@@ -11,7 +11,7 @@ script = ExtResource("1_l1rk1")
 [node name="LevelOne" parent="." instance=ExtResource("2_h7iqs")]
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_4fuuu")]
-position = Vector2(645.216, 270.015)
+position = Vector2(644.705, 270.074)
 
 [node name="Player" parent="." instance=ExtResource("2_vasa2")]
 position = Vector2(76.8026, 271.529)

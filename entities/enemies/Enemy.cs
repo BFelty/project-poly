@@ -1,6 +1,6 @@
 using Godot;
 
-namespace LastPolygon.Enemy;
+namespace LastPolygon.Enemies;
 
 public partial class Enemy : Area2D
 {

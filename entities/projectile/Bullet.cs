@@ -1,6 +1,6 @@
 using Godot;
 
-namespace LastPolygon.Weapon;
+namespace LastPolygon.Weapons;
 
 public partial class Bullet : Area2D
 {

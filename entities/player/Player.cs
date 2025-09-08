@@ -1,8 +1,7 @@
-using System;
 using Godot;
-using LastPolygon.Weapon;
+using LastPolygon.Weapons;
 
-namespace LastPolygon.Player;
+namespace LastPolygon.Players;
 
 public partial class Player : CharacterBody2D
 {
