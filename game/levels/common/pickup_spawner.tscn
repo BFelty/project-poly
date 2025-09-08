@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://e0s21w3n540c"]
+
+[ext_resource type="Script" uid="uid://clk60p0xdqu6h" path="res://game/levels/common/PickupSpawner.cs" id="1_re6y4"]
+
+[node name="PickupSpawner" type="Marker2D"]
+script = ExtResource("1_re6y4")
