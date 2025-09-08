@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://fgk857opsomr" path="res://game/Game.cs" id="1_l1rk1"]
 [ext_resource type="PackedScene" uid="uid://rpm4jufnco4v" path="res://game/levels/level_1.tscn" id="2_h7iqs"]
-[ext_resource type="PackedScene" uid="uid://osokqpha3208" path="res://entities/player/player.tscn" id="2_vasa2"]
 [ext_resource type="PackedScene" uid="uid://c5oh5iipspoew" path="res://game/levels/common/enemy_spawner.tscn" id="3_4fuuu"]
 [ext_resource type="PackedScene" uid="uid://e0s21w3n540c" path="res://game/levels/common/pickup_spawner.tscn" id="4_dxrkv"]
+[ext_resource type="PackedScene" uid="uid://ib7e2mistls3" path="res://game/levels/common/player_spawner.tscn" id="5_dxrkv"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_l1rk1")
@@ -12,21 +12,19 @@ script = ExtResource("1_l1rk1")
 [node name="LevelOne" parent="." instance=ExtResource("2_h7iqs")]
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_4fuuu")]
-position = Vector2(644.705, 270.074)
-
-[node name="EnemySpawnTimer" type="Timer" parent="."]
-autostart = true
+position = Vector2(645, 270)
 
 [node name="PickupSpawner" parent="." instance=ExtResource("4_dxrkv")]
 position = Vector2(645, 90)
 
+[node name="PlayerSpawner" parent="." instance=ExtResource("5_dxrkv")]
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+autostart = true
+
 [node name="PickupTimer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
-
-[node name="Player" parent="." instance=ExtResource("2_vasa2")]
-position = Vector2(76.8026, 271.529)
-scale = Vector2(1.00249, 1)
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="OnEnemySpawnTimerTimeout"]
 [connection signal="timeout" from="PickupTimer" to="." method="OnPlayerPickupTimerTimeout"]

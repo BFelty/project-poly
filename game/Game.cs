@@ -7,23 +7,26 @@ namespace LastPolygon.Game;
 
 public partial class Game : Node
 {
-	private Player _player;
 	private EnemySpawner _enemySpawner;
 	private PickupSpawner _pickupSpawner;
+	private PlayerSpawner _playerSpawner;
+	private Vector2 _playerOrigin = new(85, 270);
 
-	private Timer _enemySpawnTimer;
-	private Timer _pickupTimer;
+	private Timer _enemySpawnerTimer;
+	private Timer _pickupSpawnerTimer;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		GD.Print("Game ready");
-		_player = FindChild("Player") as Player;
+		_playerSpawner = FindChild("PlayerSpawner") as PlayerSpawner;
 		_enemySpawner = FindChild("EnemySpawner") as EnemySpawner;
 		_pickupSpawner = FindChild("PickupSpawner") as PickupSpawner;
 
-		_enemySpawnTimer = FindChild("EnemySpawnTimer") as Timer;
-		_pickupTimer = FindChild("PickupTimer") as Timer;
+		_enemySpawnerTimer = FindChild("EnemySpawnTimer") as Timer;
+		_pickupSpawnerTimer = FindChild("PickupTimer") as Timer;
+
+		GameStart();
 	}
 
 	public void OnEnemySpawnTimerTimeout()
@@ -34,5 +37,12 @@ public partial class Game : Node
 	public void OnPlayerPickupTimerTimeout()
 	{
 		_pickupSpawner.SpawnPlayerPickup();
+	}
+
+	private void GameStart()
+	{
+		_playerSpawner.SpawnPlayer(_playerOrigin);
+		_enemySpawnerTimer.Start();
+		_pickupSpawnerTimer.Start();
 	}
 }
