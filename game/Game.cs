@@ -15,6 +15,8 @@ public partial class Game : Node
 		GD.Print("Game ready");
 		_enemySpawner = FindChild("EnemySpawner") as EnemySpawner;
 		_player = FindChild("Player") as Player;
+
+		_enemySpawner.SpawnEnemy();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

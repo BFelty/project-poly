@@ -1,4 +1,5 @@
 using Godot;
+using LastPolygon.Weapons;
 
 namespace LastPolygon.Enemies;
 
@@ -16,5 +17,13 @@ public partial class Enemy : Area2D
 	{
 		Vector2 velocity = Vector2.Left * Speed;
 		Translate(velocity * (float)delta);
+	}
+
+	private void OnAreaEntered(Area2D area)
+	{
+		if (area is Bullet)
+		{
+			QueueFree();
+		}
 	}
 }
