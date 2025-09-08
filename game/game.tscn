@@ -16,11 +16,16 @@ position = Vector2(644.705, 270.074)
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 autostart = true
 
-[node name="Player" parent="." instance=ExtResource("2_vasa2")]
-position = Vector2(76.8026, 271.529)
-scale = Vector2(1.00249, 1)
+[node name="PlayerPickupTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
 
 [node name="PlayerPickupSpawnPoint" type="Marker2D" parent="."]
 position = Vector2(645, 90)
 
+[node name="Player" parent="." instance=ExtResource("2_vasa2")]
+position = Vector2(76.8026, 271.529)
+scale = Vector2(1.00249, 1)
+
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="OnEnemySpawnTimerTimeout"]
+[connection signal="timeout" from="PlayerPickupTimer" to="." method="OnPlayerPickupTimerTimeout"]

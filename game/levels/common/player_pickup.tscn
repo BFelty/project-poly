@@ -5,9 +5,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ipsoi"]
 size = Vector2(10, 160)
 
-[node name="TroopSpawner" type="Area2D"]
+[node name="PlayerPickup" type="Area2D"]
 collision_layer = 16
 script = ExtResource("1_pdd6n")
+Speed = 75.0
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(0.482353, 0.345098, 1, 1)
