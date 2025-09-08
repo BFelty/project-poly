@@ -1,14 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://druel3n8wmj3h"]
+[gd_scene load_steps=5 format=3 uid="uid://druel3n8wmj3h"]
 
 [ext_resource type="Script" uid="uid://fgk857opsomr" path="res://game/Game.cs" id="1_l1rk1"]
 [ext_resource type="PackedScene" uid="uid://rpm4jufnco4v" path="res://game/levels/level_1.tscn" id="2_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://osokqpha3208" path="res://entities/player/player.tscn" id="2_vasa2"]
+[ext_resource type="PackedScene" uid="uid://c5oh5iipspoew" path="res://game/levels/common/enemy_spawner.tscn" id="3_4fuuu"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_l1rk1")
 
 [node name="LevelOne" parent="." instance=ExtResource("2_h7iqs")]
 
-[node name="Player" parent="LevelOne" instance=ExtResource("2_vasa2")]
+[node name="EnemySpawner" parent="." instance=ExtResource("3_4fuuu")]
+position = Vector2(645.216, 270.015)
+
+[node name="Player" parent="." instance=ExtResource("2_vasa2")]
 position = Vector2(76.8026, 271.529)
 scale = Vector2(1.00249, 1)
