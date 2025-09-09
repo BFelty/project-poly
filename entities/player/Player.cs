@@ -44,7 +44,7 @@ public partial class Player : CharacterBody2D
 			Vector2 bulletOffset = new(4, 0);
 			bullet.GlobalPosition = Position + bulletOffset;
 
-			GetParent().AddChild(bullet);
+			GetTree().CurrentScene.AddChild(bullet);
 		}
 	}
 }

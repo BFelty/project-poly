@@ -9,7 +9,7 @@ public partial class Game : Node
 {
 	private EnemySpawner _enemySpawner;
 	private PickupSpawner _pickupSpawner;
-	private PlayerSpawner _playerSpawner;
+	private PlayerManager _playerManager;
 	private Vector2 _playerOrigin = new(85, 270);
 
 	private Timer _enemySpawnerTimer;
@@ -19,7 +19,7 @@ public partial class Game : Node
 	public override void _Ready()
 	{
 		GD.Print("Game ready");
-		_playerSpawner = FindChild("PlayerSpawner") as PlayerSpawner;
+		_playerManager = FindChild("PlayerManager") as PlayerManager;
 		_enemySpawner = FindChild("EnemySpawner") as EnemySpawner;
 		_pickupSpawner = FindChild("PickupSpawner") as PickupSpawner;
 
@@ -41,7 +41,7 @@ public partial class Game : Node
 
 	private void GameStart()
 	{
-		_playerSpawner.SpawnPlayer(_playerOrigin);
+		_playerManager.SpawnPlayer(_playerOrigin);
 		_enemySpawnerTimer.Start();
 		_pickupSpawnerTimer.Start();
 	}
