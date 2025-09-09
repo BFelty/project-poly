@@ -5,7 +5,9 @@ namespace LastPolygon.Enemies;
 
 public partial class EnemySpawner : Area2D
 {
-	private PackedScene _enemy = GD.Load<PackedScene>("uid://ca1o6vvko4gbe");
+	private PackedScene _enemyScene = GD.Load<PackedScene>(
+		"uid://ca1o6vvko4gbe"
+	);
 
 	private Vector2 PickRandomSpawnPoint()
 	{
@@ -20,7 +22,7 @@ public partial class EnemySpawner : Area2D
 	public void SpawnEnemy()
 	{
 		Vector2 spawnPoint = PickRandomSpawnPoint();
-		Enemy enemy = _enemy.Instantiate() as Enemy;
+		Enemy enemy = _enemyScene.Instantiate() as Enemy;
 		enemy.Position = Position + spawnPoint;
 		GetParent().AddChild(enemy);
 	}
