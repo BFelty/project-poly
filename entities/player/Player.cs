@@ -19,6 +19,11 @@ public partial class Player : CharacterBody2D
 		HandleShooting();
 	}
 
+	public void Kill()
+	{
+		QueueFree();
+	}
+
 	private void HandleMovement(double delta)
 	{
 		_target = GetGlobalMousePosition();

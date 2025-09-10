@@ -15,16 +15,26 @@ public partial class PlayerManager : Node
 	{
 		// Connect to signals
 		SignalBus.Instance.PlayerPickupCollected += OnPlayerPickupCollected;
+		SignalBus.Instance.PlayerTouchedWall += KillPlayer;
 
 		_playerSpawner = _playerSpawnerScene.Instantiate() as PlayerSpawner;
 		AddChild(_playerSpawner);
 	}
 
-	// Spawns a new player and keeps track of it
+	// ! Tracking player numbers this way is highly inaccurate
 	public void SpawnPlayer(Vector2 spawnPoint)
 	{
 		_playerSpawner.SpawnPlayer(spawnPoint);
 		_playerCount++;
+		GD.Print("Updated player count: " + _playerCount);
+	}
+
+	// ! Tracking player numbers this way is highly inaccurate
+	public void KillPlayer(Player playerToKill)
+	{
+		playerToKill.Kill();
+		_playerCount--;
+		GD.Print("Updated player count: " + _playerCount);
 	}
 
 	private void OnPlayerPickupCollected(Vector2 collidedPlayerPosition)

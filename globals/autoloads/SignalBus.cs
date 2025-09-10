@@ -1,4 +1,5 @@
 using Godot;
+using LastPolygon.Players;
 
 namespace LastPolygon.Globals;
 
@@ -8,6 +9,9 @@ public partial class SignalBus : Node
 	public delegate void PlayerPickupCollectedEventHandler(
 		Vector2 collidedPlayerPosition
 	);
+
+	[Signal]
+	public delegate void PlayerTouchedWallEventHandler(Player player);
 
 	public static SignalBus Instance { get; private set; }
 
