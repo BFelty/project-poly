@@ -15,6 +15,10 @@ run/main_scene="uid://druel3n8wmj3h"
 config/features=PackedStringArray("4.4", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SignalBus="*res://globals/autoloads/SignalBus.cs"
+
 [debug]
 
 settings/stdout/verbose_stdout=true
