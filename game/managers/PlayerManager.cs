@@ -27,8 +27,11 @@ public partial class PlayerManager : Node
 		_playerCount++;
 	}
 
-	private void OnPlayerPickupCollected()
+	private void OnPlayerPickupCollected(Vector2 collidedPlayerPosition)
 	{
-		GD.Print("Player pickup collected!");
+		GD.Print("Player at " + collidedPlayerPosition + " collected pickup!");
+
+		Vector2 offset = new(0, 5);
+		CallDeferred(MethodName.SpawnPlayer, collidedPlayerPosition + offset);
 	}
 }

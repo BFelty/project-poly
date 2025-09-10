@@ -26,7 +26,8 @@ public partial class PlayerPickup : Area2D
 		{
 			// Emit signal from SignalBus autoload
 			SignalBus.Instance.EmitSignal(
-				SignalBus.SignalName.PlayerPickupCollected
+				SignalBus.SignalName.PlayerPickupCollected,
+				body.GlobalPosition
 			);
 
 			QueueFree();
