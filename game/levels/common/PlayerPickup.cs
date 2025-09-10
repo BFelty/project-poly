@@ -1,4 +1,5 @@
 using Godot;
+using LastPolygon.Globals;
 using LastPolygon.Players;
 
 namespace LastPolygon.Upgrades;
@@ -23,7 +24,11 @@ public partial class PlayerPickup : Area2D
 	{
 		if (body is Player)
 		{
-			// TODO - Probably emit signal that PlayerManager can respond to
+			// Emit signal from SignalBus autoload
+			SignalBus.Instance.EmitSignal(
+				SignalBus.SignalName.PlayerPickupCollected
+			);
+
 			QueueFree();
 		}
 	}

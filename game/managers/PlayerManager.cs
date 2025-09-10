@@ -1,4 +1,5 @@
 using Godot;
+using LastPolygon.Globals;
 
 namespace LastPolygon.Players;
 
@@ -12,6 +13,9 @@ public partial class PlayerManager : Node
 
 	public override void _Ready()
 	{
+		// Connect to signals
+		SignalBus.Instance.PlayerPickupCollected += OnPlayerPickupCollected;
+
 		_playerSpawner = _playerSpawnerScene.Instantiate() as PlayerSpawner;
 		AddChild(_playerSpawner);
 	}
@@ -21,5 +25,10 @@ public partial class PlayerManager : Node
 	{
 		_playerSpawner.SpawnPlayer(spawnPoint);
 		_playerCount++;
+	}
+
+	private void OnPlayerPickupCollected()
+	{
+		GD.Print("Player pickup collected!");
 	}
 }
