@@ -31,7 +31,7 @@ public partial class PlayerManager : Node
 	{
 		GD.Print("Player at " + collidedPlayerPosition + " collected pickup!");
 
-		Vector2 offset = new(0, 5);
+		Vector2 offset = new(5, 0);
 		CallDeferred(MethodName.SpawnPlayer, collidedPlayerPosition + offset);
 	}
 }
