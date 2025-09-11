@@ -46,7 +46,9 @@ public partial class Enemy : Area2D
 		{
 			IsDead = true;
 
-			GD.Print("Emit signal: " + SignalBus.SignalName.PlayerDamaged);
+			GD.Print(
+				"Enemy emit signal: " + SignalBus.SignalName.PlayerDamaged
+			);
 			SignalBus.Instance.EmitSignal(
 				SignalBus.SignalName.PlayerDamaged,
 				body as Player

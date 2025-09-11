@@ -34,6 +34,10 @@ public partial class PlayerPickup : Area2D
 			_isCollected = true;
 
 			// Emit signal from SignalBus autoload
+			GD.Print(
+				"PlayerPickup emit signal: "
+					+ SignalBus.SignalName.PlayerPickupCollected
+			);
 			SignalBus.Instance.EmitSignal(
 				SignalBus.SignalName.PlayerPickupCollected,
 				body.GlobalPosition
