@@ -21,7 +21,6 @@ public partial class PlayerManager : Node
 		AddChild(_playerSpawner);
 	}
 
-	// ! Tracking player numbers this way is highly inaccurate
 	public void SpawnPlayer(Vector2 spawnPoint)
 	{
 		_playerSpawner.SpawnPlayer(spawnPoint);
@@ -29,7 +28,6 @@ public partial class PlayerManager : Node
 		GD.Print("Updated player count: " + _playerCount);
 	}
 
-	// ! Tracking player numbers this way is highly inaccurate
 	public void KillPlayer(Player playerToKill)
 	{
 		// Ensures a Player's death is not counted multiple times
