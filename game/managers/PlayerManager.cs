@@ -15,7 +15,6 @@ public partial class PlayerManager : Node
 	{
 		// Connect to global signals
 		SignalBus.Instance.PlayerPickupCollected += OnPlayerPickupCollected;
-		SignalBus.Instance.PlayerTouchedWall += KillPlayer;
 		SignalBus.Instance.PlayerDamaged += KillPlayer;
 
 		_playerSpawner = _playerSpawnerScene.Instantiate() as PlayerSpawner;

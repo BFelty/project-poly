@@ -11,9 +11,6 @@ public partial class SignalBus : Node
 	);
 
 	[Signal]
-	public delegate void PlayerTouchedWallEventHandler(Player player);
-
-	[Signal]
 	public delegate void PlayerDamagedEventHandler(Player player);
 
 	public static SignalBus Instance { get; private set; }

@@ -12,7 +12,7 @@ public partial class Wall : Area2D
 		{
 			// Emit signal from SignalBus autoload
 			SignalBus.Instance.EmitSignal(
-				SignalBus.SignalName.PlayerTouchedWall,
+				SignalBus.SignalName.PlayerDamaged,
 				body as Player
 			);
 		}
