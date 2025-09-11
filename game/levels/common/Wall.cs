@@ -2,6 +2,8 @@ using Godot;
 using LastPolygon.Globals;
 using LastPolygon.Players;
 
+namespace LastPolygon.Game;
+
 public partial class Wall : Area2D
 {
 	public void OnBodyEntered(Node2D body)
