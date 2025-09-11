@@ -1,5 +1,6 @@
 using Godot;
 using LastPolygon.Enemies;
+using LastPolygon.Globals;
 using LastPolygon.Players;
 using LastPolygon.Upgrades;
 
@@ -19,6 +20,10 @@ public partial class Game : Node
 	public override void _Ready()
 	{
 		GD.Print("Game ready");
+
+		// Add the PauseMenu as a child of UIManager
+		UIManager.Instance.AddChild(UIManager.Instance.PauseMenu);
+
 		_playerManager = FindChild("PlayerManager") as PlayerManager;
 		_enemySpawner = FindChild("EnemySpawner") as EnemySpawner;
 		_pickupSpawner = FindChild("PickupSpawner") as PickupSpawner;
