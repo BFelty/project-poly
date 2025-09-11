@@ -13,9 +13,10 @@ public partial class PlayerManager : Node
 
 	public override void _Ready()
 	{
-		// Connect to signals
+		// Connect to global signals
 		SignalBus.Instance.PlayerPickupCollected += OnPlayerPickupCollected;
 		SignalBus.Instance.PlayerTouchedWall += KillPlayer;
+		SignalBus.Instance.PlayerDamaged += KillPlayer;
 
 		_playerSpawner = _playerSpawnerScene.Instantiate() as PlayerSpawner;
 		AddChild(_playerSpawner);
