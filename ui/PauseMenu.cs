@@ -11,28 +11,25 @@ public partial class PauseMenu : CanvasLayer
 
 	public override void _Input(InputEvent @event)
 	{
-		// Pause the main SceneTree when the ui_cancel input is pressed
+		// Toggles pause menu and SceneTree pause state when the ui_cancel
+		// input is pressed
 		// By default, this is the Escape key
 		if (@event.IsActionPressed("ui_cancel"))
 		{
-			TogglePause();
+			GetTree().Paused = !GetTree().Paused;
+			Visible = !Visible;
 		}
 	}
 
-	// TODO - Create desired pause menu functionality
+	// Only allows the resume button to unpause
 	private void OnResumeButtonPressed()
 	{
-		TogglePause();
+		GetTree().Paused = false;
+		Visible = false;
 	}
 
 	private void OnQuitButtonPressed()
 	{
 		GetTree().Quit();
-	}
-
-	private void TogglePause()
-	{
-		GetTree().Paused = !GetTree().Paused;
-		Visible = !Visible;
 	}
 }
