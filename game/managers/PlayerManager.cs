@@ -32,6 +32,11 @@ public partial class PlayerManager : Node
 	// ! Tracking player numbers this way is highly inaccurate
 	public void KillPlayer(Player playerToKill)
 	{
+		// Ensures a Player's death is not counted multiple times
+		if (playerToKill.IsDead)
+			return;
+
+		playerToKill.IsDead = true;
 		playerToKill.Kill();
 		_playerCount--;
 		GD.Print("Updated player count: " + _playerCount);

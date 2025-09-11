@@ -11,6 +11,8 @@ public partial class Player : CharacterBody2D
 	[Export]
 	public PackedScene Weapon { get; set; }
 
+	public bool IsDead { get; set; } = false;
+
 	private Vector2 _target;
 
 	public override void _PhysicsProcess(double delta)
