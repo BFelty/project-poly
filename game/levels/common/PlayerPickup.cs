@@ -9,6 +9,8 @@ public partial class PlayerPickup : Area2D
 	[Export]
 	public float Speed { get; set; }
 
+	private bool _isCollected = false;
+
 	public override void _PhysicsProcess(double delta)
 	{
 		HandleMovement(delta);
@@ -22,8 +24,15 @@ public partial class PlayerPickup : Area2D
 
 	public void OnBodyEntered(Node2D body)
 	{
+		// Check if the PlayerPickup has already been collected
+		// This prevents the same pickup from being used multiple times
+		if (_isCollected)
+			return;
+
 		if (body is Player)
 		{
+			_isCollected = true;
+
 			// Emit signal from SignalBus autoload
 			SignalBus.Instance.EmitSignal(
 				SignalBus.SignalName.PlayerPickupCollected,
