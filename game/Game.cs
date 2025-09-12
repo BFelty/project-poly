@@ -23,6 +23,7 @@ public partial class Game : Node
 
 		// Connect to global signals
 		SignalBus.Instance.PlayerDied += CheckIfGameOver;
+		SignalBus.Instance.GameStarted += GameStart;
 
 		// Enable UI elements relevant to the game
 		AddChild(UIManager.Instance.PauseMenu);
@@ -48,7 +49,7 @@ public partial class Game : Node
 		_pickupSpawner.SpawnPlayerPickup();
 	}
 
-	private void GameStart()
+	public void GameStart()
 	{
 		// Set which UI elements should be processed during the game
 		UIManager.Instance.PauseMenu.ProcessMode = ProcessModeEnum.Always;
