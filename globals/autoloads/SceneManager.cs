@@ -1,5 +1,4 @@
 using Godot;
-using LastPolygon.UI;
 
 namespace LastPolygon.Globals;
 
