@@ -2,12 +2,24 @@ using Godot;
 using LastPolygon.Enemies;
 using LastPolygon.Globals;
 using LastPolygon.Players;
+using LastPolygon.UI;
 using LastPolygon.Upgrades;
 
 namespace LastPolygon.Game;
 
 public partial class Game : Node
 {
+	// Menus
+	private PackedScene _pauseMenuScene = GD.Load<PackedScene>(
+		"uid://n1y0r7o4fsq0"
+	);
+	private PackedScene _gameOverScene = GD.Load<PackedScene>(
+		"uid://bekdrbn7k6a"
+	);
+
+	public PauseMenu PauseMenu { get; private set; }
+	public GameOverMenu GameOverMenu { get; private set; }
+
 	private EnemySpawner _enemySpawner;
 	private PickupSpawner _pickupSpawner;
 	private PlayerManager _playerManager;
@@ -26,8 +38,10 @@ public partial class Game : Node
 		SignalBus.Instance.GameStarted += GameStart;
 
 		// Enable UI elements relevant to the game
-		AddChild(UIManager.Instance.PauseMenu);
-		AddChild(UIManager.Instance.GameOverMenu);
+		PauseMenu = _pauseMenuScene.Instantiate() as PauseMenu;
+		AddChild(PauseMenu);
+		GameOverMenu = _gameOverScene.Instantiate() as GameOverMenu;
+		AddChild(GameOverMenu);
 
 		_playerManager = FindChild("PlayerManager") as PlayerManager;
 		_enemySpawner = FindChild("EnemySpawner") as EnemySpawner;
@@ -52,9 +66,9 @@ public partial class Game : Node
 	public void GameStart()
 	{
 		// Set which UI elements should be processed during the game
-		UIManager.Instance.PauseMenu.ProcessMode = ProcessModeEnum.Always;
-		UIManager.Instance.GameOverMenu.ProcessMode = ProcessModeEnum.Disabled;
-		UIManager.Instance.GameOverMenu.Visible = false;
+		PauseMenu.ProcessMode = ProcessModeEnum.Always;
+		GameOverMenu.ProcessMode = ProcessModeEnum.Disabled;
+		GameOverMenu.Visible = false;
 
 		_playerManager.SpawnPlayer(_playerOrigin);
 		_enemySpawnerTimer.Start();
@@ -64,9 +78,9 @@ public partial class Game : Node
 	private void GameOver()
 	{
 		// Set which UI elements should be processed on game over
-		UIManager.Instance.PauseMenu.ProcessMode = ProcessModeEnum.Disabled;
-		UIManager.Instance.GameOverMenu.ProcessMode = ProcessModeEnum.Always;
-		UIManager.Instance.GameOverMenu.Visible = true;
+		PauseMenu.ProcessMode = ProcessModeEnum.Disabled;
+		GameOverMenu.ProcessMode = ProcessModeEnum.Always;
+		GameOverMenu.Visible = true;
 	}
 
 	private void CheckIfGameOver(int playerCount)

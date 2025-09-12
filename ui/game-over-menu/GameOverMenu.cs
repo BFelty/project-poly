@@ -1,6 +1,8 @@
 using Godot;
 using LastPolygon.Globals;
 
+namespace LastPolygon.UI;
+
 public partial class GameOverMenu : CanvasLayer
 {
 	public override void _Ready()
