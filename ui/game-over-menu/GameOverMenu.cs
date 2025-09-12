@@ -10,7 +10,6 @@ public partial class GameOverMenu : CanvasLayer
 		Visible = false;
 	}
 
-	// TODO - Create game over screen functionality
 	private void OnRestartButtonPressed()
 	{
 		// Emit signal indicating the game has started
@@ -22,8 +21,8 @@ public partial class GameOverMenu : CanvasLayer
 
 	private void OnMainMenuButtonPressed()
 	{
-		// TODO - Emit signal indicating the user wants to return to the main menu
-		GD.Print("Main menu button pressed!");
+		// Use SceneManager autoload to change scene
+		SceneManager.Instance.ChangeScene(SceneManager.Instance.MainMenuScene);
 	}
 
 	private void OnQuitButtonPressed()

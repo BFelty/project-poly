@@ -9,7 +9,7 @@ namespace LastPolygon.Game;
 
 public partial class Game : Node
 {
-	// Menus
+	// In-game menu scenes
 	private PackedScene _pauseMenuScene = GD.Load<PackedScene>(
 		"uid://n1y0r7o4fsq0"
 	);
@@ -17,6 +17,7 @@ public partial class Game : Node
 		"uid://bekdrbn7k6a"
 	);
 
+	// In-game menu nodes
 	public PauseMenu PauseMenu { get; private set; }
 	public GameOverMenu GameOverMenu { get; private set; }
 
@@ -28,7 +29,6 @@ public partial class Game : Node
 	private Timer _enemySpawnerTimer;
 	private Timer _pickupSpawnerTimer;
 
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		GD.Print("Game ready");
@@ -43,6 +43,7 @@ public partial class Game : Node
 		GameOverMenu = _gameOverScene.Instantiate() as GameOverMenu;
 		AddChild(GameOverMenu);
 
+		// Find nodes that were placed in the editor
 		_playerManager = FindChild("PlayerManager") as PlayerManager;
 		_enemySpawner = FindChild("EnemySpawner") as EnemySpawner;
 		_pickupSpawner = FindChild("PickupSpawner") as PickupSpawner;
