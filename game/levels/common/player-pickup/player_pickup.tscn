@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://crxe8lhp1lr10"]
 
-[ext_resource type="Script" uid="uid://nwsgcc0i0bvu" path="res://game/levels/common/PlayerPickup.cs" id="1_pdd6n"]
+[ext_resource type="Script" uid="uid://nwsgcc0i0bvu" path="res://game/levels/common/player-pickup/PlayerPickup.cs" id="1_pdd6n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ipsoi"]
 size = Vector2(10, 160)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c5oh5iipspoew"]
 
-[ext_resource type="Script" uid="uid://c25olje5hg628" path="res://game/levels/common/EnemySpawner.cs" id="1_yco6m"]
+[ext_resource type="Script" uid="uid://c25olje5hg628" path="res://game/levels/common/enemy-spawner/EnemySpawner.cs" id="1_yco6m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gij1u"]
 size = Vector2(10, 160)

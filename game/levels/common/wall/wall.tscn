@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://5puxg0ke28ay"]
 
-[ext_resource type="Script" uid="uid://blsudir7br0h3" path="res://game/levels/common/Wall.cs" id="1_2jb2c"]
+[ext_resource type="Script" uid="uid://blsudir7br0h3" path="res://game/levels/common/wall/Wall.cs" id="1_2jb2c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cuxhb"]
 size = Vector2(10, 10)
