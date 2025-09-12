@@ -22,7 +22,7 @@ public partial class PlayerPickup : Area2D
 		Translate(velocity * (float)delta);
 	}
 
-	public void OnBodyEntered(Node2D body)
+	private void OnBodyEntered(Node2D body)
 	{
 		// Check if the PlayerPickup has already been collected
 		// This prevents the same pickup from being used multiple times
@@ -45,5 +45,10 @@ public partial class PlayerPickup : Area2D
 
 			QueueFree();
 		}
+	}
+
+	private void OnVisibleOnScreenNotifier2DScreenExited()
+	{
+		QueueFree();
 	}
 }

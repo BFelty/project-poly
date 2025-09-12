@@ -57,4 +57,9 @@ public partial class Enemy : Area2D
 			QueueFree();
 		}
 	}
+
+	private void OnVisibleOnScreenNotifier2DScreenExited()
+	{
+		QueueFree();
+	}
 }
