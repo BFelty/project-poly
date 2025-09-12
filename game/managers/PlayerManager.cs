@@ -21,6 +21,13 @@ public partial class PlayerManager : Node
 		AddChild(_playerSpawner);
 	}
 
+	public override void _ExitTree()
+	{
+		// Disconnect from global signals to prevent disposed object errors
+		SignalBus.Instance.PlayerPickupCollected -= OnPlayerPickupCollected;
+		SignalBus.Instance.PlayerDamaged -= KillPlayer;
+	}
+
 	public void SpawnPlayer(Vector2 spawnPoint)
 	{
 		_playerSpawner.SpawnPlayer(spawnPoint);

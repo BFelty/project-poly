@@ -18,10 +18,6 @@ public partial class SignalBus : Node
 		Vector2 collidedPlayerPosition
 	);
 
-	// Game State Signals
-	[Signal]
-	public delegate void GameStartedEventHandler();
-
 	public static SignalBus Instance { get; private set; }
 
 	public override void _Ready()

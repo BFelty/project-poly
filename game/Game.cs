@@ -18,8 +18,8 @@ public partial class Game : Node
 	);
 
 	// In-game menu nodes
-	public PauseMenu PauseMenu { get; private set; }
-	public GameOverMenu GameOverMenu { get; private set; }
+	private PauseMenu _pauseMenu;
+	private GameOverMenu _gameOverMenu;
 
 	private EnemySpawner _enemySpawner;
 	private PickupSpawner _pickupSpawner;
@@ -35,13 +35,12 @@ public partial class Game : Node
 
 		// Connect to global signals
 		SignalBus.Instance.PlayerDied += CheckIfGameOver;
-		SignalBus.Instance.GameStarted += GameStart;
 
 		// Enable UI elements relevant to the game
-		PauseMenu = _pauseMenuScene.Instantiate() as PauseMenu;
-		AddChild(PauseMenu);
-		GameOverMenu = _gameOverScene.Instantiate() as GameOverMenu;
-		AddChild(GameOverMenu);
+		_pauseMenu = _pauseMenuScene.Instantiate() as PauseMenu;
+		AddChild(_pauseMenu);
+		_gameOverMenu = _gameOverScene.Instantiate() as GameOverMenu;
+		AddChild(_gameOverMenu);
 
 		// Find nodes that were placed in the editor
 		_playerManager = FindChild("PlayerManager") as PlayerManager;
@@ -52,6 +51,12 @@ public partial class Game : Node
 		_pickupSpawnerTimer = FindChild("PickupTimer") as Timer;
 
 		GameStart();
+	}
+
+	public override void _ExitTree()
+	{
+		// Disconnect from global signals to prevent disposed object errors
+		SignalBus.Instance.PlayerDied -= CheckIfGameOver;
 	}
 
 	public void OnEnemySpawnTimerTimeout()
@@ -67,9 +72,9 @@ public partial class Game : Node
 	public void GameStart()
 	{
 		// Set which UI elements should be processed during the game
-		PauseMenu.ProcessMode = ProcessModeEnum.Always;
-		GameOverMenu.ProcessMode = ProcessModeEnum.Disabled;
-		GameOverMenu.Visible = false;
+		_pauseMenu.ProcessMode = ProcessModeEnum.Always;
+		_gameOverMenu.ProcessMode = ProcessModeEnum.Disabled;
+		_gameOverMenu.Visible = false;
 
 		_playerManager.SpawnPlayer(_playerOrigin);
 		_enemySpawnerTimer.Start();
@@ -79,9 +84,9 @@ public partial class Game : Node
 	private void GameOver()
 	{
 		// Set which UI elements should be processed on game over
-		PauseMenu.ProcessMode = ProcessModeEnum.Disabled;
-		GameOverMenu.ProcessMode = ProcessModeEnum.Always;
-		GameOverMenu.Visible = true;
+		_pauseMenu.ProcessMode = ProcessModeEnum.Disabled;
+		_gameOverMenu.ProcessMode = ProcessModeEnum.Always;
+		_gameOverMenu.Visible = true;
 	}
 
 	private void CheckIfGameOver(int playerCount)
