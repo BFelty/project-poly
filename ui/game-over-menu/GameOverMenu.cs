@@ -12,11 +12,8 @@ public partial class GameOverMenu : CanvasLayer
 
 	private void OnRestartButtonPressed()
 	{
-		// Emit signal indicating the game has started
-		GD.Print(
-			"Game over menu emit signal: " + SignalBus.SignalName.GameStarted
-		);
-		SignalBus.Instance.EmitSignal(SignalBus.SignalName.GameStarted);
+		// Reload the Game scene
+		GetTree().ReloadCurrentScene();
 	}
 
 	private void OnMainMenuButtonPressed()
