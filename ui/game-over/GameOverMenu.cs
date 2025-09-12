@@ -2,6 +2,11 @@ using Godot;
 
 public partial class GameOverMenu : CanvasLayer
 {
+	public override void _Ready()
+	{
+		Visible = false;
+	}
+
 	// TODO - Create game over screen functionality
 	private void OnRestartButtonPressed()
 	{

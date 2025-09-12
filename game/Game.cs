@@ -24,8 +24,9 @@ public partial class Game : Node
 		// Connect to global signals
 		SignalBus.Instance.PlayerDied += CheckIfGameOver;
 
-		// Add the PauseMenu as a child of UIManager
-		UIManager.Instance.AddChild(UIManager.Instance.PauseMenu);
+		// Enable UI elements relevant to the game
+		AddChild(UIManager.Instance.PauseMenu);
+		AddChild(UIManager.Instance.GameOverMenu);
 
 		_playerManager = FindChild("PlayerManager") as PlayerManager;
 		_enemySpawner = FindChild("EnemySpawner") as EnemySpawner;
@@ -49,6 +50,11 @@ public partial class Game : Node
 
 	private void GameStart()
 	{
+		// Set which UI elements should be processed during the game
+		UIManager.Instance.PauseMenu.ProcessMode = ProcessModeEnum.Always;
+		UIManager.Instance.GameOverMenu.ProcessMode = ProcessModeEnum.Disabled;
+		UIManager.Instance.GameOverMenu.Visible = false;
+
 		_playerManager.SpawnPlayer(_playerOrigin);
 		_enemySpawnerTimer.Start();
 		_pickupSpawnerTimer.Start();
@@ -56,7 +62,10 @@ public partial class Game : Node
 
 	private void GameOver()
 	{
-		AddChild(UIManager.Instance.GameOverMenu);
+		// Set which UI elements should be processed on game over
+		UIManager.Instance.PauseMenu.ProcessMode = ProcessModeEnum.Disabled;
+		UIManager.Instance.GameOverMenu.ProcessMode = ProcessModeEnum.Always;
+		UIManager.Instance.GameOverMenu.Visible = true;
 	}
 
 	private void CheckIfGameOver(int playerCount)
