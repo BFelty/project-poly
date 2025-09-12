@@ -13,6 +13,9 @@ public partial class SignalBus : Node
 	[Signal]
 	public delegate void PlayerDamagedEventHandler(Player player);
 
+	[Signal]
+	public delegate void PlayerDiedEventHandler(int playerCount);
+
 	public static SignalBus Instance { get; private set; }
 
 	public override void _Ready()

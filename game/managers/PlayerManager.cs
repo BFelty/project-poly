@@ -38,6 +38,12 @@ public partial class PlayerManager : Node
 		playerToKill.Kill();
 		_playerCount--;
 		GD.Print("Updated player count: " + _playerCount);
+
+		// Signal that a player died, include _playerCount
+		SignalBus.Instance.EmitSignal(
+			SignalBus.SignalName.PlayerDied,
+			_playerCount
+		);
 	}
 
 	private void OnPlayerPickupCollected(Vector2 collidedPlayerPosition)

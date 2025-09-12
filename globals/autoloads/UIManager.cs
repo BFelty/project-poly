@@ -13,12 +13,14 @@ public partial class UIManager : Control
 	);
 
 	public PauseMenu PauseMenu { get; private set; }
+	public GameOverMenu GameOverMenu { get; private set; }
 
 	public static UIManager Instance { get; private set; }
 
 	public override void _Ready()
 	{
 		PauseMenu = _pauseMenuScene.Instantiate() as PauseMenu;
+		GameOverMenu = _gameOverScene.Instantiate() as GameOverMenu;
 		Instance = this;
 	}
 }

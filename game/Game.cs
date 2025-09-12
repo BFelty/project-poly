@@ -21,6 +21,9 @@ public partial class Game : Node
 	{
 		GD.Print("Game ready");
 
+		// Connect to global signals
+		SignalBus.Instance.PlayerDied += CheckIfGameOver;
+
 		// Add the PauseMenu as a child of UIManager
 		UIManager.Instance.AddChild(UIManager.Instance.PauseMenu);
 
@@ -49,5 +52,16 @@ public partial class Game : Node
 		_playerManager.SpawnPlayer(_playerOrigin);
 		_enemySpawnerTimer.Start();
 		_pickupSpawnerTimer.Start();
+	}
+
+	private void GameOver()
+	{
+		AddChild(UIManager.Instance.GameOverMenu);
+	}
+
+	private void CheckIfGameOver(int playerCount)
+	{
+		if (playerCount <= 0)
+			GameOver();
 	}
 }
