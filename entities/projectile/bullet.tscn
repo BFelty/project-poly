@@ -4,7 +4,7 @@
 
 [node name="Bullet" type="Area2D"]
 collision_layer = 4
-collision_mask = 10
+collision_mask = 26
 script = ExtResource("1_hhtrk")
 Speed = 800.0
 
@@ -17,5 +17,5 @@ polygon = PackedVector2Array(-1, 0, 2, 0, 2, 1, -1, 1)
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 rect = Rect2(-1, 0, 3, 1)
 
-[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="OnVisibleOnScreenNotifier2DScreenExited"]

@@ -23,7 +23,8 @@ public partial class Bullet : Area2D
 		QueueFree();
 	}
 
-	private void OnBodyEntered(Node2D body)
+	// Frees itself when colliding with any area
+	private void OnAreaEntered(Area2D area)
 	{
 		QueueFree();
 	}
