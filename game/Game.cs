@@ -1,3 +1,4 @@
+using System.Reflection.Metadata;
 using Godot;
 using LastPolygon.Enemies;
 using LastPolygon.Globals;
@@ -35,6 +36,7 @@ public partial class Game : Node
 
 		// Connect to global signals
 		SignalBus.Instance.PlayerDied += CheckIfGameOver;
+		SignalBus.Instance.EnemyLeak += HandleEnemyLeak;
 
 		// Enable UI elements relevant to the game
 		_pauseMenu = _pauseMenuScene.Instantiate() as PauseMenu;
@@ -57,6 +59,7 @@ public partial class Game : Node
 	{
 		// Disconnect from global signals to prevent disposed object errors
 		SignalBus.Instance.PlayerDied -= CheckIfGameOver;
+		SignalBus.Instance.EnemyLeak -= HandleEnemyLeak;
 	}
 
 	public void OnEnemySpawnTimerTimeout()
@@ -93,5 +96,11 @@ public partial class Game : Node
 	{
 		if (playerCount <= 0)
 			GameOver();
+	}
+
+	private void HandleEnemyLeak()
+	{
+		GD.Print("Handling enemy leak...");
+		GameOver();
 	}
 }

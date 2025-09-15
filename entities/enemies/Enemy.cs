@@ -60,6 +60,12 @@ public partial class Enemy : Area2D
 
 	private void OnVisibleOnScreenNotifier2DScreenExited()
 	{
+		// Alert the game that an enemy has gone off screen
+		// ! At the time of writing, this can only happen when the enemy gets
+		// ! past the player, which should make the player lose.
+		GD.Print("Enemy emit signal: " + SignalBus.SignalName.EnemyLeak);
+		SignalBus.Instance.EmitSignal(SignalBus.SignalName.EnemyLeak);
+
 		QueueFree();
 	}
 }

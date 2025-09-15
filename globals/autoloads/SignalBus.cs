@@ -12,6 +12,10 @@ public partial class SignalBus : Node
 	[Signal]
 	public delegate void PlayerDiedEventHandler(int playerCount);
 
+	// Enemy Signals
+	[Signal]
+	public delegate void EnemyLeakEventHandler();
+
 	// Pickup Signals
 	[Signal]
 	public delegate void PlayerPickupCollectedEventHandler(
