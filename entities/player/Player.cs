@@ -1,3 +1,4 @@
+using System.Runtime.Serialization.Formatters;
 using Godot;
 using LastPolygon.Weapons;
 
@@ -11,9 +12,22 @@ public partial class Player : CharacterBody2D
 	[Export]
 	public PackedScene Weapon { get; set; }
 
+	private Timer _fireRateTimer;
+
+	// How many seconds until the next shot is allowed
+	[Export]
+	private float FireRate { get; set; }
+	private bool canShoot = true;
+
 	public bool IsDead { get; set; } = false;
 
 	private Vector2 _target;
+
+	public override void _Ready()
+	{
+		_fireRateTimer = FindChild("FireRateTimer") as Timer;
+		_fireRateTimer.WaitTime = FireRate;
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -45,13 +59,25 @@ public partial class Player : CharacterBody2D
 	{
 		if (Input.IsActionPressed("shoot"))
 		{
-			Bullet bullet = Weapon.Instantiate() as Bullet;
+			if (canShoot)
+			{
+				canShoot = false;
+				_fireRateTimer.Start();
 
-			// Set bullet position 4 pixels right of the player's origin
-			Vector2 bulletOffset = new(4, 0);
-			bullet.GlobalPosition = Position + bulletOffset;
+				Bullet bullet = Weapon.Instantiate() as Bullet;
 
-			GetTree().CurrentScene.AddChild(bullet);
+				// Set bullet position 4 pixels right of the player's origin
+				Vector2 bulletOffset = new(4, 0);
+				bullet.GlobalPosition = Position + bulletOffset;
+
+				GetTree().CurrentScene.AddChild(bullet);
+			}
 		}
+	}
+
+	private void OnFireRateTimerTimeout()
+	{
+		_fireRateTimer.Stop();
+		canShoot = true;
 	}
 }
