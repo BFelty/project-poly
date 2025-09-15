@@ -12,7 +12,7 @@ public partial class EnemySpawner : Area2D
 	private Vector2 PickRandomSpawnPoint()
 	{
 		Random r = new();
-		float spawnY = (float)r.Next(-80, 80);
+		float spawnY = (float)r.Next(-65, 65);
 
 		Vector2 spawnPoint = new(0, spawnY);
 
