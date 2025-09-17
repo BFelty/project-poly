@@ -4,5 +4,9 @@
 
 [node name="PlayerManager" type="Node"]
 script = ExtResource("1_537qr")
+PlayerFireRate = 1.0
 
 [node name="FireRateTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="FireRateTimer" to="." method="OnFireRateTimerTimeout"]

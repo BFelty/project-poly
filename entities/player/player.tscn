@@ -9,7 +9,6 @@ motion_mode = 1
 script = ExtResource("1_symyc")
 Speed = 300.0
 Weapon = ExtResource("2_abrql")
-FireRate = 0.5
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(0.3, 1, 1, 1)
@@ -17,7 +16,3 @@ polygon = PackedVector2Array(-2, -2, 3, 0.5, -2, 3)
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-1.8, -1.65, 2.6, 0.5, -1.8, 2.65)
-
-[node name="FireRateTimer" type="Timer" parent="."]
-
-[connection signal="timeout" from="FireRateTimer" to="." method="OnFireRateTimerTimeout"]

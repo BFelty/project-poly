@@ -11,22 +11,9 @@ public partial class Player : CharacterBody2D
 	[Export]
 	public PackedScene Weapon { get; set; }
 
-	private Timer _fireRateTimer;
-
-	// How many seconds until the next shot is allowed
-	[Export]
-	private float FireRate { get; set; }
-	private bool canShoot = true;
-
 	public bool IsDead { get; set; } = false;
 
 	private Vector2 _target;
-
-	public override void _Ready()
-	{
-		_fireRateTimer = FindChild("FireRateTimer") as Timer;
-		_fireRateTimer.WaitTime = FireRate;
-	}
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -62,11 +49,5 @@ public partial class Player : CharacterBody2D
 		bullet.GlobalPosition = Position + bulletOffset;
 
 		GetTree().CurrentScene.AddChild(bullet);
-	}
-
-	private void OnFireRateTimerTimeout()
-	{
-		_fireRateTimer.Stop();
-		canShoot = true;
 	}
 }
