@@ -12,6 +12,8 @@ public partial class PlayerManager : Node
 	private PlayerSpawner _playerSpawner;
 
 	private List<Player> _playerList = new();
+	private int _currentPlayerIndex = 0;
+	private bool canShoot = true;
 
 	public override void _Ready()
 	{
@@ -28,6 +30,11 @@ public partial class PlayerManager : Node
 		// Disconnect from global signals to prevent disposed object errors
 		SignalBus.Instance.PlayerPickupCollected -= OnPlayerPickupCollected;
 		SignalBus.Instance.PlayerDamaged -= KillPlayer;
+	}
+
+	public override void _PhysicsProcess(double delta)
+	{
+		HandleShooting();
 	}
 
 	public void SpawnPlayer(Vector2 spawnPoint)
@@ -61,5 +68,33 @@ public partial class PlayerManager : Node
 
 		Vector2 offset = new(5, 0);
 		CallDeferred(MethodName.SpawnPlayer, collidedPlayerPosition + offset);
+	}
+
+	// ! There is a bug in this function that occurs when many Players die
+	// ! in quick succession and the player is shooting. _currentPlayerIndex
+	// ! isn't updated quickly enough which results in the _currentPlayerIndex
+	// ! pointing to a Player that no longer exists.
+	// !
+	// ! This bug could cause bullets to not be shot which could lower dps and
+	// ! cause the player to lose. This issue probably won't happen as often
+	// ! with a lower fire rate
+	private void HandleShooting()
+	{
+		if (Input.IsActionPressed("shoot"))
+		{
+			if (canShoot && _playerList.Count > 0)
+			{
+				//canShoot = false;
+				//_fireRateTimer.Start();
+
+				// Make current player shoot
+				// Increment the player that is allowed to shoot
+				GD.Print("Current player index: " + _currentPlayerIndex);
+				_playerList[_currentPlayerIndex].Shoot();
+				_currentPlayerIndex =
+					(_currentPlayerIndex + 1) % _playerList.Count;
+			}
+		}
+		// TODO - Implement shared fire rate timer (wait time / player count)
 	}
 }

@@ -1,4 +1,3 @@
-using System.Runtime.Serialization.Formatters;
 using Godot;
 using LastPolygon.Weapons;
 
@@ -32,7 +31,6 @@ public partial class Player : CharacterBody2D
 	public override void _PhysicsProcess(double delta)
 	{
 		HandleMovement(delta);
-		HandleShooting();
 	}
 
 	public void Kill()
@@ -55,24 +53,15 @@ public partial class Player : CharacterBody2D
 
 	// ! Something is weird with the physics interpolation and the bullet
 	// ! Fix it later when polishing
-	private void HandleShooting()
+	public void Shoot()
 	{
-		if (Input.IsActionPressed("shoot"))
-		{
-			if (canShoot)
-			{
-				canShoot = false;
-				_fireRateTimer.Start();
+		Bullet bullet = Weapon.Instantiate() as Bullet;
 
-				Bullet bullet = Weapon.Instantiate() as Bullet;
+		// Set bullet position 4 pixels right of the player's origin
+		Vector2 bulletOffset = new(4, 0);
+		bullet.GlobalPosition = Position + bulletOffset;
 
-				// Set bullet position 4 pixels right of the player's origin
-				Vector2 bulletOffset = new(4, 0);
-				bullet.GlobalPosition = Position + bulletOffset;
-
-				GetTree().CurrentScene.AddChild(bullet);
-			}
-		}
+		GetTree().CurrentScene.AddChild(bullet);
 	}
 
 	private void OnFireRateTimerTimeout()
