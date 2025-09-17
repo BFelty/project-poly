@@ -4,3 +4,5 @@
 
 [node name="PlayerManager" type="Node"]
 script = ExtResource("1_537qr")
+
+[node name="FireRateTimer" type="Timer" parent="."]

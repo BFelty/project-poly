@@ -8,10 +8,11 @@ public partial class PlayerSpawner : Node2D
 		"uid://osokqpha3208"
 	);
 
-	public void SpawnPlayer(Vector2 spawnPoint)
+	public Player SpawnPlayer(Vector2 spawnPoint)
 	{
 		Player player = _playerScene.Instantiate() as Player;
 		player.GlobalPosition = spawnPoint;
 		GetParent().AddChild(player);
+		return player;
 	}
 }

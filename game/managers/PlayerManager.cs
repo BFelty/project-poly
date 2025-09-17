@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 using LastPolygon.Globals;
 
@@ -9,7 +10,8 @@ public partial class PlayerManager : Node
 		"uid://ib7e2mistls3"
 	);
 	private PlayerSpawner _playerSpawner;
-	private int _playerCount = 0;
+
+	private List<Player> _playerList = new();
 
 	public override void _Ready()
 	{
@@ -30,9 +32,9 @@ public partial class PlayerManager : Node
 
 	public void SpawnPlayer(Vector2 spawnPoint)
 	{
-		_playerSpawner.SpawnPlayer(spawnPoint);
-		_playerCount++;
-		GD.Print("Updated player count: " + _playerCount);
+		Player newPlayer = _playerSpawner.SpawnPlayer(spawnPoint);
+		_playerList.Add(newPlayer); // Track newly-spawned player
+		GD.Print("Updated player count: " + _playerList.Count);
 	}
 
 	public void KillPlayer(Player playerToKill)
@@ -43,13 +45,13 @@ public partial class PlayerManager : Node
 
 		playerToKill.IsDead = true;
 		playerToKill.Kill();
-		_playerCount--;
-		GD.Print("Updated player count: " + _playerCount);
+		_playerList.Remove(playerToKill);
+		GD.Print("Updated player count: " + _playerList.Count);
 
 		// Signal that a player died, include _playerCount
 		SignalBus.Instance.EmitSignal(
 			SignalBus.SignalName.PlayerDied,
-			_playerCount
+			_playerList.Count
 		);
 	}
 
