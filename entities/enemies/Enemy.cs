@@ -10,6 +10,11 @@ public partial class Enemy : Area2D
 	[Export]
 	public float Speed { get; set; }
 
+	[Export]
+	private int _health;
+
+	//private bool _isProcessingDamage = false;
+
 	public bool IsDead { get; set; } = false;
 
 	public override void _PhysicsProcess(double delta)
@@ -17,15 +22,21 @@ public partial class Enemy : Area2D
 		HandleMovement(delta);
 	}
 
-	public void Kill()
-	{
-		QueueFree();
-	}
-
 	private void HandleMovement(double delta)
 	{
 		Vector2 velocity = Vector2.Left * Speed;
 		Translate(velocity * (float)delta);
+	}
+
+	private void TakeDamage(int damageTaken)
+	{
+		// TODO - Take damage when hit by damaging entity
+		// TODO - Check if health is 0 or below, kill if it is
+	}
+
+	public void Kill()
+	{
+		QueueFree();
 	}
 
 	private void OnAreaEntered(Area2D area)
