@@ -99,12 +99,12 @@ public partial class PlayerManager : Node
 				canShoot = false;
 				_fireRateTimer.Start();
 
-				// Make current player shoot
 				// Increment the player that is allowed to shoot
-				GD.Print("Current player index: " + _currentPlayerIndex);
-				_playerList[_currentPlayerIndex].Shoot();
+				// Make current player shoot
 				_currentPlayerIndex =
 					(_currentPlayerIndex + 1) % _playerList.Count;
+				GD.Print("Current player index: " + _currentPlayerIndex);
+				_playerList[_currentPlayerIndex].Shoot();
 			}
 		}
 	}
