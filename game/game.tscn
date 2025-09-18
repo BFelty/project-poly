@@ -24,7 +24,11 @@ autostart = true
 wait_time = 2.0
 autostart = true
 
+[node name="SurvivalTimer" type="Timer" parent="."]
+autostart = true
+
 [node name="LevelOne" parent="." instance=ExtResource("2_h7iqs")]
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="OnEnemySpawnTimerTimeout"]
 [connection signal="timeout" from="PickupTimer" to="." method="OnPlayerPickupTimerTimeout"]
+[connection signal="timeout" from="SurvivalTimer" to="." method="OnSurvivalTimerTimeout"]

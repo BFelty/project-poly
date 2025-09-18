@@ -1,5 +1,6 @@
-using System.Reflection.Metadata;
+using System.Collections.Generic;
 using Godot;
+using Godot.Collections;
 using LastPolygon.Enemies;
 using LastPolygon.Globals;
 using LastPolygon.Players;
@@ -30,6 +31,10 @@ public partial class Game : Node
 	private Timer _enemySpawnerTimer;
 	private Timer _pickupSpawnerTimer;
 
+	// Scoring variables
+	private Timer _survivalTimer;
+	private int _timeSurvivedInSeconds = 0;
+
 	public override void _Ready()
 	{
 		GD.Print("Game ready");
@@ -51,6 +56,7 @@ public partial class Game : Node
 
 		_enemySpawnerTimer = FindChild("EnemySpawnTimer") as Timer;
 		_pickupSpawnerTimer = FindChild("PickupTimer") as Timer;
+		_survivalTimer = FindChild("SurvivalTimer") as Timer;
 
 		GameStart();
 	}
@@ -86,6 +92,10 @@ public partial class Game : Node
 
 	private void GameOver()
 	{
+		// Emit time survived
+		_survivalTimer.Paused = true;
+		GD.Print("Time survived: " + GetScoreWithMilliseconds());
+
 		// Set which UI elements should be processed on game over
 		_pauseMenu.ProcessMode = ProcessModeEnum.Disabled;
 		_gameOverMenu.ProcessMode = ProcessModeEnum.Always;
@@ -102,5 +112,17 @@ public partial class Game : Node
 	{
 		GD.Print("Handling enemy leak...");
 		GameOver();
+	}
+
+	private void OnSurvivalTimerTimeout()
+	{
+		_timeSurvivedInSeconds++;
+	}
+
+	private float GetScoreWithMilliseconds()
+	{
+		// Milliseconds formatted to 3 decimal places
+		float milliseconds = $"{1 - _survivalTimer.TimeLeft:0.000}".ToFloat();
+		return _timeSurvivedInSeconds + milliseconds;
 	}
 }
