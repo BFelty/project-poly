@@ -114,10 +114,11 @@ public partial class PlayerManager : Node
 		canShoot = true;
 	}
 
-	// ! Apparently, Timers in Godot are inconsistent when the wait time is
-	// ! below 0.05 seconds. This happens when the Player count goes above 20.
-	// ! This means I will probably have to implement a different method for
-	// ! calculating when a Player can shoot, but I'll fix that later.
+	// ! According to Godot documentation, Timers are inconsistent when the
+	// ! wait time is below 0.05 seconds. This happens when the Player count
+	// ! goes above 20. This means I will probably have to implement a
+	// ! different method for calculating when a Player can shoot, but I'll
+	// ! fix that later.
 	private void RecalculateFireRateTimerWaitTime()
 	{
 		// Each individual Player's fire rate should be roughly equal to
