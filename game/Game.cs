@@ -111,9 +111,14 @@ public partial class Game : Node
 		// Disconnect from signals on game over to prevent continued handling
 		DisconnectSignals();
 
-		// TODO - Emit time survived
+		// Pause timer to get accurate milliseconds
 		_survivalTimer.Paused = true;
-		GD.Print("Time survived: " + GetScoreWithMilliseconds());
+
+		GD.Print("Game emit signal: " + SignalBus.SignalName.GameEnded);
+		SignalBus.Instance.EmitSignal(
+			SignalBus.SignalName.GameEnded,
+			GetScoreWithMilliseconds()
+		);
 
 		// Set which UI elements should be processed on game over
 		_pauseMenu.ProcessMode = ProcessModeEnum.Disabled;

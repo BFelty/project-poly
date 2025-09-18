@@ -22,6 +22,10 @@ public partial class SignalBus : Node
 		Vector2 collidedPlayerPosition
 	);
 
+	// Game Signals
+	[Signal]
+	public delegate void GameEndedEventHandler(float timeSurvived);
+
 	public static SignalBus Instance { get; private set; }
 
 	public override void _Ready()

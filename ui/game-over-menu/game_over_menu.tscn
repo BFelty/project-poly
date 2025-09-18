@@ -31,6 +31,9 @@ layout_mode = 2
 text = "Game Over"
 horizontal_alignment = 1
 
+[node name="TimeSurvivedLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
 [node name="RestartButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Play Again"
