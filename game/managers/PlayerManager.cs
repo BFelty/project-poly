@@ -82,14 +82,6 @@ public partial class PlayerManager : Node
 		CallDeferred(MethodName.SpawnPlayer, collidedPlayerPosition + offset);
 	}
 
-	// ! There is a bug in this function that occurs when many Players die
-	// ! in quick succession and the player is shooting. _currentPlayerIndex
-	// ! isn't updated quickly enough which results in the _currentPlayerIndex
-	// ! pointing to a Player that no longer exists.
-	// !
-	// ! This bug could cause bullets to not be shot which could lower dps and
-	// ! cause the player to lose. This issue probably won't happen as often
-	// ! with a lower fire rate
 	private void HandleShooting()
 	{
 		if (Input.IsActionPressed("shoot"))
