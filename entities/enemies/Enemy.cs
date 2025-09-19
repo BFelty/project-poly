@@ -11,9 +11,16 @@ public partial class Enemy : Area2D
 	public float Speed { get; set; }
 
 	[Export]
-	private int _health;
+	private int _maxHealth;
 
-	public bool IsDead { get; set; } = false;
+	private int _currentHealth;
+
+	private bool IsDead { get; set; } = false;
+
+	public override void _Ready()
+	{
+		_currentHealth = _maxHealth;
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -28,9 +35,9 @@ public partial class Enemy : Area2D
 
 	private void TakeDamage(int damageTaken)
 	{
-		_health -= damageTaken;
+		_currentHealth -= damageTaken;
 
-		if (_health <= 0)
+		if (_currentHealth <= 0)
 		{
 			Kill();
 		}
@@ -38,6 +45,9 @@ public partial class Enemy : Area2D
 
 	public void Kill()
 	{
+		// Count an enemy as dead once it's health reaches zero, even if it
+		// hasn't been deleted from memory yet
+		IsDead = true;
 		QueueFree();
 	}
 
@@ -53,14 +63,12 @@ public partial class Enemy : Area2D
 
 	private void OnBodyEntered(Node2D body)
 	{
-		// Only allows an enemy to kill a Player once
+		// Do not allow dead enemies to damage Players
 		if (IsDead)
 			return;
 
 		if (body is Player)
 		{
-			IsDead = true;
-
 			GD.Print(
 				"Enemy emit signal: " + SignalBus.SignalName.PlayerDamaged
 			);
