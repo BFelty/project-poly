@@ -30,8 +30,12 @@ public partial class Enemy : Area2D
 
 	private void TakeDamage(int damageTaken)
 	{
-		// TODO - Take damage when hit by damaging entity
-		// TODO - Check if health is 0 or below, kill if it is
+		_health -= damageTaken;
+
+		if (_health <= 0)
+		{
+			Kill();
+		}
 	}
 
 	public void Kill()
@@ -43,7 +47,9 @@ public partial class Enemy : Area2D
 	{
 		if (area is Bullet)
 		{
-			Kill();
+			Bullet bullet = area as Bullet;
+			TakeDamage(bullet.Damage);
+			GD.Print("Took damage from " + bullet);
 		}
 	}
 
@@ -65,7 +71,10 @@ public partial class Enemy : Area2D
 				body as Player
 			);
 
-			QueueFree();
+			// Each Player only does 1 damage to an enemy. This allows for
+			// Players to be sacrificed early on effectively, but that is less
+			// viable in later waves
+			TakeDamage(1);
 		}
 	}
 
