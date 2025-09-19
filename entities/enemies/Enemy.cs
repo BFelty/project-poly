@@ -12,14 +12,22 @@ public partial class Enemy : Area2D
 
 	[Export]
 	private int _maxHealth;
-
 	private int _currentHealth;
+	private TextureProgressBar _healthBar;
 
 	private bool IsDead { get; set; } = false;
 
 	public override void _Ready()
 	{
 		_currentHealth = _maxHealth;
+
+		// Initialize health bar
+		_healthBar = FindChild("HealthBar") as TextureProgressBar;
+		_healthBar.Hide();
+
+		// Change health bar values based on current stats
+		_healthBar.MaxValue = _maxHealth;
+		_healthBar.Value = _maxHealth;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -35,7 +43,10 @@ public partial class Enemy : Area2D
 
 	private void TakeDamage(int damageTaken)
 	{
+		// Update health variable and health bar
 		_currentHealth -= damageTaken;
+		_healthBar.Value = _currentHealth;
+		_healthBar.Show();
 
 		if (_currentHealth <= 0)
 		{

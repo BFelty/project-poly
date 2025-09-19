@@ -1,9 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://ca1o6vvko4gbe"]
+[gd_scene load_steps=7 format=3 uid="uid://ca1o6vvko4gbe"]
 
 [ext_resource type="Script" uid="uid://1kn8p3ke4f2m" path="res://entities/enemies/Enemy.cs" id="1_owq46"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gml8b"]
 radius = 4.75
+
+[sub_resource type="Gradient" id="Gradient_owq46"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wqcwe"]
+gradient = SubResource("Gradient_owq46")
+width = 1
+height = 1
+fill = 2
+
+[sub_resource type="Gradient" id="Gradient_5lf1o"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_msovg"]
+gradient = SubResource("Gradient_5lf1o")
+width = 1
+height = 1
 
 [node name="Enemy" type="Area2D"]
 collision_layer = 2
@@ -20,6 +39,17 @@ polygon = PackedVector2Array(0, -5, 3.5, -3.5, 5, 0, 3.5, 3.5, 0, 5, -3.5, 3.5, 
 shape = SubResource("CircleShape2D_gml8b")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+offset_left = -5.0
+offset_top = -7.0
+offset_right = 5.0
+offset_bottom = -6.0
+max_value = 1.0
+value = 1.0
+nine_patch_stretch = true
+texture_under = SubResource("GradientTexture2D_wqcwe")
+texture_progress = SubResource("GradientTexture2D_msovg")
 
 [connection signal="area_entered" from="." to="." method="OnAreaEntered"]
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]
