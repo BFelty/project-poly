@@ -13,8 +13,6 @@ public partial class Enemy : Area2D
 	[Export]
 	private int _health;
 
-	//private bool _isProcessingDamage = false;
-
 	public bool IsDead { get; set; } = false;
 
 	public override void _PhysicsProcess(double delta)
