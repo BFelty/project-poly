@@ -1,5 +1,6 @@
 using Godot;
 using LastPolygon.Enemies;
+using LastPolygon.Interfaces;
 
 namespace LastPolygon.Weapons;
 
@@ -30,10 +31,9 @@ public partial class Bullet : Area2D
 	// Frees itself when colliding with any area
 	private void OnAreaEntered(Area2D area)
 	{
-		if (area is Enemy)
+		if (area is IDamageable damageable)
 		{
-			Enemy enemy = area as Enemy;
-			enemy.TakeDamage(_damage);
+			damageable.TakeDamage(_damage);
 		}
 		QueueFree();
 	}

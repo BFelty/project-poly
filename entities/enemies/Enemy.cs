@@ -1,11 +1,12 @@
 using Godot;
+using LastPolygon.Components;
 using LastPolygon.Globals;
+using LastPolygon.Interfaces;
 using LastPolygon.Players;
-using LastPolygon.Weapons;
 
 namespace LastPolygon.Enemies;
 
-public partial class Enemy : Area2D
+public partial class Enemy : Area2D, IDamageable
 {
 	[Export]
 	public float Speed { get; set; }
@@ -13,12 +14,17 @@ public partial class Enemy : Area2D
 	[Export]
 	private int _maxHealth;
 	private int _currentHealth;
+
+	//private HealthComponent health;
 	private TextureProgressBar _healthBar;
 
 	private bool _isDead = false;
 
 	public override void _Ready()
 	{
+		// TODO - New health component implementation
+		//health = new HealthComponent();
+
 		_currentHealth = _maxHealth;
 
 		// Initialize health bar
