@@ -51,6 +51,5 @@ nine_patch_stretch = true
 texture_under = SubResource("GradientTexture2D_wqcwe")
 texture_progress = SubResource("GradientTexture2D_msovg")
 
-[connection signal="area_entered" from="." to="." method="OnAreaEntered"]
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="OnVisibleOnScreenNotifier2DScreenExited"]

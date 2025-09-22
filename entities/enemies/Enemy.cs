@@ -41,7 +41,7 @@ public partial class Enemy : Area2D
 		Translate(velocity * (float)delta);
 	}
 
-	private void TakeDamage(int damageTaken)
+	public void TakeDamage(int damageTaken)
 	{
 		// Update health variable and health bar
 		_currentHealth -= damageTaken;
@@ -60,16 +60,6 @@ public partial class Enemy : Area2D
 		// hasn't been deleted from memory yet
 		IsDead = true;
 		QueueFree();
-	}
-
-	private void OnAreaEntered(Area2D area)
-	{
-		if (area is Bullet)
-		{
-			Bullet bullet = area as Bullet;
-			TakeDamage(bullet.Damage);
-			GD.Print("Took damage from " + bullet);
-		}
 	}
 
 	private void OnBodyEntered(Node2D body)

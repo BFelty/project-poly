@@ -1,4 +1,5 @@
 using Godot;
+using LastPolygon.Enemies;
 
 namespace LastPolygon.Weapons;
 
@@ -8,7 +9,7 @@ public partial class Bullet : Area2D
 	public float Speed { get; set; }
 
 	[Export]
-	public int Damage { get; set; } = 1;
+	private int _damage = 1;
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -29,6 +30,11 @@ public partial class Bullet : Area2D
 	// Frees itself when colliding with any area
 	private void OnAreaEntered(Area2D area)
 	{
+		if (area is Enemy)
+		{
+			Enemy enemy = area as Enemy;
+			enemy.TakeDamage(_damage);
+		}
 		QueueFree();
 	}
 }
