@@ -11,29 +11,25 @@ public partial class Enemy : Area2D, IDamageable
 	[Export]
 	public float Speed { get; set; }
 
-	[Export]
-	private int _maxHealth;
-	private int _currentHealth;
-
-	//private HealthComponent health;
+	private HealthComponent _health;
 	private TextureProgressBar _healthBar;
-
-	private bool _isDead = false;
 
 	public override void _Ready()
 	{
-		// TODO - New health component implementation
-		//health = new HealthComponent();
+		_health = new HealthComponent();
 
-		_currentHealth = _maxHealth;
+		// Connect to local signals
+		// Don't need to disconnect because the subjects and observer are
+		// freed at the same time
+		_health.ActorDied += HandleDeath;
 
 		// Initialize health bar
 		_healthBar = FindChild("HealthBar") as TextureProgressBar;
 		_healthBar.Hide();
 
 		// Change health bar values based on current stats
-		_healthBar.MaxValue = _maxHealth;
-		_healthBar.Value = _maxHealth;
+		_healthBar.MaxValue = _health.MaxHealth;
+		_healthBar.Value = _health.CurrentHealth;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -49,29 +45,21 @@ public partial class Enemy : Area2D, IDamageable
 
 	public void TakeDamage(int damageTaken)
 	{
-		// Update health variable and health bar
-		_currentHealth -= damageTaken;
-		_healthBar.Value = _currentHealth;
+		// Update health component and health bar
+		_health.TakeDamage(damageTaken);
+		_healthBar.Value = _health.CurrentHealth;
 		_healthBar.Show();
-
-		if (_currentHealth <= 0)
-		{
-			Kill();
-		}
 	}
 
-	public void Kill()
+	public void HandleDeath()
 	{
-		// Count an enemy as dead once it's health reaches zero, even if it
-		// hasn't been deleted from memory yet
-		_isDead = true;
 		QueueFree();
 	}
 
 	private void OnBodyEntered(Node2D body)
 	{
 		// Do not allow dead enemies to damage Players
-		if (_isDead)
+		if (!_health.IsAlive)
 			return;
 
 		if (body is Player)
