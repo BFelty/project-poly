@@ -15,7 +15,7 @@ public partial class Enemy : Area2D
 	private int _currentHealth;
 	private TextureProgressBar _healthBar;
 
-	private bool IsDead { get; set; } = false;
+	private bool _isDead = false;
 
 	public override void _Ready()
 	{
@@ -58,14 +58,14 @@ public partial class Enemy : Area2D
 	{
 		// Count an enemy as dead once it's health reaches zero, even if it
 		// hasn't been deleted from memory yet
-		IsDead = true;
+		_isDead = true;
 		QueueFree();
 	}
 
 	private void OnBodyEntered(Node2D body)
 	{
 		// Do not allow dead enemies to damage Players
-		if (IsDead)
+		if (_isDead)
 			return;
 
 		if (body is Player)
