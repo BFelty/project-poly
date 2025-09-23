@@ -11,13 +11,11 @@ public partial class Enemy : Area2D, IDamageable
 	[Export]
 	public float Speed { get; set; }
 
-	private HealthComponent _health;
+	private HealthComponent _health = new(1);
 	private TextureProgressBar _healthBar;
 
 	public override void _Ready()
 	{
-		_health = new HealthComponent();
-
 		// Connect to local signals
 		// Don't need to disconnect because the subjects and observer are
 		// freed at the same time
@@ -62,15 +60,18 @@ public partial class Enemy : Area2D, IDamageable
 		if (!_health.IsAlive)
 			return;
 
-		if (body is Player)
+		if (body is IDamageable damageable)
 		{
-			GD.Print(
-				"Enemy emit signal: " + SignalBus.SignalName.PlayerDamaged
-			);
-			SignalBus.Instance.EmitSignal(
-				SignalBus.SignalName.PlayerDamaged,
-				body as Player
-			);
+			//GD.Print(
+			//	"Enemy emit signal: " + SignalBus.SignalName.PlayerDamaged
+			//);
+			//SignalBus.Instance.EmitSignal(
+			//	SignalBus.SignalName.PlayerDamaged,
+			//	body as Player
+			//);
+
+			// Damage the body the Enemy collided with
+			damageable.TakeDamage(1); // TODO - Implement attack component maybe
 
 			// Each Player only does 1 damage to an enemy. This allows for
 			// Players to be sacrificed early on effectively, but that is less

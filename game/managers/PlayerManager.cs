@@ -26,7 +26,6 @@ public partial class PlayerManager : Node
 	{
 		// Connect to global signals
 		SignalBus.Instance.PlayerPickupCollected += OnPlayerPickupCollected;
-		SignalBus.Instance.PlayerDamaged += KillPlayer;
 
 		_playerSpawner = _playerSpawnerScene.Instantiate() as PlayerSpawner;
 		AddChild(_playerSpawner);
@@ -39,7 +38,6 @@ public partial class PlayerManager : Node
 	{
 		// Disconnect from global signals to prevent disposed object errors
 		SignalBus.Instance.PlayerPickupCollected -= OnPlayerPickupCollected;
-		SignalBus.Instance.PlayerDamaged -= KillPlayer;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -55,14 +53,9 @@ public partial class PlayerManager : Node
 		RecalculateFireRateTimerWaitTime();
 	}
 
-	public void KillPlayer(Player playerToKill)
+	public void OnPlayerDeath(Player playerToKill)
 	{
-		// Ensures a Player's death is not counted multiple times
-		if (playerToKill.IsDead)
-			return;
-
-		playerToKill.IsDead = true;
-		playerToKill.Kill();
+		playerToKill.QueueFree();
 		_playerList.Remove(playerToKill);
 		GD.Print("Updated player count: " + _playerList.Count);
 		RecalculateFireRateTimerWaitTime();

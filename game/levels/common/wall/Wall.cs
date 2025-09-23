@@ -1,5 +1,6 @@
 using Godot;
 using LastPolygon.Globals;
+using LastPolygon.Interfaces;
 using LastPolygon.Players;
 
 namespace LastPolygon.Game;
@@ -8,14 +9,9 @@ public partial class Wall : Area2D
 {
 	public void OnBodyEntered(Node2D body)
 	{
-		if (body is Player)
+		if (body is IDamageable damageable)
 		{
-			GD.Print("Wall emit signal: " + SignalBus.SignalName.PlayerDamaged);
-			// Emit signal from SignalBus autoload
-			SignalBus.Instance.EmitSignal(
-				SignalBus.SignalName.PlayerDamaged,
-				body as Player
-			);
+			damageable.TakeDamage(1);
 		}
 	}
 }
