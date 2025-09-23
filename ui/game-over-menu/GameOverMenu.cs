@@ -9,8 +9,8 @@ public partial class GameOverMenu : CanvasLayer
 
 	public override void _Ready()
 	{
-		// Connect to global signals
-		SignalBus.Instance.GameEnded += SetTimeSurvived;
+		// Connect to global events
+		EventBus.GameEnded += SetTimeSurvived;
 
 		Visible = false;
 		_timeSurvivedLabel = FindChild("TimeSurvivedLabel") as Label;
@@ -18,8 +18,8 @@ public partial class GameOverMenu : CanvasLayer
 
 	public override void _ExitTree()
 	{
-		// Disconnect from global signals
-		SignalBus.Instance.GameEnded -= SetTimeSurvived;
+		// Disconnect from global events
+		EventBus.GameEnded -= SetTimeSurvived;
 	}
 
 	private void SetTimeSurvived(float timeSurvived)

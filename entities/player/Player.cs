@@ -19,7 +19,7 @@ public partial class Player : CharacterBody2D, IDamageable
 
 	public override void _Ready()
 	{
-		// Connect to local signals
+		// Connect to local events
 		// Don't need to disconnect because the subjects and observer are
 		// freed at the same time
 		_health.ActorDied += HandleDeath;

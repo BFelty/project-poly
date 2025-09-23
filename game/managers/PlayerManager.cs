@@ -24,8 +24,8 @@ public partial class PlayerManager : Node
 
 	public override void _Ready()
 	{
-		// Connect to global signals
-		SignalBus.Instance.PlayerPickupCollected += OnPlayerPickupCollected;
+		// Connect to global events
+		EventBus.PlayerPickupCollected += OnPlayerPickupCollected;
 
 		_playerSpawner = _playerSpawnerScene.Instantiate() as PlayerSpawner;
 		AddChild(_playerSpawner);
@@ -36,8 +36,8 @@ public partial class PlayerManager : Node
 
 	public override void _ExitTree()
 	{
-		// Disconnect from global signals to prevent disposed object errors
-		SignalBus.Instance.PlayerPickupCollected -= OnPlayerPickupCollected;
+		// Disconnect from global events to prevent disposed object errors
+		EventBus.PlayerPickupCollected -= OnPlayerPickupCollected;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -60,11 +60,7 @@ public partial class PlayerManager : Node
 		GD.Print("Updated player count: " + _playerList.Count);
 		RecalculateFireRateTimerWaitTime();
 
-		// Signal that a player died, include _playerCount
-		SignalBus.Instance.EmitSignal(
-			SignalBus.SignalName.PlayerDied,
-			_playerList.Count
-		);
+		EventBus.InvokePlayerCountChanged(_playerList.Count);
 	}
 
 	private void OnPlayerPickupCollected(Vector2 collidedPlayerPosition)

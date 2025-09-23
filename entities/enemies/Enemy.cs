@@ -1,3 +1,4 @@
+using System.Reflection;
 using Godot;
 using LastPolygon.Components;
 using LastPolygon.Globals;
@@ -16,7 +17,7 @@ public partial class Enemy : Area2D, IDamageable
 
 	public override void _Ready()
 	{
-		// Connect to local signals
+		// Connect to local events
 		// Don't need to disconnect because the subjects and observer are
 		// freed at the same time
 		_health.ActorDied += HandleDeath;
@@ -62,14 +63,6 @@ public partial class Enemy : Area2D, IDamageable
 
 		if (body is IDamageable damageable)
 		{
-			//GD.Print(
-			//	"Enemy emit signal: " + SignalBus.SignalName.PlayerDamaged
-			//);
-			//SignalBus.Instance.EmitSignal(
-			//	SignalBus.SignalName.PlayerDamaged,
-			//	body as Player
-			//);
-
 			// Damage the body the Enemy collided with
 			damageable.TakeDamage(1); // TODO - Implement attack component maybe
 
@@ -85,8 +78,8 @@ public partial class Enemy : Area2D, IDamageable
 		// Alert the game that an enemy has gone off screen
 		// ! At the time of writing, this can only happen when the enemy gets
 		// ! past the player, which should make the player lose.
-		GD.Print("Enemy emit signal: " + SignalBus.SignalName.EnemyLeak);
-		SignalBus.Instance.EmitSignal(SignalBus.SignalName.EnemyLeak);
+		GD.Print("Enemy emit event: EnemyLeak");
+		EventBus.InvokeEnemyLeak();
 
 		QueueFree();
 	}

@@ -1,12 +1,11 @@
+using System;
 using Godot;
 
 namespace LastPolygon.Components;
 
 public partial class HealthComponent : Resource
 {
-	// TODO - Move health-related variables and functions here
-	[Signal]
-	public delegate void ActorDiedEventHandler();
+	public event Action ActorDied;
 
 	public int MaxHealth { get; set; }
 	public int CurrentHealth { get; private set; }
@@ -21,11 +20,11 @@ public partial class HealthComponent : Resource
 
 	public void TakeDamage(int damageTaken)
 	{
-		// Update health and signal if dead
+		// Update health and invoke event if dead
 		CurrentHealth -= damageTaken;
 		if (!IsAlive)
 		{
-			EmitSignal(SignalName.ActorDied);
+			ActorDied?.Invoke();
 		}
 	}
 }

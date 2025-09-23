@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using Godot;
-using Godot.Collections;
 using LastPolygon.Enemies;
 using LastPolygon.Globals;
 using LastPolygon.Players;
@@ -59,20 +57,20 @@ public partial class Game : Node
 
 	public override void _ExitTree()
 	{
-		// Disconnect from global signals to prevent disposed object errors
-		DisconnectSignals();
+		// Disconnect from global events to prevent disposed object errors
+		DisconnectEvents();
 	}
 
-	private void ConnectSignals()
+	private void ConnectEvents()
 	{
-		SignalBus.Instance.PlayerDied += CheckIfGameOver;
-		SignalBus.Instance.EnemyLeak += HandleEnemyLeak;
+		EventBus.PlayerCountChanged += CheckIfGameOver;
+		EventBus.EnemyLeak += HandleEnemyLeak;
 	}
 
-	private void DisconnectSignals()
+	private void DisconnectEvents()
 	{
-		SignalBus.Instance.PlayerDied -= CheckIfGameOver;
-		SignalBus.Instance.EnemyLeak -= HandleEnemyLeak;
+		EventBus.PlayerCountChanged -= CheckIfGameOver;
+		EventBus.EnemyLeak -= HandleEnemyLeak;
 	}
 
 	// Timer timeouts
@@ -93,8 +91,8 @@ public partial class Game : Node
 
 	public void GameStart()
 	{
-		// Connect to signals when game starts
-		ConnectSignals();
+		// Connect to events when game starts
+		ConnectEvents();
 
 		// Set which UI elements should be processed during the game
 		_pauseMenu.ProcessMode = ProcessModeEnum.Always;
@@ -108,17 +106,14 @@ public partial class Game : Node
 
 	private void GameOver()
 	{
-		// Disconnect from signals on game over to prevent continued handling
-		DisconnectSignals();
+		// Disconnect from events on game over to prevent continued handling
+		DisconnectEvents();
 
 		// Pause timer to get accurate milliseconds
 		_survivalTimer.Paused = true;
 
-		GD.Print("Game emit signal: " + SignalBus.SignalName.GameEnded);
-		SignalBus.Instance.EmitSignal(
-			SignalBus.SignalName.GameEnded,
-			GetScoreWithMilliseconds()
-		);
+		GD.Print("Game emit event: GameEnded");
+		EventBus.InvokeGameEnded(GetScoreWithMilliseconds());
 
 		// Set which UI elements should be processed on game over
 		_pauseMenu.ProcessMode = ProcessModeEnum.Disabled;

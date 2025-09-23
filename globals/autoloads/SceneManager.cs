@@ -18,7 +18,7 @@ public partial class SceneManager : Control
 
 	public void ChangeScene(PackedScene nextScene)
 	{
-		// This function will usually be called from a signal callback,
+		// This function will usually be called from an event callback,
 		// or some other function from the current scene.
 		// Deleting the current scene at this point is
 		// a bad idea, because it may still be executing code.
