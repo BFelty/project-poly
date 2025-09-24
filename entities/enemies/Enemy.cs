@@ -10,19 +10,26 @@ public partial class Enemy : Area2D, IDamageable
 {
 	public EnemyResource EnemyResource { get; set; }
 
-	private float _speed { get; set; }
-
 	private HealthComponent _health;
 	private TextureProgressBar _healthBar;
 
+	private float _speed { get; set; }
+
+	private Polygon2D enemyShape;
+
 	private void Initialize()
 	{
+		enemyShape.Color = EnemyResource.Color;
 		_health = new(EnemyResource.Health);
 		_speed = EnemyResource.Speed;
 	}
 
 	public override void _Ready()
 	{
+		// Get references to required Enemy children
+		// ! Temporary reference until I replace programmer art
+		enemyShape = FindChild("Polygon2D") as Polygon2D;
+
 		// Set up enemy from EnemyResource
 		Initialize();
 

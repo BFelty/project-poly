@@ -5,6 +5,11 @@ namespace LastPolygon.Resources;
 [GlobalClass]
 public partial class EnemyResource : Resource
 {
+	// ! This is a temporary variable to distinguish between enemies visually
+	// ! before I add better art
+	[Export]
+	public Color Color { get; set; }
+
 	[Export]
 	public int Health { get; set; }
 
