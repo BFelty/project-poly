@@ -2,19 +2,31 @@ using Godot;
 using LastPolygon.Components;
 using LastPolygon.Globals;
 using LastPolygon.Interfaces;
+using LastPolygon.Resources;
 
 namespace LastPolygon.Enemies;
 
 public partial class Enemy : Area2D, IDamageable
 {
 	[Export]
+	public EnemyResource EnemyResource { get; set; }
+
+	[Export]
 	public float Speed { get; set; }
 
-	private HealthComponent _health = new(1);
+	private HealthComponent _health;
 	private TextureProgressBar _healthBar;
+
+	public Enemy()
+	{
+		// TODO - Set up enemy constructor
+	}
 
 	public override void _Ready()
 	{
+		// Set up enemy
+		_health = new(EnemyResource.Health);
+
 		// Connect to local events
 		// Don't need to disconnect because the subjects and observer are
 		// freed at the same time
