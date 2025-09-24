@@ -1,9 +1,10 @@
 using System;
 using Godot;
+using LastPolygon.Interfaces;
 
 namespace LastPolygon.Components;
 
-public partial class HealthComponent : Resource
+public partial class HealthComponent : Resource, IDamageable
 {
 	public event Action ActorDied;
 
