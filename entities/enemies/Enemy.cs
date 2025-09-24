@@ -10,8 +10,7 @@ public partial class Enemy : Area2D, IDamageable
 {
 	public EnemyResource EnemyResource { get; set; }
 
-	[Export]
-	public float Speed { get; set; }
+	private float _speed { get; set; }
 
 	private HealthComponent _health;
 	private TextureProgressBar _healthBar;
@@ -19,6 +18,7 @@ public partial class Enemy : Area2D, IDamageable
 	private void Initialize()
 	{
 		_health = new(EnemyResource.Health);
+		_speed = EnemyResource.Speed;
 	}
 
 	public override void _Ready()
@@ -47,7 +47,7 @@ public partial class Enemy : Area2D, IDamageable
 
 	private void HandleMovement(double delta)
 	{
-		Vector2 velocity = Vector2.Left * Speed;
+		Vector2 velocity = Vector2.Left * _speed;
 		Translate(velocity * (float)delta);
 	}
 
