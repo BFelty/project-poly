@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://ca1o6vvko4gbe"]
+[gd_scene load_steps=7 format=3 uid="uid://ca1o6vvko4gbe"]
 
 [ext_resource type="Script" uid="uid://1kn8p3ke4f2m" path="res://entities/enemies/Enemy.cs" id="1_owq46"]
-[ext_resource type="Resource" uid="uid://nkjwo8at1k5" path="res://entities/enemies/variants/standard_enemy.tres" id="2_wqcwe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gml8b"]
 radius = 4.75
@@ -29,7 +28,6 @@ height = 1
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_owq46")
-EnemyResource = ExtResource("2_wqcwe")
 Speed = 100.0
 
 [node name="Polygon2D" type="Polygon2D" parent="."]

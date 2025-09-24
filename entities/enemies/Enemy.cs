@@ -8,7 +8,6 @@ namespace LastPolygon.Enemies;
 
 public partial class Enemy : Area2D, IDamageable
 {
-	[Export]
 	public EnemyResource EnemyResource { get; set; }
 
 	[Export]
@@ -17,15 +16,15 @@ public partial class Enemy : Area2D, IDamageable
 	private HealthComponent _health;
 	private TextureProgressBar _healthBar;
 
-	public Enemy()
+	private void Initialize()
 	{
-		// TODO - Set up enemy constructor
+		_health = new(EnemyResource.Health);
 	}
 
 	public override void _Ready()
 	{
-		// Set up enemy
-		_health = new(EnemyResource.Health);
+		// Set up enemy from EnemyResource
+		Initialize();
 
 		// Connect to local events
 		// Don't need to disconnect because the subjects and observer are
