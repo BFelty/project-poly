@@ -31,7 +31,7 @@ public partial class EnemySpawner : Area2D
 		// Create enemy from PackedScene and set it's EnemyResource. This
 		// will later define the enemy's stats, visuals, and behavior
 		Enemy enemy = _enemyScene.Instantiate() as Enemy;
-		enemy.EnemyResource = _enemyResource;
+		enemy.EnemyData = _enemyResource;
 
 		Vector2 spawnPoint = PickRandomSpawnPoint();
 		enemy.Position = Position + spawnPoint;

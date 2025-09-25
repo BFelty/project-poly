@@ -1,4 +1,5 @@
 using Godot;
+using LastPolygon.Components.Movement;
 
 namespace LastPolygon.Resources;
 
@@ -14,15 +15,25 @@ public partial class EnemyResource : Resource
 	public int Health { get; set; }
 
 	[Export]
+	public MovementStrategyBase MovementStrategy { get; set; }
+
+	[Export]
 	public float Speed { get; set; }
 
 	// This needs a parameterless constructor for use within Godot's inspector
 	public EnemyResource()
-		: this(0, 0) { }
+		: this(new Color(0, 0, 0, 1), 0, null, 0) { }
 
-	public EnemyResource(int health, float speed)
+	public EnemyResource(
+		Color color,
+		int health,
+		MovementStrategyBase movementStrategy,
+		float speed
+	)
 	{
+		Color = color;
 		Health = health;
+		MovementStrategy = movementStrategy;
 		Speed = speed;
 	}
 }

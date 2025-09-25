@@ -1,5 +1,6 @@
 using Godot;
 using LastPolygon.Components;
+using LastPolygon.Components.Movement;
 using LastPolygon.Globals;
 using LastPolygon.Interfaces;
 using LastPolygon.Resources;
@@ -8,20 +9,23 @@ namespace LastPolygon.Enemies;
 
 public partial class Enemy : Area2D, IDamageable
 {
-	public EnemyResource EnemyResource { get; set; }
+	// Data on the enemy variant
+	public EnemyResource EnemyData { get; set; }
+
+	private Polygon2D enemyShape;
 
 	private HealthComponent _health;
 	private TextureProgressBar _healthBar;
 
-	private float _speed { get; set; }
-
-	private Polygon2D enemyShape;
+	private MovementStrategyBase _movementStrategy;
+	private float _speed;
 
 	private void Initialize()
 	{
-		enemyShape.Color = EnemyResource.Color;
-		_health = new(EnemyResource.Health);
-		_speed = EnemyResource.Speed;
+		enemyShape.Color = EnemyData.Color; // ! Temporary
+		_health = new(EnemyData.Health);
+		_movementStrategy = EnemyData.MovementStrategy;
+		_speed = EnemyData.Speed;
 	}
 
 	public override void _Ready()
@@ -54,8 +58,7 @@ public partial class Enemy : Area2D, IDamageable
 
 	private void HandleMovement(double delta)
 	{
-		Vector2 velocity = Vector2.Left * _speed;
-		Translate(velocity * (float)delta);
+		_movementStrategy.Move(this, _speed, delta);
 	}
 
 	public void TakeDamage(int damageTaken)
