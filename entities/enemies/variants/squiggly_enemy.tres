@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=4 format=3 uid="uid://dvmgdo4hy8kva"]
+
+[ext_resource type="Script" uid="uid://dj4vfvdi3suxk" path="res://entities/enemies/EnemyResource.cs" id="1_qvwyx"]
+[ext_resource type="Script" uid="uid://cnr5e7utkn7qe" path="res://globals/components/movement/SquigglyMovementStrategy.cs" id="1_xnl0a"]
+
+[sub_resource type="Resource" id="Resource_ya1ba"]
+script = ExtResource("1_xnl0a")
+metadata/_custom_type_script = "uid://cnr5e7utkn7qe"
+
+[resource]
+script = ExtResource("1_qvwyx")
+Color = Color(0.6, 0, 0.9, 1)
+Health = 1
+MovementStrategy = SubResource("Resource_ya1ba")
+Speed = 50.0
+metadata/_custom_type_script = "uid://dj4vfvdi3suxk"

@@ -21,6 +21,9 @@ public partial class EnemySpawner : Area2D
 	private EnemyResource _tankEnemyResource = GD.Load<EnemyResource>(
 		"uid://dee0ubqwluivp"
 	);
+	private EnemyResource _squigglyEnemyResource = GD.Load<EnemyResource>(
+		"uid://dvmgdo4hy8kva"
+	);
 
 	private Vector2 PickRandomSpawnPoint()
 	{
@@ -37,7 +40,7 @@ public partial class EnemySpawner : Area2D
 		// Create enemy from PackedScene and set it's EnemyResource. This
 		// will later define the enemy's stats, visuals, and behavior
 		Enemy enemy = _enemyScene.Instantiate() as Enemy;
-		enemy.EnemyData = _fastEnemyResource;
+		enemy.EnemyData = _squigglyEnemyResource;
 
 		Vector2 spawnPoint = PickRandomSpawnPoint();
 		enemy.Position = Position + spawnPoint;
