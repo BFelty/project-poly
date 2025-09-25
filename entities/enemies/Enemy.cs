@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using LastPolygon.Components;
 using LastPolygon.Components.Movement;
@@ -17,7 +18,7 @@ public partial class Enemy : Area2D, IDamageable
 	private HealthComponent _health;
 	private TextureProgressBar _healthBar;
 
-	private MovementStrategyBase _movementStrategy;
+	private BaseMovementStrategy _movementStrategy;
 	private float _speed;
 
 	private void Initialize()

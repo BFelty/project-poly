@@ -15,7 +15,7 @@ public partial class EnemyResource : Resource
 	public int Health { get; set; }
 
 	[Export]
-	public MovementStrategyBase MovementStrategy { get; set; }
+	public BaseMovementStrategy MovementStrategy { get; set; }
 
 	[Export]
 	public float Speed { get; set; }
@@ -27,7 +27,7 @@ public partial class EnemyResource : Resource
 	public EnemyResource(
 		Color color,
 		int health,
-		MovementStrategyBase movementStrategy,
+		BaseMovementStrategy movementStrategy,
 		float speed
 	)
 	{
