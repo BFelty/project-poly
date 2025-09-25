@@ -12,8 +12,14 @@ public partial class EnemySpawner : Area2D
 
 	// ! This will be a parameter for the SpawnEnemy function later, but for
 	// ! now, I specify it here for testing
-	private EnemyResource _enemyResource = GD.Load<EnemyResource>(
+	private EnemyResource _standardEnemyResource = GD.Load<EnemyResource>(
 		"uid://nkjwo8at1k5"
+	);
+	private EnemyResource _fastEnemyResource = GD.Load<EnemyResource>(
+		"uid://bi0ua2cyvm5de"
+	);
+	private EnemyResource _tankEnemyResource = GD.Load<EnemyResource>(
+		"uid://dee0ubqwluivp"
 	);
 
 	private Vector2 PickRandomSpawnPoint()
@@ -31,7 +37,7 @@ public partial class EnemySpawner : Area2D
 		// Create enemy from PackedScene and set it's EnemyResource. This
 		// will later define the enemy's stats, visuals, and behavior
 		Enemy enemy = _enemyScene.Instantiate() as Enemy;
-		enemy.EnemyData = _enemyResource;
+		enemy.EnemyData = _fastEnemyResource;
 
 		Vector2 spawnPoint = PickRandomSpawnPoint();
 		enemy.Position = Position + spawnPoint;

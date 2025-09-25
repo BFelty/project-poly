@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=4 format=3 uid="uid://dee0ubqwluivp"]
+
+[ext_resource type="Script" uid="uid://dj4vfvdi3suxk" path="res://entities/enemies/EnemyResource.cs" id="1_8j58h"]
+[ext_resource type="Script" uid="uid://c0tej6o4xinty" path="res://globals/components/movement/StandardMovementStrategy.cs" id="1_h86hj"]
+
+[sub_resource type="Resource" id="Resource_d8hh1"]
+script = ExtResource("1_h86hj")
+metadata/_custom_type_script = "uid://c0tej6o4xinty"
+
+[resource]
+script = ExtResource("1_8j58h")
+Color = Color(1, 0.2, 0.2, 1)
+Health = 10
+MovementStrategy = SubResource("Resource_d8hh1")
+Speed = 10.0
+metadata/_custom_type_script = "uid://dj4vfvdi3suxk"
