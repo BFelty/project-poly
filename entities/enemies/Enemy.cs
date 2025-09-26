@@ -7,7 +7,7 @@ using LastPolygon.Resources;
 
 namespace LastPolygon.Enemies;
 
-public partial class Enemy : Area2D, IDamageable
+public partial class Enemy : CharacterBody2D, IDamageable
 {
 	// Data on the enemy variant
 	public EnemyResource EnemyData { get; set; }

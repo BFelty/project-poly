@@ -29,9 +29,9 @@ public partial class Bullet : Area2D
 	}
 
 	// Frees itself when colliding with any area
-	private void OnAreaEntered(Area2D area)
+	private void OnBodyEntered(Node2D body)
 	{
-		if (area is IDamageable damageable)
+		if (body is IDamageable damageable)
 		{
 			damageable.TakeDamage(_damage);
 		}

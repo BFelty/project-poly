@@ -6,7 +6,7 @@ namespace LastPolygon.Components.Movement;
 public abstract partial class BaseMovementStrategy : Resource
 {
 	public abstract void Move(
-		CollisionObject2D objectToMove,
+		CharacterBody2D objectToMove,
 		float speed,
 		double delta
 	);

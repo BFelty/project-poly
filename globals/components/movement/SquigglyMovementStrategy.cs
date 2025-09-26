@@ -14,7 +14,7 @@ public partial class SquigglyMovementStrategy : BaseMovementStrategy
 	private float _time = 0; // x variable
 
 	public override void Move(
-		CollisionObject2D objectToMove,
+		CharacterBody2D objectToMove,
 		float speed,
 		double delta
 	)
@@ -40,8 +40,8 @@ public partial class SquigglyMovementStrategy : BaseMovementStrategy
 		// +_amplitude over time, creating sine-wave motion.
 		float sine = -_amplitude * Mathf.Sin(_frequency * _time * Mathf.Tau);
 
-		Vector2 velocity = new(-speed, sine);
+		objectToMove.Velocity = new(-speed, sine);
 
-		objectToMove.Translate(velocity * (float)delta);
+		objectToMove.MoveAndSlide();
 	}
 }

@@ -8,12 +8,12 @@ namespace LastPolygon.Components.Movement;
 public partial class StandardMovementStrategy : BaseMovementStrategy
 {
 	public override void Move(
-		CollisionObject2D objectToMove,
+		CharacterBody2D objectToMove,
 		float speed,
 		double delta
 	)
 	{
-		Vector2 velocity = Vector2.Left * speed;
-		objectToMove.Translate(velocity * (float)delta);
+		objectToMove.Velocity = Vector2.Left * speed;
+		objectToMove.MoveAndSlide();
 	}
 }
