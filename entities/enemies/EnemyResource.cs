@@ -1,7 +1,7 @@
 using Godot;
 using LastPolygon.Components.Movement;
 
-namespace LastPolygon.Resources;
+namespace LastPolygon.Enemies;
 
 [GlobalClass]
 public partial class EnemyResource : Resource

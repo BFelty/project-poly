@@ -1,6 +1,5 @@
 using System;
 using Godot;
-using LastPolygon.Resources;
 
 namespace LastPolygon.Enemies;
 

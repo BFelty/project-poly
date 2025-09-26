@@ -3,7 +3,6 @@ using LastPolygon.Components;
 using LastPolygon.Components.Movement;
 using LastPolygon.Globals;
 using LastPolygon.Interfaces;
-using LastPolygon.Resources;
 
 namespace LastPolygon.Enemies;
 
