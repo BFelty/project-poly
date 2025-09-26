@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dhkrftqkqybko" path="res://entities/projectile/bullet.tscn" id="2_abrql"]
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 11
+collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_symyc")
 Speed = 300.0
