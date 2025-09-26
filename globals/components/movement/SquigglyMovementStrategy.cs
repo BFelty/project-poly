@@ -8,7 +8,7 @@ namespace LastPolygon.Components.Movement;
 public partial class SquigglyMovementStrategy : BaseMovementStrategy
 {
 	//
-	private float _amplitude = 150f; // Height of wave
+	private float _amplitude = 100f; // Height of wave
 	private float _frequency = 0.5f; // Oscillations per second
 
 	private float _time = 0; // x variable
