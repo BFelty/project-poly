@@ -1,4 +1,3 @@
-using System;
 using Godot;
 using LastPolygon.Components;
 using LastPolygon.Components.Movement;
@@ -25,7 +24,8 @@ public partial class Enemy : Area2D, IDamageable
 	{
 		enemyShape.Color = EnemyData.Color; // ! Temporary
 		_health = new(EnemyData.Health);
-		_movementStrategy = EnemyData.MovementStrategy;
+		_movementStrategy =
+			EnemyData.MovementStrategy.Duplicate() as BaseMovementStrategy;
 		_speed = EnemyData.Speed;
 	}
 
