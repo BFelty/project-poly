@@ -8,11 +8,11 @@ public partial class WaveManager : Node
 {
 	private static List<EnemyWave> _enemyWaves =
 	[
-		GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_1.tres"),
-		GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_2.tres"),
+		//GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_1.tres"),
+		//GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_2.tres"),
 		//GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_3.tres"),
 		//GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_4.tres"),
-		//GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_5.tres"),
+		GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_5.tres"),
 		//GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_6.tres"),
 		//GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_7.tres"),
 		//GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_8.tres"),
@@ -28,7 +28,6 @@ public partial class WaveManager : Node
 	}
 
 	// Once all waves are completed, always return the last wave
-	// TODO - Probably move this somewhere else
 	private EnemyWave _currentEnemyWave =>
 		(_currentWaveIndex < _enemyWaves.Count)
 			? _enemyWaves[_currentWaveIndex]
@@ -40,7 +39,6 @@ public partial class WaveManager : Node
 
 	private int _enemiesSpawned = 0; // From current enemy sequence
 
-	// TODO   increment enemy (whether that be the amount, sequence, or wave)
 	public (EnemyResource enemy, float spawnDelay) NextEnemyWithDelay()
 	{
 		EnemyResource enemy = _currentEnemySequence.Enemy;
