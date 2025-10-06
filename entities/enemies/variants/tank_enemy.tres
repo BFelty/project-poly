@@ -12,5 +12,5 @@ script = ExtResource("1_8j58h")
 Color = Color(1, 0.2, 0.2, 1)
 Health = 10
 MovementStrategy = SubResource("Resource_d8hh1")
-Speed = 10.0
+Speed = 20.0
 metadata/_custom_type_script = "uid://dj4vfvdi3suxk"
