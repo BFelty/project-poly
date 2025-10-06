@@ -21,7 +21,7 @@ position = Vector2(645, 90)
 one_shot = true
 
 [node name="PickupTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 10.0
 
 [node name="SurvivalTimer" type="Timer" parent="."]
 
