@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EnemyWave" load_steps=5 format=3 uid="uid://owjxrq1ybvgn"]
+
+[ext_resource type="Script" uid="uid://diync324gwueq" path="res://game/levels/common/waves/EnemyWave.cs" id="1_cy10u"]
+[ext_resource type="Script" uid="uid://bmianhg7bgeoy" path="res://game/levels/common/waves/EnemySequence.cs" id="1_oqg2d"]
+[ext_resource type="Resource" uid="uid://nkjwo8at1k5" path="res://entities/enemies/variants/standard_enemy.tres" id="1_r4wdn"]
+
+[sub_resource type="Resource" id="Resource_r4wdn"]
+script = ExtResource("1_oqg2d")
+Enemy = ExtResource("1_r4wdn")
+AmountToSpawn = 35
+SpawnInterval = 0.5
+metadata/_custom_type_script = "uid://bmianhg7bgeoy"
+
+[resource]
+script = ExtResource("1_cy10u")
+EnemySequences = Array[Object]([SubResource("Resource_r4wdn")])
+metadata/_custom_type_script = "uid://diync324gwueq"

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="EnemyWave" load_steps=7 format=3 uid="uid://grnirsfgchir"]
+
+[ext_resource type="Script" uid="uid://diync324gwueq" path="res://game/levels/common/waves/EnemyWave.cs" id="1_fnysd"]
+[ext_resource type="Resource" uid="uid://dee0ubqwluivp" path="res://entities/enemies/variants/tank_enemy.tres" id="1_h2dyf"]
+[ext_resource type="Script" uid="uid://bmianhg7bgeoy" path="res://game/levels/common/waves/EnemySequence.cs" id="2_obymf"]
+[ext_resource type="Resource" uid="uid://dvmgdo4hy8kva" path="res://entities/enemies/variants/squiggly_enemy.tres" id="3_63lyi"]
+
+[sub_resource type="Resource" id="Resource_yjn3r"]
+script = ExtResource("2_obymf")
+Enemy = ExtResource("1_h2dyf")
+AmountToSpawn = 10
+SpawnInterval = 0.1
+metadata/_custom_type_script = "uid://bmianhg7bgeoy"
+
+[sub_resource type="Resource" id="Resource_s6a5e"]
+script = ExtResource("2_obymf")
+Enemy = ExtResource("3_63lyi")
+AmountToSpawn = 20
+SpawnInterval = 1.0
+metadata/_custom_type_script = "uid://bmianhg7bgeoy"
+
+[resource]
+script = ExtResource("1_fnysd")
+EnemySequences = Array[Object]([SubResource("Resource_yjn3r"), SubResource("Resource_s6a5e")])
+metadata/_custom_type_script = "uid://diync324gwueq"

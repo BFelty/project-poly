@@ -8,16 +8,16 @@ public partial class WaveManager : Node
 {
 	private static List<EnemyWave> _enemyWaves =
 	[
-		//GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_1.tres"),
-		//GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_2.tres"),
-		//GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_3.tres"),
-		//GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_4.tres"),
+		GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_1.tres"),
+		GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_2.tres"),
+		GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_3.tres"),
+		GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_4.tres"),
 		GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_5.tres"),
-		//GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_6.tres"),
-		//GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_7.tres"),
-		//GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_8.tres"),
-		//GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_9.tres"),
-		//GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_10.tres"),
+		GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_6.tres"),
+		GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_7.tres"),
+		GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_8.tres"),
+		GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_9.tres"),
+		GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_10.tres"),
 		//GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_endless.tres"),
 	];
 	private int _currentWaveIndex = 0;

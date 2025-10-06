@@ -1,17 +1,39 @@
-[gd_resource type="Resource" script_class="EnemyWave" load_steps=5 format=3 uid="uid://dlogn4qofaokd"]
+[gd_resource type="Resource" script_class="EnemyWave" load_steps=9 format=3 uid="uid://duw1hrs6idsf8"]
 
 [ext_resource type="Resource" uid="uid://nkjwo8at1k5" path="res://entities/enemies/variants/standard_enemy.tres" id="1_1ouc5"]
 [ext_resource type="Script" uid="uid://diync324gwueq" path="res://game/levels/common/waves/EnemyWave.cs" id="1_766gg"]
+[ext_resource type="Resource" uid="uid://bi0ua2cyvm5de" path="res://entities/enemies/variants/fast_enemy.tres" id="1_b4iw5"]
 [ext_resource type="Script" uid="uid://bmianhg7bgeoy" path="res://game/levels/common/waves/EnemySequence.cs" id="2_b4iw5"]
 
-[sub_resource type="Resource" id="Resource_bxwvq"]
+[sub_resource type="Resource" id="Resource_j8nlk"]
+script = ExtResource("2_b4iw5")
+Enemy = ExtResource("1_b4iw5")
+AmountToSpawn = 3
+SpawnInterval = 1.0
+metadata/_custom_type_script = "uid://bmianhg7bgeoy"
+
+[sub_resource type="Resource" id="Resource_byqhj"]
 script = ExtResource("2_b4iw5")
 Enemy = ExtResource("1_1ouc5")
-AmountToSpawn = 15
-SpawnInterval = 2.0
+AmountToSpawn = 5
+SpawnInterval = 1.5
+metadata/_custom_type_script = "uid://bmianhg7bgeoy"
+
+[sub_resource type="Resource" id="Resource_08ieh"]
+script = ExtResource("2_b4iw5")
+Enemy = ExtResource("1_b4iw5")
+AmountToSpawn = 5
+SpawnInterval = 1.5
+metadata/_custom_type_script = "uid://bmianhg7bgeoy"
+
+[sub_resource type="Resource" id="Resource_wqadm"]
+script = ExtResource("2_b4iw5")
+Enemy = ExtResource("1_1ouc5")
+AmountToSpawn = 3
+SpawnInterval = 1.0
 metadata/_custom_type_script = "uid://bmianhg7bgeoy"
 
 [resource]
 script = ExtResource("1_766gg")
-EnemySequences = Array[Object]([SubResource("Resource_bxwvq")])
+EnemySequences = Array[Object]([SubResource("Resource_j8nlk"), SubResource("Resource_byqhj"), SubResource("Resource_08ieh"), SubResource("Resource_wqadm")])
 metadata/_custom_type_script = "uid://diync324gwueq"
