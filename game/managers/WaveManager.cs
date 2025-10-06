@@ -39,6 +39,18 @@ public partial class WaveManager : Node
 
 	private int _enemiesSpawned = 0; // From current enemy sequence
 
+	// TODO - Create endless wave logic. I haven't researched this yet, but it
+	// TODO   will most likely involve programmatically creating an enemy wave.
+	// TODO   Probably keep track of how many total enemies should spawn, choose
+	// TODO   the ratio enemies spawn at, and randomly choose the next enemy.
+	// TODO   Each enemy type will probably have a unique spawn delay since
+	// TODO   spawning some units rapidly is difficult to deal with (fast enemy).
+	// TODO   This spawn delay can then be scaled with a difficulty coefficient.
+	// TODO   This will feel less structured than the hard-coded waves, but it
+	// TODO   will prevent an entire group of enemies spawning all at once and
+	// TODO   not reappearing for a long time. It will also occasionally cause
+	// TODO   waves to lack a specific enemy type which could feel good in terms
+	// TODO   of variety.
 	public (EnemyResource enemy, float spawnDelay) NextEnemyWithDelay()
 	{
 		EnemyResource enemy = _currentEnemySequence.Enemy;
