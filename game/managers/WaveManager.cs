@@ -21,7 +21,7 @@ public partial class WaveManager : Node
 		//GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_endless.tres"),
 	];
 	private int _currentWaveIndex = 0;
-	private int _currentEnemySequenceIndex = 0;
+	public int CurrentWaveCount { get; private set; } = 1;
 
 	// Once all waves are completed, always return the last wave
 	// TODO - Probably move this somewhere else
@@ -29,13 +29,21 @@ public partial class WaveManager : Node
 		(_currentWaveIndex < _enemyWaves.Count)
 			? _enemyWaves[_currentWaveIndex]
 			: _enemyWaves[^1];
+
+	private int _currentEnemySequenceIndex = 0;
 	private EnemySequence _currentEnemySequence =>
 		_currentEnemyWave.EnemySequences[_currentEnemySequenceIndex];
-	public Enemy Enemy { get; set; }
-	private int _enemiesAlreadySpawned = 0;
-	public float SpawnDelay { get; set; }
-	public int CurrentWaveCount { get; private set; } = 1;
 
-	// TODO - Return tuple with next enemy and it's spawn delay,
+	private int _enemiesSpawned = 0; // From current enemy sequence
+
 	// TODO   increment enemy (whether that be the amount, sequence, or wave)
+	public (EnemyResource enemy, float spawnDelay) NextEnemyWithDelay()
+	{
+		EnemyResource enemy = _currentEnemySequence.Enemy;
+		float spawnDelay = _currentEnemySequence.SpawnInterval;
+
+		// TODO - Increment indexes to prevent overflow error
+
+		return (enemy, spawnDelay);
+	}
 }

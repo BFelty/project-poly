@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Godot;
 using LastPolygon.Enemies;
@@ -80,10 +81,10 @@ public partial class Game : Node
 	// Timer timeouts
 	public void OnEnemySpawnTimerTimeout()
 	{
-		// Spawn the next enemy
-		_enemySpawner.SpawnEnemy(); // _waveManager.NextEnemy
-
-		// TODO - Set spawn delay
+		var (enemy, spawnDelay) = _waveManager.NextEnemyWithDelay();
+		_enemySpawner.SpawnEnemy(enemy);
+		_enemySpawnerTimer.WaitTime = spawnDelay;
+		_enemySpawnerTimer.Start(); // Restart the timer with proper wait time
 	}
 
 	public void OnPlayerPickupTimerTimeout()
@@ -109,6 +110,7 @@ public partial class Game : Node
 		_playerManager.SpawnPlayer(_playerOrigin);
 		_enemySpawnerTimer.Start();
 		_pickupSpawnerTimer.Start();
+		_survivalTimer.Start();
 	}
 
 	private void GameOver()

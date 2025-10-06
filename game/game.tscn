@@ -18,14 +18,12 @@ position = Vector2(645, 270)
 position = Vector2(645, 90)
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
-autostart = true
+one_shot = true
 
 [node name="PickupTimer" type="Timer" parent="."]
 wait_time = 2.0
-autostart = true
 
 [node name="SurvivalTimer" type="Timer" parent="."]
-autostart = true
 
 [node name="LevelOne" parent="." instance=ExtResource("2_h7iqs")]
 
