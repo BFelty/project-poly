@@ -6,6 +6,7 @@ namespace LastPolygon.Game;
 
 public partial class WaveManager : Node
 {
+	private WaveBuilder _waveBuilder = new();
 	private static List<EnemyWave> _enemyWaves =
 	[
 		GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_1.tres"),
@@ -18,7 +19,6 @@ public partial class WaveManager : Node
 		GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_8.tres"),
 		GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_9.tres"),
 		GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_10.tres"),
-		//GD.Load<EnemyWave>("res://game/levels/common/waves/waves/wave_endless.tres"),
 	];
 	private int _currentWaveIndex = 0;
 	public int CurrentWave
@@ -27,34 +27,28 @@ public partial class WaveManager : Node
 		private set { _currentWaveIndex = value; }
 	}
 
-	// Once all waves are completed, always return the last wave
-	private EnemyWave _currentEnemyWave =>
+	// Once all waves are completed, append a randomly generated wave
+	private EnemyWave CurrentEnemyWave =>
 		(_currentWaveIndex < _enemyWaves.Count)
 			? _enemyWaves[_currentWaveIndex]
-			: _enemyWaves[^1];
+			: GetAndAppendNewEnemyWave(); // TODO - Append random wave
 
 	private int _currentEnemySequenceIndex = 0;
-	private EnemySequence _currentEnemySequence =>
-		_currentEnemyWave.EnemySequences[_currentEnemySequenceIndex];
+	private EnemySequence CurrentEnemySequence =>
+		CurrentEnemyWave.EnemySequences[_currentEnemySequenceIndex];
 
 	private int _enemiesSpawned = 0; // From current enemy sequence
 
-	// TODO - Create endless wave logic. I haven't researched this yet, but it
-	// TODO   will most likely involve programmatically creating an enemy wave.
-	// TODO   Probably keep track of how many total enemies should spawn, choose
-	// TODO   the ratio enemies spawn at, and randomly choose the next enemy.
-	// TODO   Each enemy type will probably have a unique spawn delay since
-	// TODO   spawning some units rapidly is difficult to deal with (fast enemy).
-	// TODO   This spawn delay can then be scaled with a difficulty coefficient.
-	// TODO   This will feel less structured than the hard-coded waves, but it
-	// TODO   will prevent an entire group of enemies spawning all at once and
-	// TODO   not reappearing for a long time. It will also occasionally cause
-	// TODO   waves to lack a specific enemy type which could feel good in terms
-	// TODO   of variety.
+	private EnemyWave GetAndAppendNewEnemyWave()
+	{
+		_enemyWaves.Add(_waveBuilder.BuildEnemyWave(CurrentWave));
+		return _enemyWaves[^1];
+	}
+
 	public (EnemyResource enemy, float spawnDelay) NextEnemyWithDelay()
 	{
-		EnemyResource enemy = _currentEnemySequence.Enemy;
-		float spawnDelay = _currentEnemySequence.SpawnInterval;
+		EnemyResource enemy = CurrentEnemySequence.Enemy;
+		float spawnDelay = CurrentEnemySequence.SpawnInterval;
 
 		IncrementIndexes();
 
@@ -64,13 +58,13 @@ public partial class WaveManager : Node
 	private void IncrementIndexes()
 	{
 		_enemiesSpawned++;
-		if (_enemiesSpawned >= _currentEnemySequence.AmountToSpawn)
+		if (_enemiesSpawned >= CurrentEnemySequence.AmountToSpawn)
 		{
 			_enemiesSpawned = 0;
 			_currentEnemySequenceIndex++;
 			if (
 				_currentEnemySequenceIndex
-				>= _currentEnemyWave.EnemySequences.Length
+				>= CurrentEnemyWave.EnemySequences.Length
 			)
 			{
 				_currentEnemySequenceIndex = 0;
