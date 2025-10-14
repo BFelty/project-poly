@@ -126,7 +126,10 @@ public partial class Game : Node
 		_survivalTimer.Paused = true;
 
 		GD.Print("Game emit event: GameEnded");
-		EventBus.InvokeGameEnded(GetScoreWithMilliseconds());
+		EventBus.InvokeGameEnded(
+			_waveManager.CurrentWave,
+			GetScoreWithMilliseconds()
+		);
 
 		// Set which UI elements should be processed on game over
 		_pauseMenu.ProcessMode = ProcessModeEnum.Disabled;

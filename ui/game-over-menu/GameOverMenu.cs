@@ -10,7 +10,7 @@ public partial class GameOverMenu : CanvasLayer
 	public override void _Ready()
 	{
 		// Connect to global events
-		EventBus.GameEnded += SetTimeSurvived;
+		EventBus.GameEnded += UpdateRunStats;
 
 		Visible = false;
 		_timeSurvivedLabel = FindChild("TimeSurvivedLabel") as Label;
@@ -19,12 +19,14 @@ public partial class GameOverMenu : CanvasLayer
 	public override void _ExitTree()
 	{
 		// Disconnect from global events
-		EventBus.GameEnded -= SetTimeSurvived;
+		EventBus.GameEnded -= UpdateRunStats;
 	}
 
-	private void SetTimeSurvived(float timeSurvived)
+	private void UpdateRunStats(int finalWave, float timeSurvived)
 	{
-		_timeSurvivedLabel.Text = $"You survived {timeSurvived} seconds.";
+		_timeSurvivedLabel.Text =
+			$"You made it to Wave {finalWave} and\n"
+			+ $"survived {timeSurvived} seconds.";
 	}
 
 	private void OnRestartButtonPressed()

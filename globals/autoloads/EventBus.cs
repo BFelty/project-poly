@@ -35,8 +35,8 @@ public partial class EventBus : Node
 	public static void InvokeWaveCompleted(int currentWave) =>
 		WaveCompleted?.Invoke(currentWave);
 
-	public static event Action<float> GameEnded;
+	public static event Action<int, float> GameEnded;
 
-	public static void InvokeGameEnded(float timeSurvived) =>
-		GameEnded?.Invoke(timeSurvived);
+	public static void InvokeGameEnded(int finalWave, float timeSurvived) =>
+		GameEnded?.Invoke(finalWave, timeSurvived);
 }
