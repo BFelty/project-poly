@@ -31,7 +31,7 @@ public partial class WaveManager : Node
 	private EnemyWave CurrentEnemyWave =>
 		(_currentWaveIndex < _enemyWaves.Count)
 			? _enemyWaves[_currentWaveIndex]
-			: GetAndAppendNewEnemyWave(); // TODO - Append random wave
+			: GetAndAppendNewEnemyWave();
 
 	private int _currentEnemySequenceIndex = 0;
 	private EnemySequence CurrentEnemySequence =>
