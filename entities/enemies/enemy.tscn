@@ -29,7 +29,7 @@ height = 1
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 13
+collision_mask = 12
 script = ExtResource("1_owq46")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
