@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Godot;
 using LastPolygon.Enemies;
+using LastPolygon.Globals;
 
 namespace LastPolygon.Game;
 
@@ -69,6 +70,8 @@ public partial class WaveManager : Node
 			{
 				_currentEnemySequenceIndex = 0;
 				_currentWaveIndex++;
+
+				EventBus.InvokeWaveCompleted(CurrentWave);
 			}
 		}
 	}

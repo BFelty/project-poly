@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxpl2vo2ejouf"]
+
+[ext_resource type="Script" uid="uid://cm05dute825q2" path="res://ui/hud/Hud.cs" id="1_xmswo"]
+
+[node name="Hud" type="CanvasLayer"]
+script = ExtResource("1_xmswo")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -28.0
+offset_right = 28.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="WaveLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+text = "Wave 1"

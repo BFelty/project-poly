@@ -30,7 +30,12 @@ public partial class EventBus : Node
 	) => PlayerPickupCollected?.Invoke(collidedPlayerPosition);
 
 	// Game Events
-	public static event Action<float> GameEnded; // Time survived
+	public static event Action<int> WaveCompleted;
+
+	public static void InvokeWaveCompleted(int currentWave) =>
+		WaveCompleted?.Invoke(currentWave);
+
+	public static event Action<float> GameEnded;
 
 	public static void InvokeGameEnded(float timeSurvived) =>
 		GameEnded?.Invoke(timeSurvived);

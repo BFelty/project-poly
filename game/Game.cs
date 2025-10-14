@@ -18,10 +18,12 @@ public partial class Game : Node
 	private PackedScene _gameOverScene = GD.Load<PackedScene>(
 		"uid://bekdrbn7k6a"
 	);
+	private PackedScene _hudScene = GD.Load<PackedScene>("uid://dxpl2vo2ejouf");
 
 	// In-game menu nodes
 	private PauseMenu _pauseMenu;
 	private GameOverMenu _gameOverMenu;
+	private Hud _hud;
 
 	// Managers / Spawners
 	private WaveManager _waveManager = new();
@@ -47,6 +49,8 @@ public partial class Game : Node
 		AddChild(_pauseMenu);
 		_gameOverMenu = _gameOverScene.Instantiate() as GameOverMenu;
 		AddChild(_gameOverMenu);
+		_hud = _hudScene.Instantiate() as Hud;
+		AddChild(_hud);
 
 		// Find nodes that were placed in the editor
 		_playerManager = FindChild("PlayerManager") as PlayerManager;
