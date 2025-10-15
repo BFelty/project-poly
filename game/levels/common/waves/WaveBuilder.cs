@@ -45,10 +45,10 @@ public partial class WaveBuilder : Resource
 		// that should spawn without needing to create a new dictionary.
 		Dictionary<EnemyResource, int> enemiesToSpawn = new()
 		{
-			{ _fastEnemy, r.Next(0, 100) },
-			{ _squigglyEnemy, r.Next(0, 100) },
-			{ _standardEnemy, r.Next(0, 100) },
-			{ _tankEnemy, r.Next(0, 100) },
+			{ _fastEnemy, r.Next(1, 100) },
+			{ _squigglyEnemy, r.Next(1, 100) },
+			{ _standardEnemy, r.Next(1, 100) },
+			{ _tankEnemy, r.Next(1, 100) },
 		};
 
 		// ! TEST - Check enemiesToSpawn initialization
