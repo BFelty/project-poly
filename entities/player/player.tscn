@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://osokqpha3208"]
+[gd_scene load_steps=27 format=3 uid="uid://osokqpha3208"]
 
 [ext_resource type="Script" uid="uid://b55jdx6k24sp" path="res://entities/player/Player.cs" id="1_symyc"]
 [ext_resource type="PackedScene" uid="uid://dhkrftqkqybko" path="res://entities/projectile/bullet.tscn" id="2_abrql"]
 [ext_resource type="Texture2D" uid="uid://dnim067j3i65o" path="res://entities/player/assets/Character_side_idle_no-hands-Sheet6.png" id="3_sglur"]
 [ext_resource type="Texture2D" uid="uid://b5pyglkjjhwke" path="res://entities/player/assets/Character_side_run_no-hands-Sheet6.png" id="4_bls4j"]
+[ext_resource type="Texture2D" uid="uid://04e7yp6dbtnn" path="res://entities/player/assets/Gun_side_idle-and-run-Sheet6.png" id="5_fkugw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bls4j"]
 atlas = ExtResource("3_sglur")
@@ -102,6 +103,56 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqrof"]
+atlas = ExtResource("5_fkugw")
+region = Rect2(0, 0, 16, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wlsy"]
+atlas = ExtResource("5_fkugw")
+region = Rect2(16, 0, 16, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2kln"]
+atlas = ExtResource("5_fkugw")
+region = Rect2(32, 0, 16, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_we0b7"]
+atlas = ExtResource("5_fkugw")
+region = Rect2(48, 0, 16, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtric"]
+atlas = ExtResource("5_fkugw")
+region = Rect2(64, 0, 16, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyb6c"]
+atlas = ExtResource("5_fkugw")
+region = Rect2(80, 0, 16, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_221hk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqrof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3wlsy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b2kln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_we0b7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtric")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eyb6c")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bls4j"]
 radius = 5.0
 height = 12.0
@@ -113,8 +164,14 @@ script = ExtResource("1_symyc")
 Speed = 100.0
 Weapon = ExtResource("2_abrql")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Body" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_abrql")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Gun" type="AnimatedSprite2D" parent="."]
+position = Vector2(3, 2)
+sprite_frames = SubResource("SpriteFrames_221hk")
 animation = &"idle"
 autoplay = "idle"
 

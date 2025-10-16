@@ -7,7 +7,8 @@ namespace LastPolygon.Players;
 
 public partial class Player : CharacterBody2D, IDamageable
 {
-	private AnimatedSprite2D _animatedSprite;
+	private AnimatedSprite2D _body;
+	private AnimatedSprite2D _gun;
 
 	[Export]
 	public float Speed { get; set; }
@@ -29,7 +30,8 @@ public partial class Player : CharacterBody2D, IDamageable
 		// freed at the same time
 		_health.ActorDied += HandleDeath;
 
-		_animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		_body = GetNode<AnimatedSprite2D>("Body");
+		_gun = GetNode<AnimatedSprite2D>("Gun");
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -68,11 +70,11 @@ public partial class Player : CharacterBody2D, IDamageable
 	{
 		if (_hasMoved)
 		{
-			_animatedSprite.Play("run");
+			_body.Play("run");
 		}
 		else
 		{
-			_animatedSprite.Play("idle");
+			_body.Play("idle");
 		}
 	}
 
