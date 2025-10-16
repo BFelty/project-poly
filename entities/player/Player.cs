@@ -1,5 +1,3 @@
-using System;
-using System.Runtime.Serialization.Formatters;
 using Godot;
 using LastPolygon.Components;
 using LastPolygon.Interfaces;
@@ -58,14 +56,8 @@ public partial class Player : CharacterBody2D, IDamageable
 			MoveAndSlide();
 
 			// Check if the player actually moved
-			if (GetPositionDelta().LengthSquared() > _movementEpsilonSquared)
-			{
-				_hasMoved = true;
-			}
-			else
-			{
-				_hasMoved = false;
-			}
+			_hasMoved =
+				GetPositionDelta().LengthSquared() > _movementEpsilonSquared;
 		}
 
 		// Keep the player from exiting the viewport
