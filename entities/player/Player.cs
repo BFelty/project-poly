@@ -1,3 +1,5 @@
+using System;
+using System.Runtime.Serialization.Formatters;
 using Godot;
 using LastPolygon.Components;
 using LastPolygon.Interfaces;
@@ -7,6 +9,8 @@ namespace LastPolygon.Players;
 
 public partial class Player : CharacterBody2D, IDamageable
 {
+	private AnimatedSprite2D _animatedSprite;
+
 	[Export]
 	public float Speed { get; set; }
 
@@ -16,6 +20,9 @@ public partial class Player : CharacterBody2D, IDamageable
 	private HealthComponent _health = new(1);
 
 	private Vector2 _target;
+	private float _minimumDistanceToMove = 10f;
+	private float _movementEpsilonSquared = 1f;
+	private bool _hasMoved = false;
 
 	public override void _Ready()
 	{
@@ -23,6 +30,8 @@ public partial class Player : CharacterBody2D, IDamageable
 		// Don't need to disconnect because the subjects and observer are
 		// freed at the same time
 		_health.ActorDied += HandleDeath;
+
+		_animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -30,17 +39,49 @@ public partial class Player : CharacterBody2D, IDamageable
 		HandleMovement(delta);
 	}
 
+	public override void _Process(double delta)
+	{
+		HandleAnimation(delta);
+	}
+
 	private void HandleMovement(double delta)
 	{
 		_target = GetGlobalMousePosition();
-		Velocity = Position.DirectionTo(_target) * Speed;
-		if (Position.DistanceTo(_target) > 4)
+		Velocity = GlobalPosition.DirectionTo(_target) * Speed;
+
+		if (GlobalPosition.DistanceTo(_target) < _minimumDistanceToMove)
+		{
+			_hasMoved = false;
+		}
+		else
 		{
 			MoveAndSlide();
+
+			// Check if the player actually moved
+			if (GetPositionDelta().LengthSquared() > _movementEpsilonSquared)
+			{
+				_hasMoved = true;
+			}
+			else
+			{
+				_hasMoved = false;
+			}
 		}
 
 		// Keep the player from exiting the viewport
 		Position = Position.Clamp(Vector2.Zero, GetViewportRect().Size);
+	}
+
+	private void HandleAnimation(double delta)
+	{
+		if (_hasMoved)
+		{
+			_animatedSprite.Play("run");
+		}
+		else
+		{
+			_animatedSprite.Play("idle");
+		}
 	}
 
 	// ! Something is weird with the physics interpolation and the bullet
