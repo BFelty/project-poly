@@ -7,8 +7,6 @@ namespace LastPolygon.Players;
 
 public partial class Player : CharacterBody2D, IDamageable
 {
-	private AnimationPlayer _animationPlayer;
-
 	[Export]
 	public float Speed { get; set; }
 
@@ -20,7 +18,10 @@ public partial class Player : CharacterBody2D, IDamageable
 	private Vector2 _target;
 	private float _minimumDistanceToMove = 10f;
 	private float _movementEpsilonSquared = 1f;
+
+	private AnimationPlayer _animationPlayer;
 	private bool _hasMoved = false;
+	private bool _hasShot = false;
 
 	public override void _Ready()
 	{
@@ -66,13 +67,20 @@ public partial class Player : CharacterBody2D, IDamageable
 
 	private void HandleAnimation(double delta)
 	{
-		if (_hasMoved)
+		if (_hasShot)
 		{
-			_animationPlayer.Play("run");
+			_animationPlayer.Play("shoot");
 		}
 		else
 		{
-			_animationPlayer.Play("idle");
+			if (_hasMoved)
+			{
+				_animationPlayer.Play("run");
+			}
+			else
+			{
+				_animationPlayer.Play("idle");
+			}
 		}
 	}
 
@@ -80,6 +88,8 @@ public partial class Player : CharacterBody2D, IDamageable
 	// ! Fix it later when polishing
 	public void Shoot()
 	{
+		_hasShot = true;
+
 		Bullet bullet = Weapon.Instantiate() as Bullet;
 
 		// Set bullet position 4 pixels right of the player's origin
@@ -87,6 +97,14 @@ public partial class Player : CharacterBody2D, IDamageable
 		bullet.GlobalPosition = Position + bulletOffset;
 
 		GetTree().CurrentScene.AddChild(bullet);
+	}
+
+	private void OnAnimationPlayerAnimationFinished(StringName animName)
+	{
+		if (animName == "shoot")
+		{
+			_hasShot = false;
+		}
 	}
 
 	public void TakeDamage(int damageTaken)
