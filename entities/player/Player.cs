@@ -114,6 +114,10 @@ public partial class Player : CharacterBody2D, IDamageable
 
 	public void HandleDeath()
 	{
+		// TODO - Set player to dead?
+		// TODO - Stop controlling dead player
+		// TODO - Play death animation
+
 		// Let the PlayerManager handle what happens when a Player dies
 		if (GetParent() is PlayerManager playerManager)
 		{
