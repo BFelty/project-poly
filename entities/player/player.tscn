@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://osokqpha3208"]
+[gd_scene load_steps=17 format=3 uid="uid://osokqpha3208"]
 
 [ext_resource type="Script" uid="uid://b55jdx6k24sp" path="res://entities/player/Player.cs" id="1_symyc"]
 [ext_resource type="PackedScene" uid="uid://dhkrftqkqybko" path="res://entities/projectile/bullet.tscn" id="2_abrql"]
 [ext_resource type="Texture2D" uid="uid://dnim067j3i65o" path="res://entities/player/assets/Character_side_idle_no-hands-Sheet6.png" id="3_sglur"]
 [ext_resource type="Texture2D" uid="uid://b5pyglkjjhwke" path="res://entities/player/assets/Character_side_run_no-hands-Sheet6.png" id="4_bls4j"]
+[ext_resource type="Texture2D" uid="uid://d07ggscelerbs" path="res://entities/projectile/assets/Fire_side-Sheet3.png" id="5_bectd"]
 [ext_resource type="Texture2D" uid="uid://04e7yp6dbtnn" path="res://entities/player/assets/Gun_side_idle-and-run-Sheet6.png" id="5_fkugw"]
 [ext_resource type="Texture2D" uid="uid://crgyy3nqmvwwc" path="res://entities/player/assets/Gun_side_shoot-Sheet3.png" id="6_8fjmc"]
 [ext_resource type="Texture2D" uid="uid://oeub8ikljilw" path="res://entities/player/assets/Character_side_death3_NoHands-Sheet6.png" id="7_qiwj3"]
@@ -81,7 +82,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [7]
+"values": [6]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -106,6 +107,54 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(3, 2)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Gun/Particles:texture")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_bectd")]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Gun/Particles:offset")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(13, -2)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Gun/Particles:frame")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Gun/Particles:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_bectd"]
@@ -464,6 +513,54 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(3, 2)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Gun/Particles:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_bectd")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Gun/Particles:offset")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(13, -2)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Gun/Particles:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Gun/Particles:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qiwj3"]
 _data = {
@@ -487,12 +584,18 @@ Weapon = ExtResource("2_abrql")
 
 [node name="Body" type="Sprite2D" parent="."]
 texture = ExtResource("3_sglur")
-hframes = 7
+hframes = 6
 
 [node name="Gun" type="Sprite2D" parent="."]
 position = Vector2(3, 2)
 texture = ExtResource("5_fkugw")
 hframes = 6
+
+[node name="Particles" type="Sprite2D" parent="Gun"]
+visible = false
+texture = ExtResource("5_bectd")
+offset = Vector2(13, -2)
+hframes = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
