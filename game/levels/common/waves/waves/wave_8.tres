@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="EnemyWave" load_steps=7 format=3 uid="uid://0jxoc2njcxyg"]
 
-[ext_resource type="Resource" uid="uid://dee0ubqwluivp" path="res://entities/enemies/variants/tank_enemy.tres" id="1_80sou"]
+[ext_resource type="Resource" uid="uid://dee0ubqwluivp" path="res://entities/enemies/tank-enemy/tank_enemy.tres" id="1_80sou"]
 [ext_resource type="Script" uid="uid://diync324gwueq" path="res://game/levels/common/waves/EnemyWave.cs" id="1_ndn8f"]
 [ext_resource type="Script" uid="uid://bmianhg7bgeoy" path="res://game/levels/common/waves/EnemySequence.cs" id="2_3y1yx"]
-[ext_resource type="Resource" uid="uid://nkjwo8at1k5" path="res://entities/enemies/variants/standard_enemy.tres" id="3_qflym"]
+[ext_resource type="Resource" uid="uid://nkjwo8at1k5" path="res://entities/enemies/standard-enemy/standard_enemy.tres" id="3_qflym"]
 
 [sub_resource type="Resource" id="Resource_8qo81"]
 script = ExtResource("2_3y1yx")

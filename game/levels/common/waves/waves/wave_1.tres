@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyWave" load_steps=5 format=3 uid="uid://dlogn4qofaokd"]
 
-[ext_resource type="Resource" uid="uid://nkjwo8at1k5" path="res://entities/enemies/variants/standard_enemy.tres" id="1_1ouc5"]
+[ext_resource type="Resource" uid="uid://nkjwo8at1k5" path="res://entities/enemies/standard-enemy/standard_enemy.tres" id="1_1ouc5"]
 [ext_resource type="Script" uid="uid://diync324gwueq" path="res://game/levels/common/waves/EnemyWave.cs" id="1_766gg"]
 [ext_resource type="Script" uid="uid://bmianhg7bgeoy" path="res://game/levels/common/waves/EnemySequence.cs" id="2_b4iw5"]
 

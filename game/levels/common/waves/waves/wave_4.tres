@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="EnemyWave" load_steps=7 format=3 uid="uid://bmxswpckea5jc"]
 
 [ext_resource type="Script" uid="uid://diync324gwueq" path="res://game/levels/common/waves/EnemyWave.cs" id="1_0n3l2"]
-[ext_resource type="Resource" uid="uid://dvmgdo4hy8kva" path="res://entities/enemies/variants/squiggly_enemy.tres" id="1_1rm1i"]
+[ext_resource type="Resource" uid="uid://dvmgdo4hy8kva" path="res://entities/enemies/squiggly-enemy/squiggly_enemy.tres" id="1_1rm1i"]
 [ext_resource type="Script" uid="uid://bmianhg7bgeoy" path="res://game/levels/common/waves/EnemySequence.cs" id="2_kp21f"]
-[ext_resource type="Resource" uid="uid://nkjwo8at1k5" path="res://entities/enemies/variants/standard_enemy.tres" id="3_xm8dr"]
+[ext_resource type="Resource" uid="uid://nkjwo8at1k5" path="res://entities/enemies/standard-enemy/standard_enemy.tres" id="3_xm8dr"]
 
 [sub_resource type="Resource" id="Resource_rsy7l"]
 script = ExtResource("2_kp21f")

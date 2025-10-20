@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://diync324gwueq" path="res://game/levels/common/waves/EnemyWave.cs" id="1_cy10u"]
 [ext_resource type="Script" uid="uid://bmianhg7bgeoy" path="res://game/levels/common/waves/EnemySequence.cs" id="1_oqg2d"]
-[ext_resource type="Resource" uid="uid://nkjwo8at1k5" path="res://entities/enemies/variants/standard_enemy.tres" id="1_r4wdn"]
+[ext_resource type="Resource" uid="uid://nkjwo8at1k5" path="res://entities/enemies/standard-enemy/standard_enemy.tres" id="1_r4wdn"]
 
 [sub_resource type="Resource" id="Resource_r4wdn"]
 script = ExtResource("1_oqg2d")
