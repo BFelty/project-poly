@@ -95,8 +95,9 @@ public partial class Player : CharacterBody2D, IDamageable
 
 		Bullet bullet = Weapon.Instantiate() as Bullet;
 
-		// Set bullet position 4 pixels right of the player's origin
-		Vector2 bulletOffset = new(4, 0);
+		// Set bullet position 11 pixels right of the player's origin
+		// This is where the gun barrel ends
+		Vector2 bulletOffset = new(11, 0);
 		bullet.GlobalPosition = Position + bulletOffset;
 
 		GetTree().CurrentScene.AddChild(bullet);

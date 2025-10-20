@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhkrftqkqybko"]
+[gd_scene load_steps=3 format=3 uid="uid://dhkrftqkqybko"]
 
 [ext_resource type="Script" uid="uid://b0bittm6kiju4" path="res://entities/projectile/Bullet.cs" id="1_hhtrk"]
+[ext_resource type="Texture2D" uid="uid://b6te0v0w38qpt" path="res://entities/projectile/assets/Gun-bullet_Bullet.png" id="2_qf34y"]
 
 [node name="Bullet" type="Area2D"]
 collision_layer = 4
@@ -8,14 +9,16 @@ collision_mask = 26
 script = ExtResource("1_hhtrk")
 Speed = 800.0
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(-1, 0, 2, 0, 2, 1, -1, 1)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, 0)
+scale = Vector2(2, 1)
+texture = ExtResource("2_qf34y")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-1, 0, 5, 0, 5, 1, -1, 1)
+polygon = PackedVector2Array(1, 0, 6, 0, 6, 1, 1, 1)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-rect = Rect2(-4, 0, 6, 1)
+rect = Rect2(-2, 0, 5, 1)
 
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="OnVisibleOnScreenNotifier2DScreenExited"]
