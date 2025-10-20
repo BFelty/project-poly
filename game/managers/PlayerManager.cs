@@ -55,7 +55,6 @@ public partial class PlayerManager : Node
 
 	public void OnPlayerDeath(Player playerToKill)
 	{
-		playerToKill.QueueFree();
 		_playerList.Remove(playerToKill);
 		GD.Print("Updated player count: " + _playerList.Count);
 		RecalculateFireRateTimerWaitTime();

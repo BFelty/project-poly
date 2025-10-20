@@ -23,6 +23,8 @@ public partial class Player : CharacterBody2D, IDamageable
 	private bool _hasMoved = false;
 	private bool _hasShot = false;
 
+	private Timer _despawnTimer;
+
 	public override void _Ready()
 	{
 		// Connect to local events
@@ -31,6 +33,7 @@ public partial class Player : CharacterBody2D, IDamageable
 		_health.ActorDied += HandleDeath;
 
 		_animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+		_despawnTimer = GetNode<Timer>("DespawnTimer");
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -114,14 +117,25 @@ public partial class Player : CharacterBody2D, IDamageable
 
 	public void HandleDeath()
 	{
-		// TODO - Set player to dead?
-		// TODO - Stop controlling dead player
-		// TODO - Play death animation
+		// Stop input and interactions with player
+		SetProcess(false);
+		SetPhysicsProcess(false);
+		GetNode<CollisionShape2D>("CollisionShape2D")
+			.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
 
-		// Let the PlayerManager handle what happens when a Player dies
+		_animationPlayer.Play("die");
+
+		// Let the PlayerManager know a player has died
 		if (GetParent() is PlayerManager playerManager)
 		{
 			playerManager.OnPlayerDeath(this);
 		}
+
+		_despawnTimer.Start();
+	}
+
+	private void OnDespawnTimerTimeout()
+	{
+		QueueFree();
 	}
 }
