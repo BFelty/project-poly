@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 using LastPolygon.Components;
 using LastPolygon.Components.Movement;
@@ -11,6 +12,8 @@ public partial class Enemy : CharacterBody2D, IDamageable
 	// Data on the enemy variant
 	[Export]
 	public EnemyResource EnemyData { get; set; }
+
+	private AnimationPlayer _animationPlayer;
 
 	private HealthComponent _health;
 	private TextureProgressBar _healthBar;
@@ -28,6 +31,8 @@ public partial class Enemy : CharacterBody2D, IDamageable
 
 	public override void _Ready()
 	{
+		_animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+
 		// Set up enemy from EnemyResource
 		Initialize();
 
@@ -65,7 +70,10 @@ public partial class Enemy : CharacterBody2D, IDamageable
 
 	public void HandleDeath()
 	{
-		QueueFree();
+		// ! It is not good practice to rely on a child property in a parent
+		// ! object. I did it this way because it's one of the last things I'm
+		// ! adding, and I won't have to touch this code again.
+		_animationPlayer.Play("die");
 	}
 
 	private void OnBodyEntered(Node2D body)
