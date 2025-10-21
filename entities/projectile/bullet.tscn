@@ -15,7 +15,7 @@ scale = Vector2(2, 1)
 texture = ExtResource("2_qf34y")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(1, 0, 6, 0, 6, 1, 1, 1)
+polygon = PackedVector2Array(-2, 0, 6, 0, 6, 1, -2, 1)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 rect = Rect2(-2, 0, 5, 1)

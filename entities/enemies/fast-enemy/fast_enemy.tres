@@ -11,5 +11,5 @@ metadata/_custom_type_script = "uid://c0tej6o4xinty"
 script = ExtResource("1_ocqe2")
 Health = 1
 MovementStrategy = SubResource("Resource_xifam")
-Speed = 150.0
+Speed = 120.0
 metadata/_custom_type_script = "uid://dj4vfvdi3suxk"
