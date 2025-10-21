@@ -1,8 +1,95 @@
-[gd_scene load_steps=6 format=3 uid="uid://beruth1xqiyrr"]
+[gd_scene load_steps=9 format=3 uid="uid://beruth1xqiyrr"]
 
 [ext_resource type="PackedScene" uid="uid://ca1o6vvko4gbe" path="res://entities/enemies/enemy.tscn" id="1_n8c17"]
 [ext_resource type="Resource" uid="uid://bi0ua2cyvm5de" path="res://entities/enemies/fast-enemy/fast_enemy.tres" id="2_es5du"]
 [ext_resource type="Texture2D" uid="uid://hxa2qguwy7vw" path="res://entities/enemies/fast-enemy/assets/Zombie_Small_Side-left_Walk-Sheet6.png" id="3_56w68"]
+
+[sub_resource type="Animation" id="Animation_56w68"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_56w68")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0667, 0.1334, 0.2001, 0.2668, 0.3335),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_cuajf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_56w68")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cuajf"]
+_data = {
+&"RESET": SubResource("Animation_cuajf"),
+&"walk": SubResource("Animation_56w68")
+}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_56w68"]
 radius = 5.0
@@ -18,6 +105,12 @@ EnemyData = ExtResource("2_es5du")
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("3_56w68")
 hframes = 6
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_cuajf")
+}
+autoplay = "walk"
 
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(1, 0)
