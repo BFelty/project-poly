@@ -5,10 +5,6 @@ namespace LastPolygon.Enemies;
 
 public partial class EnemySpawner : Area2D
 {
-	private PackedScene _enemyScene = GD.Load<PackedScene>(
-		"uid://ca1o6vvko4gbe"
-	);
-
 	private Vector2 PickRandomSpawnPoint()
 	{
 		Random r = new();
@@ -19,12 +15,11 @@ public partial class EnemySpawner : Area2D
 		return spawnPoint;
 	}
 
-	public void SpawnEnemy(EnemyResource enemyResource)
+	public void SpawnEnemy(PackedScene enemyScene)
 	{
 		// Create enemy from PackedScene and set it's EnemyResource. This
 		// will later define the enemy's stats, visuals, and behavior
-		Enemy enemy = _enemyScene.Instantiate() as Enemy;
-		enemy.EnemyData = enemyResource;
+		Enemy enemy = enemyScene.Instantiate() as Enemy;
 
 		Vector2 spawnPoint = PickRandomSpawnPoint();
 		enemy.Position = Position + spawnPoint;

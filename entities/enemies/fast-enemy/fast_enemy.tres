@@ -9,7 +9,6 @@ metadata/_custom_type_script = "uid://c0tej6o4xinty"
 
 [resource]
 script = ExtResource("1_ocqe2")
-Color = Color(0, 0.501961, 1, 1)
 Health = 1
 MovementStrategy = SubResource("Resource_xifam")
 Speed = 150.0

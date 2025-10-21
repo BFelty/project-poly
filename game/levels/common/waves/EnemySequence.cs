@@ -6,7 +6,7 @@ namespace LastPolygon.Enemies;
 public partial class EnemySequence : Resource
 {
 	[Export]
-	public EnemyResource Enemy { get; set; }
+	public PackedScene EnemyScene { get; set; }
 
 	[Export]
 	public int AmountToSpawn { get; set; }
@@ -17,9 +17,9 @@ public partial class EnemySequence : Resource
 	public EnemySequence()
 		: this(null, 0, 0f) { }
 
-	public EnemySequence(EnemyResource enemy, int amount, float interval)
+	public EnemySequence(PackedScene enemyScene, int amount, float interval)
 	{
-		Enemy = enemy;
+		EnemyScene = enemyScene;
 		AmountToSpawn = amount;
 		SpawnInterval = interval;
 	}

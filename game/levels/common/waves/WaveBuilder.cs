@@ -8,17 +8,17 @@ namespace LastPolygon.Game;
 
 public partial class WaveBuilder : Resource
 {
-	private EnemyResource _fastEnemy = GD.Load<EnemyResource>(
-		"uid://bi0ua2cyvm5de"
+	private PackedScene _fastEnemy = GD.Load<PackedScene>(
+		"uid://beruth1xqiyrr"
 	);
-	private EnemyResource _squigglyEnemy = GD.Load<EnemyResource>(
-		"uid://dvmgdo4hy8kva"
+	private PackedScene _squigglyEnemy = GD.Load<PackedScene>(
+		"uid://d231d7w7bdcg0"
 	);
-	private EnemyResource _standardEnemy = GD.Load<EnemyResource>(
-		"uid://nkjwo8at1k5"
+	private PackedScene _standardEnemy = GD.Load<PackedScene>(
+		"uid://bvi40cj37pqpc"
 	);
-	private EnemyResource _tankEnemy = GD.Load<EnemyResource>(
-		"uid://dee0ubqwluivp"
+	private PackedScene _tankEnemy = GD.Load<PackedScene>(
+		"uid://cp1apyd5u3h5i"
 	);
 
 	// TODO - This procedural wave generation does not have a variable for
@@ -43,7 +43,7 @@ public partial class WaveBuilder : Resource
 		// Instead of using a double to represent a ratio, I use integers
 		// 0 to 100. This allows me to later set the exact amount of enemies
 		// that should spawn without needing to create a new dictionary.
-		Dictionary<EnemyResource, int> enemiesToSpawn = new()
+		Dictionary<PackedScene, int> enemiesToSpawn = new()
 		{
 			{ _fastEnemy, r.Next(1, 100) },
 			{ _squigglyEnemy, r.Next(1, 100) },
@@ -81,24 +81,27 @@ public partial class WaveBuilder : Resource
 		while (enemiesToSpawn.Count > 0)
 		{
 			// Random enemy from enemiesToSpawn
-			EnemyResource nextEnemy = enemiesToSpawn
+			PackedScene nextEnemy = enemiesToSpawn
 				.ElementAt(r.Next(0, enemiesToSpawn.Count))
 				.Key;
 
 			// Create new EnemySequence
 			EnemySequence nextEnemySequence = new()
 			{
-				Enemy = nextEnemy,
+				EnemyScene = nextEnemy,
 
 				AmountToSpawn = r.Next(
 					1,
 					Math.Min(5, enemiesToSpawn[nextEnemy])
 				),
 
-				// Fast enemies spawn slower, otherwise they'd be too difficult
-				// Slow enemies spawn in clusters, causing tank walls that need
-				// to be dealt with
-				SpawnInterval = nextEnemy.Speed / 200,
+				//// Fast enemies spawn slower, otherwise they'd be too difficult
+				//// Slow enemies spawn in clusters, causing tank walls that need
+				//// to be dealt with
+				// ! This used to scale off the enemy speed, but that became
+				// ! harder when I refactored waves to use PackedScenes instead
+				// ! of EnemyResources. I may change this later.
+				SpawnInterval = 0.5f,
 			};
 
 			// Decrement enemiesToSpawn, remove key-value pair if all enemies
@@ -114,7 +117,9 @@ public partial class WaveBuilder : Resource
 
 			// ! TEST - Check the enemy sequence that was randomly generated
 			GD.Print(
-				$"Enemy: {nextEnemySequence.Enemy}, Amount: {nextEnemySequence.AmountToSpawn}, Spawn Interval: {nextEnemySequence.SpawnInterval}"
+				$"Enemy: {nextEnemySequence.EnemyScene}, "
+					+ $"Amount: {nextEnemySequence.AmountToSpawn}, "
+					+ $"Spawn Interval: {nextEnemySequence.SpawnInterval}"
 			);
 		}
 

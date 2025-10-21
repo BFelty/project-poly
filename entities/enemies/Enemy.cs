@@ -9,9 +9,8 @@ namespace LastPolygon.Enemies;
 public partial class Enemy : CharacterBody2D, IDamageable
 {
 	// Data on the enemy variant
+	[Export]
 	public EnemyResource EnemyData { get; set; }
-
-	private Polygon2D enemyShape;
 
 	private HealthComponent _health;
 	private TextureProgressBar _healthBar;
@@ -21,7 +20,6 @@ public partial class Enemy : CharacterBody2D, IDamageable
 
 	private void Initialize()
 	{
-		enemyShape.Color = EnemyData.Color; // ! Temporary
 		_health = new(EnemyData.Health);
 		_movementStrategy =
 			EnemyData.MovementStrategy.Duplicate() as BaseMovementStrategy;
@@ -30,10 +28,6 @@ public partial class Enemy : CharacterBody2D, IDamageable
 
 	public override void _Ready()
 	{
-		// Get references to required Enemy children
-		// ! Temporary reference until I replace programmer art
-		enemyShape = FindChild("Polygon2D") as Polygon2D;
-
 		// Set up enemy from EnemyResource
 		Initialize();
 

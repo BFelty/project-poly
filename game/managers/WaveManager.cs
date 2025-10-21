@@ -46,14 +46,14 @@ public partial class WaveManager : Node
 		return _enemyWaves[^1];
 	}
 
-	public (EnemyResource enemy, float spawnDelay) NextEnemyWithDelay()
+	public (PackedScene enemyScene, float spawnDelay) NextEnemyWithDelay()
 	{
-		EnemyResource enemy = CurrentEnemySequence.Enemy;
+		PackedScene enemyScene = CurrentEnemySequence.EnemyScene;
 		float spawnDelay = CurrentEnemySequence.SpawnInterval;
 
 		IncrementIndexes();
 
-		return (enemy, spawnDelay);
+		return (enemyScene, spawnDelay);
 	}
 
 	private void IncrementIndexes()

@@ -1,28 +1,28 @@
 [gd_resource type="Resource" script_class="EnemyWave" load_steps=9 format=3 uid="uid://tifo4d0nbhpi"]
 
 [ext_resource type="Script" uid="uid://diync324gwueq" path="res://game/levels/common/waves/EnemyWave.cs" id="1_516fe"]
-[ext_resource type="Resource" uid="uid://dee0ubqwluivp" path="res://entities/enemies/tank-enemy/tank_enemy.tres" id="1_oik61"]
-[ext_resource type="Resource" uid="uid://bi0ua2cyvm5de" path="res://entities/enemies/fast-enemy/fast_enemy.tres" id="1_qttl4"]
+[ext_resource type="PackedScene" uid="uid://cp1apyd5u3h5i" path="res://entities/enemies/tank-enemy/tank_enemy.tscn" id="1_oik61"]
 [ext_resource type="Script" uid="uid://bmianhg7bgeoy" path="res://game/levels/common/waves/EnemySequence.cs" id="2_oik61"]
-[ext_resource type="Resource" uid="uid://nkjwo8at1k5" path="res://entities/enemies/standard-enemy/standard_enemy.tres" id="3_wspy8"]
+[ext_resource type="PackedScene" uid="uid://beruth1xqiyrr" path="res://entities/enemies/fast-enemy/fast_enemy.tscn" id="3_wspy8"]
+[ext_resource type="PackedScene" uid="uid://bvi40cj37pqpc" path="res://entities/enemies/standard-enemy/standard_enemy.tscn" id="4_j8nlk"]
 
 [sub_resource type="Resource" id="Resource_wspy8"]
 script = ExtResource("2_oik61")
-Enemy = ExtResource("1_oik61")
+EnemyScene = ExtResource("1_oik61")
 AmountToSpawn = 5
 SpawnInterval = 0.1
 metadata/_custom_type_script = "uid://bmianhg7bgeoy"
 
 [sub_resource type="Resource" id="Resource_j8nlk"]
 script = ExtResource("2_oik61")
-Enemy = ExtResource("1_qttl4")
+EnemyScene = ExtResource("3_wspy8")
 AmountToSpawn = 10
 SpawnInterval = 2.0
 metadata/_custom_type_script = "uid://bmianhg7bgeoy"
 
 [sub_resource type="Resource" id="Resource_byqhj"]
 script = ExtResource("2_oik61")
-Enemy = ExtResource("3_wspy8")
+EnemyScene = ExtResource("4_j8nlk")
 AmountToSpawn = 5
 SpawnInterval = 1.0
 metadata/_custom_type_script = "uid://bmianhg7bgeoy"

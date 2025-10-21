@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://beruth1xqiyrr"]
+
+[ext_resource type="PackedScene" uid="uid://ca1o6vvko4gbe" path="res://entities/enemies/enemy.tscn" id="1_n8c17"]
+[ext_resource type="Resource" uid="uid://bi0ua2cyvm5de" path="res://entities/enemies/fast-enemy/fast_enemy.tres" id="2_es5du"]
+[ext_resource type="Texture2D" uid="uid://hxa2qguwy7vw" path="res://entities/enemies/fast-enemy/assets/Zombie_Small_Side-left_Walk-Sheet6.png" id="3_56w68"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_56w68"]
+radius = 5.0
+height = 14.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cuajf"]
+radius = 5.0
+height = 14.0
+
+[node name="Enemy" instance=ExtResource("1_n8c17")]
+EnemyData = ExtResource("2_es5du")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_56w68")
+hframes = 6
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(1, 0)
+shape = SubResource("CapsuleShape2D_56w68")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(1, 0)
+shape = SubResource("CapsuleShape2D_cuajf")
+
+[node name="HealthBar" parent="." index="5"]
+offset_top = -9.0
+offset_bottom = -8.0

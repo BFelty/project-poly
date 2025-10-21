@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://d231d7w7bdcg0"]
+
+[ext_resource type="PackedScene" uid="uid://ca1o6vvko4gbe" path="res://entities/enemies/enemy.tscn" id="1_6hgnt"]
+[ext_resource type="Resource" uid="uid://dvmgdo4hy8kva" path="res://entities/enemies/squiggly-enemy/squiggly_enemy.tres" id="2_2vhe2"]
+[ext_resource type="Texture2D" uid="uid://bowayrf7b3n5p" path="res://entities/enemies/squiggly-enemy/assets/Zombie_Axe_No-axe_Side-left_Walk-Sheet8.png" id="3_2vhe2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2vhe2"]
+radius = 4.0
+height = 18.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ph1cx"]
+radius = 4.0
+height = 18.0
+
+[node name="Enemy" instance=ExtResource("1_6hgnt")]
+EnemyData = ExtResource("2_2vhe2")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_2vhe2")
+hframes = 8
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(2, 1)
+shape = SubResource("CapsuleShape2D_2vhe2")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(2, 1)
+shape = SubResource("CapsuleShape2D_ph1cx")
+
+[node name="HealthBar" parent="." index="5"]
+offset_top = -10.0
+offset_bottom = -9.0

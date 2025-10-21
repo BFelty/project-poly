@@ -1,20 +1,20 @@
 [gd_resource type="Resource" script_class="EnemyWave" load_steps=7 format=3 uid="uid://bmxswpckea5jc"]
 
 [ext_resource type="Script" uid="uid://diync324gwueq" path="res://game/levels/common/waves/EnemyWave.cs" id="1_0n3l2"]
-[ext_resource type="Resource" uid="uid://dvmgdo4hy8kva" path="res://entities/enemies/squiggly-enemy/squiggly_enemy.tres" id="1_1rm1i"]
+[ext_resource type="PackedScene" uid="uid://d231d7w7bdcg0" path="res://entities/enemies/squiggly-enemy/squiggly_enemy.tscn" id="1_1rm1i"]
 [ext_resource type="Script" uid="uid://bmianhg7bgeoy" path="res://game/levels/common/waves/EnemySequence.cs" id="2_kp21f"]
-[ext_resource type="Resource" uid="uid://nkjwo8at1k5" path="res://entities/enemies/standard-enemy/standard_enemy.tres" id="3_xm8dr"]
+[ext_resource type="PackedScene" uid="uid://bvi40cj37pqpc" path="res://entities/enemies/standard-enemy/standard_enemy.tscn" id="3_kp21f"]
 
 [sub_resource type="Resource" id="Resource_rsy7l"]
 script = ExtResource("2_kp21f")
-Enemy = ExtResource("1_1rm1i")
+EnemyScene = ExtResource("1_1rm1i")
 AmountToSpawn = 2
 SpawnInterval = 0.5
 metadata/_custom_type_script = "uid://bmianhg7bgeoy"
 
 [sub_resource type="Resource" id="Resource_hqnyc"]
 script = ExtResource("2_kp21f")
-Enemy = ExtResource("3_xm8dr")
+EnemyScene = ExtResource("3_kp21f")
 AmountToSpawn = 3
 SpawnInterval = 0.5
 metadata/_custom_type_script = "uid://bmianhg7bgeoy"

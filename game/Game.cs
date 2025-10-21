@@ -85,8 +85,8 @@ public partial class Game : Node
 	// Timer timeouts
 	public void OnEnemySpawnTimerTimeout()
 	{
-		var (enemy, spawnDelay) = _waveManager.NextEnemyWithDelay();
-		_enemySpawner.SpawnEnemy(enemy);
+		var (enemyScene, spawnDelay) = _waveManager.NextEnemyWithDelay();
+		_enemySpawner.SpawnEnemy(enemyScene);
 		_enemySpawnerTimer.WaitTime = spawnDelay;
 		_enemySpawnerTimer.Start(); // Restart the timer with proper wait time
 	}

@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://cp1apyd5u3h5i"]
+
+[ext_resource type="PackedScene" uid="uid://ca1o6vvko4gbe" path="res://entities/enemies/enemy.tscn" id="1_gbatn"]
+[ext_resource type="Resource" uid="uid://dee0ubqwluivp" path="res://entities/enemies/tank-enemy/tank_enemy.tres" id="2_5flic"]
+[ext_resource type="Texture2D" uid="uid://cms3ligym101g" path="res://entities/enemies/tank-enemy/assets/Zombie_Big_Side-left_Walk-Sheet8.png" id="3_aet5g"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aet5g"]
+radius = 7.0
+height = 24.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qyw02"]
+radius = 7.0
+height = 24.0
+
+[node name="Enemy" instance=ExtResource("1_gbatn")]
+EnemyData = ExtResource("2_5flic")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_aet5g")
+hframes = 8
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource("CapsuleShape2D_aet5g")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CapsuleShape2D_qyw02")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="4"]
+rect = Rect2(-10, -12, 20, 24)
+
+[node name="HealthBar" parent="." index="5"]
+offset_top = -14.0
+offset_bottom = -13.0
