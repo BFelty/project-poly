@@ -6,7 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bfmi1hqumaw02" path="res://game/managers/player_manager.tscn" id="3_dxrkv"]
 [ext_resource type="PackedScene" uid="uid://e0s21w3n540c" path="res://game/levels/common/pickup-spawner/pickup_spawner.tscn" id="4_dxrkv"]
 
-[node name="Game" type="Node"]
+[node name="Game" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_l1rk1")
 
 [node name="PlayerManager" parent="." instance=ExtResource("3_dxrkv")]
