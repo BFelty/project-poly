@@ -101,7 +101,7 @@ public partial class WaveBuilder : Resource
 				// ! This used to scale off the enemy speed, but that became
 				// ! harder when I refactored waves to use PackedScenes instead
 				// ! of EnemyResources. I may change this later.
-				SpawnInterval = 0.5f,
+				SpawnInterval = 2.2f / currentWave,
 			};
 
 			// Decrement enemiesToSpawn, remove key-value pair if all enemies
