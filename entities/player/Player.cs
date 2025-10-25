@@ -1,5 +1,6 @@
 using Godot;
 using LastPolygon.Components;
+using LastPolygon.Globals;
 using LastPolygon.Interfaces;
 using LastPolygon.Weapons;
 
@@ -25,12 +26,21 @@ public partial class Player : CharacterBody2D, IDamageable
 
 	public override void _Ready()
 	{
+		// Connect to global events
+		EventBus.GameEnded += KillPlayerOnGameEnded;
+
 		// Connect to local events
 		// Don't need to disconnect because the subjects and observer are
 		// freed at the same time
 		_health.ActorDied += HandleDeath;
 
 		_animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+	}
+
+	public override void _ExitTree()
+	{
+		// Disconnect from global events to prevent disposed object errors
+		EventBus.GameEnded -= KillPlayerOnGameEnded;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -126,5 +136,10 @@ public partial class Player : CharacterBody2D, IDamageable
 		{
 			playerManager.OnPlayerDeath(this);
 		}
+	}
+
+	private void KillPlayerOnGameEnded(int _1, float _2)
+	{
+		HandleDeath();
 	}
 }
