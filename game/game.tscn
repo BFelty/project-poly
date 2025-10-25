@@ -13,7 +13,7 @@ script = ExtResource("1_l1rk1")
 [node name="PlayerManager" parent="." instance=ExtResource("3_dxrkv")]
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_4fuuu")]
-position = Vector2(645, 270)
+position = Vector2(645, 280)
 
 [node name="PickupSpawner" parent="." instance=ExtResource("4_dxrkv")]
 position = Vector2(645, 90)

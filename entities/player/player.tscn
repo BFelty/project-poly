@@ -625,7 +625,6 @@ texture = ExtResource("3_sglur")
 hframes = 6
 
 [node name="Gun" type="Sprite2D" parent="."]
-z_index = 1
 position = Vector2(3, 2)
 texture = ExtResource("5_fkugw")
 hframes = 6
