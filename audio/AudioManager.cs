@@ -49,7 +49,7 @@ public partial class AudioManager : Node2D
 		SoundEffect.SoundEffectType type
 	)
 	{
-		try
+		if (_soundEffectsDict.ContainsKey(type))
 		{
 			SoundEffect soundEffect = _soundEffectsDict[type];
 			if (true) //soundEffect.HasOpenLimit())
@@ -68,16 +68,10 @@ public partial class AudioManager : Node2D
 				);
 
 				new2dAudio.Finished += soundEffect.OnAudioFinished;
-				new2dAudio.Finished += QueueFree;
+				new2dAudio.Finished += new2dAudio.QueueFree;
 
 				new2dAudio.Play();
 			}
-		}
-		catch
-		{
-			GD.PrintErr(
-				"Audio Manager failed to find setting for type " + type
-			);
 		}
 	}
 
@@ -85,34 +79,28 @@ public partial class AudioManager : Node2D
 	// the SoundEffect to be queued
 	public void CreateAudio(SoundEffect.SoundEffectType type)
 	{
-		try
+		if (_soundEffectsDict.ContainsKey(type))
 		{
 			SoundEffect soundEffect = _soundEffectsDict[type];
-			if (true) //soundEffect.HasOpenLimit())
+			if (soundEffect.HasOpenLimit())
 			{
 				soundEffect.ChangeAudioCount(1);
-				AudioStreamPlayer2D new2dAudio = new();
-				AddChild(new2dAudio);
+				AudioStreamPlayer2D newAudio = new();
+				AddChild(newAudio);
 
-				new2dAudio.Stream = soundEffect.Audio;
-				new2dAudio.VolumeDb = soundEffect.Volume;
-				new2dAudio.PitchScale = soundEffect.PitchScale;
-				new2dAudio.PitchScale += new RandomNumberGenerator().RandfRange(
+				newAudio.Stream = soundEffect.Audio;
+				newAudio.VolumeDb = soundEffect.Volume;
+				newAudio.PitchScale = soundEffect.PitchScale;
+				newAudio.PitchScale += new RandomNumberGenerator().RandfRange(
 					-soundEffect.PitchRandomness,
 					soundEffect.PitchRandomness
 				);
 
-				new2dAudio.Finished += soundEffect.OnAudioFinished;
-				new2dAudio.Finished += QueueFree;
+				newAudio.Finished += soundEffect.OnAudioFinished;
+				newAudio.Finished += newAudio.QueueFree;
 
-				new2dAudio.Play();
+				newAudio.Play();
 			}
-		}
-		catch
-		{
-			GD.PrintErr(
-				"Audio Manager failed to find setting for type " + type
-			);
 		}
 	}
 }

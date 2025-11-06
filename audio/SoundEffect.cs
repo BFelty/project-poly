@@ -20,7 +20,7 @@ public partial class SoundEffect : Resource
 	}
 
 	// Maximum number of this SoundEffect to play simultaneously before culled
-	[Export(PropertyHint.Range, "0,20,")]
+	[Export(PropertyHint.Range, "0, 20,")]
 	private int _limit = 5;
 
 	// The unique sound effect in the enum SoundEffectType to associate with
@@ -34,7 +34,7 @@ public partial class SoundEffect : Resource
 	public AudioStream Audio;
 
 	// The volume of _soundEffect
-	[Export(PropertyHint.Range, "-40,20,")]
+	[Export(PropertyHint.Range, "-40, 20,")]
 	public float Volume = 0;
 
 	// The pitch scale of _soundEffect
