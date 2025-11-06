@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 EventBus="*res://globals/autoloads/EventBus.cs"
 SceneManager="*res://globals/autoloads/SceneManager.cs"
+AudioManager="*res://globals/autoloads/audio_manager.tscn"
 
 [debug]
 
