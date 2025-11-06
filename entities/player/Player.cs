@@ -1,4 +1,5 @@
 using Godot;
+using LastPolygon.Audio;
 using LastPolygon.Components;
 using LastPolygon.Globals;
 using LastPolygon.Interfaces;
@@ -108,6 +109,8 @@ public partial class Player : CharacterBody2D, IDamageable
 		bullet.GlobalPosition = Position + bulletOffset;
 
 		GetTree().CurrentScene.AddChild(bullet);
+
+		AudioManager.Instance.CreateAudio(SoundEffect.SoundEffectType.Gunshot);
 	}
 
 	private void OnAnimationPlayerAnimationFinished(StringName animName)
