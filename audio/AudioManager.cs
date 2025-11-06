@@ -52,7 +52,7 @@ public partial class AudioManager : Node2D
 		if (_soundEffectsDict.ContainsKey(type))
 		{
 			SoundEffect soundEffect = _soundEffectsDict[type];
-			if (true) //soundEffect.HasOpenLimit())
+			if (soundEffect.HasOpenLimit())
 			{
 				soundEffect.ChangeAudioCount(1);
 				AudioStreamPlayer2D new2dAudio = new();
