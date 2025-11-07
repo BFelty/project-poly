@@ -85,7 +85,7 @@ public partial class AudioManager : Node2D
 			if (soundEffect.HasOpenLimit())
 			{
 				soundEffect.ChangeAudioCount(1);
-				AudioStreamPlayer2D newAudio = new();
+				AudioStreamPlayer newAudio = new();
 				AddChild(newAudio);
 
 				newAudio.Stream = soundEffect.Audio;
