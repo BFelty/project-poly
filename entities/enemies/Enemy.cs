@@ -1,5 +1,6 @@
 using System.Linq;
 using Godot;
+using LastPolygon.Audio;
 using LastPolygon.Components;
 using LastPolygon.Components.Movement;
 using LastPolygon.Globals;
@@ -74,6 +75,9 @@ public partial class Enemy : CharacterBody2D, IDamageable
 		// ! object. I did it this way because it's one of the last things I'm
 		// ! adding, and I won't have to touch this code again.
 		_animationPlayer.Play("die");
+		AudioManager.Instance.CreateAudio(
+			SoundEffect.SoundEffectType.ZombieDeath
+		);
 	}
 
 	private void OnBodyEntered(Node2D body)
