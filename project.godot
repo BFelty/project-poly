@@ -15,6 +15,10 @@ run/main_scene="uid://druel3n8wmj3h"
 config/features=PackedStringArray("4.4", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://audio/default_bus_layout.tres"
+
 [autoload]
 
 EventBus="*res://globals/autoloads/EventBus.cs"
