@@ -117,6 +117,7 @@ public partial class Game : Node
 		_pickupSpawnerTimer.Start();
 		_survivalTimer.Start();
 
+		AudioManager.Instance.ChangeMusic(Music.MusicTrack.ZombieMoans);
 		AudioManager.Instance.CreateAudio(
 			SoundEffect.SoundEffectType.WaveStart
 		);

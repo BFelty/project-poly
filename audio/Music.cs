@@ -5,7 +5,10 @@ namespace LastPolygon.Audio;
 [GlobalClass]
 public partial class Music : Resource
 {
-	public enum MusicTrack { }
+	public enum MusicTrack
+	{
+		ZombieMoans,
+	}
 
 	// The unique music track in the enum MusicTrack to associate with
 	// this effect. Each MusicTrack resource should have it's own unique enum

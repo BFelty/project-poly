@@ -44,6 +44,11 @@ public partial class AudioManager : Node2D
 		{
 			_soundEffectsDict[soundEffect.Type] = soundEffect;
 		}
+
+		foreach (Music music in _music)
+		{
+			_musicDict[music.Track] = music;
+		}
 		AddChild(_musicPlayer);
 
 		Instance = this;
@@ -126,7 +131,7 @@ public partial class AudioManager : Node2D
 		}
 	}
 
-	public void CreateMusic(Music.MusicTrack track)
+	public void ChangeMusic(Music.MusicTrack track)
 	{
 		if (_musicDict.ContainsKey(track))
 		{
@@ -136,6 +141,13 @@ public partial class AudioManager : Node2D
 			_musicPlayer.VolumeDb = music.Volume;
 
 			_musicPlayer.Play();
+		}
+		else
+		{
+			GD.PushError(
+				"Audio Manager failed to find setting for type ",
+				track
+			);
 		}
 	}
 }

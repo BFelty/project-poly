@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Music" load_steps=3 format=3 uid="uid://duri5qgmq38v2"]
+
+[ext_resource type="Script" uid="uid://dyevmi2dkyauq" path="res://audio/Music.cs" id="1_w4q58"]
+[ext_resource type="AudioStream" uid="uid://di3mahych466t" path="res://game/audio/31765__slanesh__zombis.wav" id="1_xvx8h"]
+
+[resource]
+script = ExtResource("1_w4q58")
+Track = 0
+Audio = ExtResource("1_xvx8h")
+Volume = -18.0
+metadata/_custom_type_script = "uid://dyevmi2dkyauq"
