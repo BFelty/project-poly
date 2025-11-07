@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SoundEffect" load_steps=3 format=3 uid="uid://d132xcuek4vym"]
+
+[ext_resource type="AudioStream" uid="uid://b8erna6dd7xqc" path="res://game/levels/common/waves/audio/270468__littlerobotsoundfactory__jingle_achievement_00.wav" id="1_0lo03"]
+[ext_resource type="Script" uid="uid://jsikn0tkugm2" path="res://audio/SoundEffect.cs" id="1_bpgsm"]
+
+[resource]
+script = ExtResource("1_bpgsm")
+_limit = 1
+Type = 3
+Audio = ExtResource("1_0lo03")
+Volume = -15.0
+PitchScale = 1.0
+PitchRandomness = 0.0
+metadata/_custom_type_script = "uid://jsikn0tkugm2"

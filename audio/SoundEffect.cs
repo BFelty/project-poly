@@ -19,6 +19,7 @@ public partial class SoundEffect : Resource
 		Gunshot,
 		GunshotImpact,
 		PlayerDeath,
+		WaveStart,
 		ZombieDeath,
 	}
 

@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_utjhy")
 _limit = 5
-Type = 3
+Type = 4
 Audio = ExtResource("1_0cxgr")
 Volume = -25.0
 PitchScale = 0.5

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Godot;
+using LastPolygon.Audio;
 using LastPolygon.Enemies;
 using LastPolygon.Globals;
 
@@ -72,6 +73,9 @@ public partial class WaveManager : Node
 				_currentWaveIndex++;
 
 				EventBus.InvokeWaveCompleted(CurrentWave);
+				AudioManager.Instance.CreateAudio(
+					SoundEffect.SoundEffectType.WaveStart
+				);
 			}
 		}
 	}

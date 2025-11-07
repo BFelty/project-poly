@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Godot;
+using LastPolygon.Audio;
 using LastPolygon.Enemies;
 using LastPolygon.Globals;
 using LastPolygon.Players;
@@ -115,6 +116,10 @@ public partial class Game : Node
 		_enemySpawnerTimer.Start();
 		_pickupSpawnerTimer.Start();
 		_survivalTimer.Start();
+
+		AudioManager.Instance.CreateAudio(
+			SoundEffect.SoundEffectType.WaveStart
+		);
 	}
 
 	private void GameOver()
