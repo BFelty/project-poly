@@ -24,10 +24,17 @@ public partial class AudioManager : Node2D
 	[Export]
 	private SoundEffect[] _soundEffects;
 
+	[Export]
+	private Music[] _music;
+
 	private Dictionary<
 		SoundEffect.SoundEffectType,
 		SoundEffect
 	> _soundEffectsDict = [];
+
+	private Dictionary<Music.MusicTrack, Music> _musicDict = [];
+
+	private AudioStreamPlayer _musicPlayer = new();
 
 	public static AudioManager Instance { get; private set; }
 
@@ -37,6 +44,7 @@ public partial class AudioManager : Node2D
 		{
 			_soundEffectsDict[soundEffect.Type] = soundEffect;
 		}
+		AddChild(_musicPlayer);
 
 		Instance = this;
 	}
@@ -115,6 +123,19 @@ public partial class AudioManager : Node2D
 				"Audio Manager failed to find setting for type ",
 				type
 			);
+		}
+	}
+
+	public void CreateMusic(Music.MusicTrack track)
+	{
+		if (_musicDict.ContainsKey(track))
+		{
+			Music music = _musicDict[track];
+
+			_musicPlayer.Stream = music.Audio;
+			_musicPlayer.VolumeDb = music.Volume;
+
+			_musicPlayer.Play();
 		}
 	}
 }
