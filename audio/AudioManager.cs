@@ -73,6 +73,13 @@ public partial class AudioManager : Node2D
 				new2dAudio.Play();
 			}
 		}
+		else
+		{
+			GD.PushError(
+				"Audio Manager failed to find setting for type ",
+				type
+			);
+		}
 	}
 
 	// Creates a sound effect if the limit has not been reached. Pass type for
@@ -101,6 +108,13 @@ public partial class AudioManager : Node2D
 
 				newAudio.Play();
 			}
+		}
+		else
+		{
+			GD.PushError(
+				"Audio Manager failed to find setting for type ",
+				type
+			);
 		}
 	}
 }
