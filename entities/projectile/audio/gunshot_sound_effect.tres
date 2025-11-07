@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SoundEffect" load_steps=3 format=3 uid="uid://d2cnr7qwsjkwx"]
+
+[ext_resource type="AudioStream" uid="uid://cfh88clms1oy3" path="res://entities/projectile/audio/337697__thenikonproductions__gun-sound-4.wav" id="1_lla7s"]
+[ext_resource type="Script" uid="uid://jsikn0tkugm2" path="res://audio/SoundEffect.cs" id="1_syih5"]
+
+[resource]
+script = ExtResource("1_syih5")
+_limit = 20
+Type = 0
+Audio = ExtResource("1_lla7s")
+Volume = -30.0
+PitchScale = 0.75
+PitchRandomness = 0.05
+metadata/_custom_type_script = "uid://jsikn0tkugm2"
