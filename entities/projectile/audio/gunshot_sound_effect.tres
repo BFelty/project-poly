@@ -9,6 +9,6 @@ _limit = 20
 Type = 0
 Audio = ExtResource("1_lla7s")
 Volume = -30.0
-PitchScale = 0.75
+PitchScale = 0.6
 PitchRandomness = 0.05
 metadata/_custom_type_script = "uid://jsikn0tkugm2"

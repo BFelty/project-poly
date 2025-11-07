@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SoundEffect" load_steps=3 format=3 uid="uid://b8lr70k00ksnk"]
+
+[ext_resource type="Script" uid="uid://jsikn0tkugm2" path="res://audio/SoundEffect.cs" id="1_0lgqm"]
+[ext_resource type="AudioStream" uid="uid://cjk7x74jt605o" path="res://entities/projectile/audio/511194__pablobd__headshot.wav" id="1_c5cb1"]
+
+[resource]
+script = ExtResource("1_0lgqm")
+_limit = 20
+Type = 1
+Audio = ExtResource("1_c5cb1")
+Volume = -20.0
+PitchScale = 0.8
+PitchRandomness = 0.1
+metadata/_custom_type_script = "uid://jsikn0tkugm2"

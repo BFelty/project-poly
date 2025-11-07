@@ -1,10 +1,3 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://bolmt4sacqykp"]
-
-[sub_resource type="AudioEffectHardLimiter" id="AudioEffectHardLimiter_j3pel"]
-resource_name = "HardLimiter"
-ceiling_db = -24.0
+[gd_resource type="AudioBusLayout" format=3 uid="uid://bolmt4sacqykp"]
 
 [resource]
-bus/0/solo = true
-bus/0/effect/0/effect = SubResource("AudioEffectHardLimiter_j3pel")
-bus/0/effect/0/enabled = true

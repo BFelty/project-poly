@@ -1,5 +1,6 @@
 using Godot;
-using LastPolygon.Enemies;
+using LastPolygon.Audio;
+using LastPolygon.Globals;
 using LastPolygon.Interfaces;
 
 namespace LastPolygon.Weapons;
@@ -34,6 +35,9 @@ public partial class Bullet : Area2D
 		if (body is IDamageable damageable)
 		{
 			damageable.TakeDamage(_damage);
+			AudioManager.Instance.CreateAudio(
+				SoundEffect.SoundEffectType.GunshotImpact
+			);
 		}
 		QueueFree();
 	}

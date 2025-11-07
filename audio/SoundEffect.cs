@@ -17,6 +17,7 @@ public partial class SoundEffect : Resource
 	public enum SoundEffectType
 	{
 		Gunshot,
+		GunshotImpact,
 	}
 
 	// Maximum number of this SoundEffect to play simultaneously before culled
