@@ -1,9 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dg5q3ciu0vc2w"]
+[gd_scene load_steps=5 format=3 uid="uid://dg5q3ciu0vc2w"]
 
 [ext_resource type="Script" uid="uid://buo17nfkt0r87" path="res://audio/AudioManager.cs" id="1_y351i"]
 [ext_resource type="Resource" uid="uid://d2cnr7qwsjkwx" path="res://entities/projectile/audio/gunshot_sound_effect.tres" id="2_ym44m"]
 [ext_resource type="Resource" uid="uid://b8lr70k00ksnk" path="res://entities/projectile/audio/gunshot_impact_sound_effect.tres" id="3_yjogv"]
+[ext_resource type="Resource" uid="uid://c8d2dnob35m1p" path="res://entities/player/audio/player_death_sound_effect.tres" id="4_qutsw"]
 
 [node name="AudioManager" type="Node2D"]
 script = ExtResource("1_y351i")
-_soundEffects = Array[Object]([ExtResource("2_ym44m"), ExtResource("3_yjogv")])
+_soundEffects = Array[Object]([ExtResource("2_ym44m"), ExtResource("3_yjogv"), ExtResource("4_qutsw")])

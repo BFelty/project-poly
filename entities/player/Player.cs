@@ -133,6 +133,9 @@ public partial class Player : CharacterBody2D, IDamageable
 		SetPhysicsProcess(false);
 
 		_animationPlayer.Play("die");
+		AudioManager.Instance.CreateAudio(
+			SoundEffect.SoundEffectType.PlayerDeath
+		);
 
 		// Let the PlayerManager know a player has died
 		if (GetParent() is PlayerManager playerManager)

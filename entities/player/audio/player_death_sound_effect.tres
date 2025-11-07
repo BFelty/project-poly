@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SoundEffect" load_steps=3 format=3 uid="uid://c8d2dnob35m1p"]
+
+[ext_resource type="AudioStream" uid="uid://dlqjyg5n7bb7k" path="res://entities/player/audio/656726__paladinvii__deathsfx.wav" id="1_7pwqn"]
+[ext_resource type="Script" uid="uid://jsikn0tkugm2" path="res://audio/SoundEffect.cs" id="1_vgneq"]
+
+[resource]
+script = ExtResource("1_vgneq")
+_limit = 5
+Type = 2
+Audio = ExtResource("1_7pwqn")
+Volume = -25.0
+PitchScale = 1.0
+PitchRandomness = 0.04
+metadata/_custom_type_script = "uid://jsikn0tkugm2"

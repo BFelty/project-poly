@@ -18,6 +18,7 @@ public partial class SoundEffect : Resource
 	{
 		Gunshot,
 		GunshotImpact,
+		PlayerDeath,
 	}
 
 	// Maximum number of this SoundEffect to play simultaneously before culled
