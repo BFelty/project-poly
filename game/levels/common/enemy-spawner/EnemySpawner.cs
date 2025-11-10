@@ -5,10 +5,21 @@ namespace LastPolygon.Enemies;
 
 public partial class EnemySpawner : Area2D
 {
+	private CollisionShape2D collisionShape2D;
+
+	public override void _Ready()
+	{
+		collisionShape2D = GetNode<CollisionShape2D>("CollisionShape2D");
+	}
+
 	private Vector2 PickRandomSpawnPoint()
 	{
+		Rect2I rect = (Rect2I)collisionShape2D.Shape.GetRect();
+		int minRange = (int)Math.Floor(rect.Position.Y * Scale.Y + 15);
+		int maxRange = (int)Math.Floor(rect.End.Y * Scale.Y - 15);
+
 		Random r = new();
-		float spawnY = r.Next(-65, 65);
+		float spawnY = r.Next(minRange, maxRange);
 
 		Vector2 spawnPoint = new(0, spawnY);
 
