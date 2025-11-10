@@ -2,6 +2,8 @@ using Godot;
 using LastPolygon.Audio;
 using LastPolygon.Globals;
 
+namespace LastPolygon.UI;
+
 public partial class MainMenu : CanvasLayer
 {
 	public override void _Ready()
