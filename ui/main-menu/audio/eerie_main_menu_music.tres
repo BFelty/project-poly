@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Music" load_steps=3 format=3 uid="uid://dqdllte6jdlu3"]
+
+[ext_resource type="AudioStream" uid="uid://cxy238v1no8qu" path="res://ui/main-menu/audio/201568__jobro__kiss-of-death.ogg" id="1_cvkf8"]
+[ext_resource type="Script" uid="uid://dyevmi2dkyauq" path="res://audio/Music.cs" id="1_uj7un"]
+
+[resource]
+script = ExtResource("1_uj7un")
+Track = 0
+Audio = ExtResource("1_cvkf8")
+Volume = -20.0
+metadata/_custom_type_script = "uid://dyevmi2dkyauq"

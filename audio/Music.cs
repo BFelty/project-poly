@@ -7,6 +7,7 @@ public partial class Music : Resource
 {
 	public enum MusicTrack
 	{
+		EerieAmbience,
 		ZombieMoans,
 	}
 
