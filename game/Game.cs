@@ -75,12 +75,14 @@ public partial class Game : Node
 	{
 		EventBus.PlayerCountChanged += CheckIfGameOver;
 		EventBus.EnemyLeak += HandleEnemyLeak;
+		EventBus.WaveCompleted += OnWaveComplete;
 	}
 
 	private void DisconnectEvents()
 	{
 		EventBus.PlayerCountChanged -= CheckIfGameOver;
 		EventBus.EnemyLeak -= HandleEnemyLeak;
+		EventBus.WaveCompleted -= OnWaveComplete;
 	}
 
 	// Timer timeouts
@@ -160,5 +162,12 @@ public partial class Game : Node
 	{
 		GD.Print("Handling enemy leak...");
 		GameOver();
+	}
+
+	private void OnWaveComplete(int _)
+	{
+		AudioManager.Instance.CreateAudio(
+			SoundEffect.SoundEffectType.WaveStart
+		);
 	}
 }

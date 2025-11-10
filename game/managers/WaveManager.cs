@@ -73,9 +73,6 @@ public partial class WaveManager : Node
 				_currentWaveIndex++;
 
 				EventBus.InvokeWaveCompleted(CurrentWave);
-				AudioManager.Instance.CreateAudio(
-					SoundEffect.SoundEffectType.WaveStart
-				);
 			}
 		}
 	}
