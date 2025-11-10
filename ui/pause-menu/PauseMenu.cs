@@ -1,4 +1,5 @@
 using Godot;
+using LastPolygon.Globals;
 
 namespace LastPolygon.UI;
 
@@ -26,6 +27,21 @@ public partial class PauseMenu : CanvasLayer
 	{
 		GetTree().Paused = false;
 		Visible = false;
+	}
+
+	private void OnRestartButtonPressed()
+	{
+		// Reload the Game scene
+		GetTree().Paused = false;
+		GetTree().ReloadCurrentScene();
+	}
+
+	private void OnMainMenuButtonPressed()
+	{
+		GetTree().Paused = false;
+
+		// Use SceneManager autoload to change scene
+		SceneManager.Instance.ChangeScene(SceneManager.Instance.MainMenuScene);
 	}
 
 	private void OnQuitButtonPressed()
