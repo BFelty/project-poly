@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cplfcw8oen2dr"]
+
+[ext_resource type="PackedScene" uid="uid://ddufbrv3lstb7" path="res://game/levels/level_main_menu.tscn" id="1_mxhsw"]
+[ext_resource type="Script" uid="uid://b3j1q864yaia3" path="res://ui/main-menu/AnimatedBackground.cs" id="1_tvbv6"]
+[ext_resource type="PackedScene" uid="uid://c5oh5iipspoew" path="res://game/levels/common/enemy-spawner/enemy_spawner.tscn" id="3_s23k3"]
+
+[node name="AnimatedBackground" type="Node2D"]
+script = ExtResource("1_tvbv6")
+
+[node name="LevelMainMenu" parent="." instance=ExtResource("1_mxhsw")]
+
+[node name="EnemySpawner" parent="." instance=ExtResource("3_s23k3")]
+position = Vector2(645, 180)
+scale = Vector2(1, 2.25)
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="OnEnemySpawnTimerTimeout"]

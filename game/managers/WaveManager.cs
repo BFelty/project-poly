@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Godot;
-using LastPolygon.Audio;
 using LastPolygon.Enemies;
 using LastPolygon.Globals;
 
