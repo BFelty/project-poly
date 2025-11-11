@@ -127,6 +127,7 @@ public partial class Game : Node
 	{
 		// Disconnect from events on game over to prevent continued handling
 		DisconnectEvents();
+		_hud.StopUpdating();
 
 		// Pause timer to get accurate milliseconds
 		_survivalTimer.Paused = true;

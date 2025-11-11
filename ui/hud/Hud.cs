@@ -26,4 +26,9 @@ public partial class Hud : CanvasLayer
 	{
 		_waveLabel.Text = $"Wave {currentWave}";
 	}
+
+	public void StopUpdating()
+	{
+		EventBus.WaveCompleted -= UpdateWave;
+	}
 }
