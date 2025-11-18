@@ -2,11 +2,11 @@
   "title": "Credits",
   "sections": [
     {
-      "name": "Programmers",
+      "section": "Programmers",
       "entries": [{ "name": "Brandon Felty" }]
     },
     {
-      "name": "Code",
+      "section": "Code",
       "entries": [
         {
           "name": "AudioManager",
@@ -17,7 +17,7 @@
       ]
     },
     {
-      "name": "Art Assets",
+      "section": "Art Assets",
       "entries": [
         {
           "name": "Post Apocalypse Pixel Art Asset Pack",
@@ -27,7 +27,7 @@
       ]
     },
     {
-      "name": "Sound Effects",
+      "section": "Sound Effects",
       "entries": [
         {
           "name": "DeathSFX.wav",
@@ -56,7 +56,7 @@
       ]
     },
     {
-      "name": "Music",
+      "section": "Music",
       "entries": [
         {
           "name": "Kiss of death.ogg",
@@ -73,7 +73,7 @@
       ]
     },
     {
-      "name": "Tools",
+      "section": "Tools",
       "entries": [
         {
           "name": "Audacity",
