@@ -1,105 +1,102 @@
-{
-  "title": "Credits",
-  "sections": [
-    {
-      "section": "Programmers",
-      "entries": [{ "name": "Brandon Felty" }]
-    },
-    {
-      "section": "Code",
-      "entries": [
-        {
-          "name": "AudioManager",
-          "author": "Aarimous",
-          "url": "https://github.com/Aarimous/AudioManager/",
-          "license": "https://github.com/Aarimous/AudioManager/blob/main/LICENSE"
-        }
-      ]
-    },
-    {
-      "section": "Art Assets",
-      "entries": [
-        {
-          "name": "Post Apocalypse Pixel Art Asset Pack",
-          "author": "TheLazyStone",
-          "url": "https://thelazystone.itch.io/post-apocalypse-pixel-art-asset-pack"
-        }
-      ]
-    },
-    {
-      "section": "Sound Effects",
-      "entries": [
-        {
-          "name": "DeathSFX.wav",
-          "author": "PaladinVII",
-          "url": "https://freesound.org/people/PaladinVII/sounds/656726/",
-          "license": "https://creativecommons.org/licenses/by/4.0/"
-        },
-        {
-          "name": "Gun Sound 4",
-          "author": "TheNikonProduction",
-          "url": "https://freesound.org/people/TheNikonProductions/sounds/337697/",
-          "license": "http://creativecommons.org/licenses/by/3.0/"
-        },
-        {
-          "name": "Headshot.wav",
-          "author": "Pablobd",
-          "url": "https://freesound.org/people/Pablobd/sounds/511194/",
-          "license": "http://creativecommons.org/publicdomain/zero/1.0/"
-        },
-        {
-          "name": "Jingle_Achievement_00.wav",
-          "author": "LittleRobotSoundFactory",
-          "url": "https://freesound.org/people/LittleRobotSoundFactory/sounds/270468/",
-          "license": "https://creativecommons.org/licenses/by/4.0/"
-        }
-      ]
-    },
-    {
-      "section": "Music",
-      "entries": [
-        {
-          "name": "Kiss of death.ogg",
-          "author": "jobro",
-          "url": "https://freesound.org/people/jobro/sounds/201568/",
-          "license": "http://creativecommons.org/licenses/by-nc/3.0/"
-        },
-        {
-          "name": "Zombis.wav",
-          "author": "Slanesh",
-          "url": "https://freesound.org/people/Slanesh/sounds/31765/",
-          "license": "https://creativecommons.org/licenses/by/4.0/"
-        }
-      ]
-    },
-    {
-      "section": "Tools",
-      "entries": [
-        {
-          "name": "Audacity",
-          "author": "Muse Group and The Audacity Team",
-          "url": "https://www.audacityteam.org/",
-          "license": "https://manual.audacityteam.org/man/license.html"
-        },
-        {
-          "name": "Git",
-          "author": "Linus Torvolds and contributors",
-          "url": "https://git-scm.com/",
-          "license": "https://opensource.org/license/GPL-2.0"
-        },
-        {
-          "name": "Godot",
-          "author": "Juan Linietsky, Ariel Manzur, and contributors",
-          "url": "https://godotengine.org/",
-          "license": "https://godotengine.org/license/"
-        },
-        {
-          "name": " VS Code",
-          "author": "Microsoft",
-          "url": "https://code.visualstudio.com/",
-          "license": "https://github.com/microsoft/vscode/blob/main/LICENSE.txt"
-        }
-      ]
-    }
-  ]
-}
+[
+  {
+	"sectionName": "Programmers",
+	"entries": [{ "name": "Brandon Felty" }]
+  },
+  {
+	"sectionName": "Code",
+	"entries": [
+	  {
+		"name": "AudioManager",
+		"author": "Aarimous",
+		"url": "https://github.com/Aarimous/AudioManager/",
+		"license": "https://github.com/Aarimous/AudioManager/blob/main/LICENSE"
+	  }
+	]
+  },
+  {
+	"sectionName": "Art Assets",
+	"entries": [
+	  {
+		"name": "Post Apocalypse Pixel Art Asset Pack",
+		"author": "TheLazyStone",
+		"url": "https://thelazystone.itch.io/post-apocalypse-pixel-art-asset-pack"
+	  }
+	]
+  },
+  {
+	"sectionName": "Sound Effects",
+	"entries": [
+	  {
+		"name": "DeathSFX.wav",
+		"author": "PaladinVII",
+		"url": "https://freesound.org/people/PaladinVII/sounds/656726/",
+		"license": "https://creativecommons.org/licenses/by/4.0/"
+	  },
+	  {
+		"name": "Gun Sound 4",
+		"author": "TheNikonProduction",
+		"url": "https://freesound.org/people/TheNikonProductions/sounds/337697/",
+		"license": "http://creativecommons.org/licenses/by/3.0/"
+	  },
+	  {
+		"name": "Headshot.wav",
+		"author": "Pablobd",
+		"url": "https://freesound.org/people/Pablobd/sounds/511194/",
+		"license": "http://creativecommons.org/publicdomain/zero/1.0/"
+	  },
+	  {
+		"name": "Jingle_Achievement_00.wav",
+		"author": "LittleRobotSoundFactory",
+		"url": "https://freesound.org/people/LittleRobotSoundFactory/sounds/270468/",
+		"license": "https://creativecommons.org/licenses/by/4.0/"
+	  }
+	]
+  },
+  {
+	"sectionName": "Music",
+	"entries": [
+	  {
+		"name": "Kiss of death.ogg",
+		"author": "jobro",
+		"url": "https://freesound.org/people/jobro/sounds/201568/",
+		"license": "http://creativecommons.org/licenses/by-nc/3.0/"
+	  },
+	  {
+		"name": "Zombis.wav",
+		"author": "Slanesh",
+		"url": "https://freesound.org/people/Slanesh/sounds/31765/",
+		"license": "https://creativecommons.org/licenses/by/4.0/"
+	  }
+	]
+  },
+  {
+	"sectionName": "Tools",
+	"entries": [
+	  {
+		"name": "Audacity",
+		"author": "Muse Group and The Audacity Team",
+		"url": "https://www.audacityteam.org/",
+		"license": "https://manual.audacityteam.org/man/license.html"
+	  },
+	  {
+		"name": "Git",
+		"author": "Linus Torvolds and contributors",
+		"url": "https://git-scm.com/",
+		"license": "https://opensource.org/license/GPL-2.0"
+	  },
+	  {
+		"name": "Godot",
+		"author": "Juan Linietsky, Ariel Manzur, and contributors",
+		"url": "https://godotengine.org/",
+		"license": "https://godotengine.org/license/"
+	  },
+	  {
+		"name": " VS Code",
+		"author": "Microsoft",
+		"url": "https://code.visualstudio.com/",
+		"license": "https://github.com/microsoft/vscode/blob/main/LICENSE.txt"
+	  }
+	]
+  }
+]

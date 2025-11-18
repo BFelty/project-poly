@@ -1,0 +1,10 @@
+namespace LastPolygon.UI;
+
+#nullable enable
+public class Entry
+{
+	public required string Name { get; set; }
+	public string? Author { get; set; }
+	public string? Url { get; set; }
+	public string? License { get; set; }
+}
