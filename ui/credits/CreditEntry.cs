@@ -1,7 +1,7 @@
 namespace LastPolygon.UI;
 
 #nullable enable
-public class Entry
+public class CreditEntry
 {
 	public required string Name { get; set; }
 	public string? Author { get; set; }
