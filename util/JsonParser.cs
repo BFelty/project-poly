@@ -30,20 +30,19 @@ public partial class JsonParser : VBoxContainer
 
 	public void GenerateCreditsUi(List<CreditSection> credits)
 	{
-		// TODO - Automatically populate credits from markdown or JSON file
-
 		foreach (CreditSection section in credits)
 		{
 			// Display SectionName appropriately
-			Label sectionHeader = new();
+			RichTextLabel sectionHeader = new();
 			sectionHeader.Text += $"{section.SectionName}\n---";
-			sectionHeader.AddThemeFontSizeOverride("font_size", 14);
+			sectionHeader.AddThemeFontSizeOverride("normal_font_size", 14);
+			sectionHeader.FitContent = true;
 			sectionHeader.HorizontalAlignment = HorizontalAlignment.Center;
 			AddChild(sectionHeader);
 
 			foreach (CreditEntry entry in section.Entries)
 			{
-				Label entryContent = new();
+				RichTextLabel entryContent = new();
 				foreach (PropertyInfo prop in entry.GetType().GetProperties())
 				{
 					string value = prop.GetValue(entry, null)?.ToString();
@@ -52,9 +51,11 @@ public partial class JsonParser : VBoxContainer
 						entryContent.Text += $"{value}\n";
 					}
 				}
-				entryContent.AddThemeFontSizeOverride("font_size", 10);
-				entryContent.AutowrapMode = TextServer.AutowrapMode.WordSmart;
+				entryContent.Text += "\n";
+				entryContent.AddThemeFontSizeOverride("normal_font_size", 10);
+				entryContent.FitContent = true;
 				entryContent.HorizontalAlignment = HorizontalAlignment.Center;
+				entryContent.SelectionEnabled = true;
 				AddChild(entryContent);
 			}
 		}
