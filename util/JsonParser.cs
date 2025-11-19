@@ -31,32 +31,31 @@ public partial class JsonParser : VBoxContainer
 	public void GenerateCreditsUi(List<CreditSection> credits)
 	{
 		// TODO - Automatically populate credits from markdown or JSON file
+
 		foreach (CreditSection section in credits)
 		{
 			// Display SectionName appropriately
-			GD.Print(section.SectionName);
-
-			// Possibly implement spacing
-			GD.Print("---");
+			Label sectionHeader = new();
+			sectionHeader.Text += $"{section.SectionName}\n---";
+			sectionHeader.AddThemeFontSizeOverride("font_size", 14);
+			sectionHeader.HorizontalAlignment = HorizontalAlignment.Center;
+			AddChild(sectionHeader);
 
 			foreach (CreditEntry entry in section.Entries)
 			{
+				Label entryContent = new();
 				foreach (PropertyInfo prop in entry.GetType().GetProperties())
 				{
-					GD.Print(
-						prop.Name + " " + prop.GetValue(entry, null)?.ToString()
-					);
+					string value = prop.GetValue(entry, null)?.ToString();
+					if (value != null)
+					{
+						entryContent.Text += $"{value}\n";
+					}
 				}
-				// Display each key-value pair
-				/*string name = entry.Name;
-				string author = entry.Author;
-				string url = entry.Url;
-				string license = entry.License;
-
-				GD.Print(
-					$"{name}\nAuthor: {author}\nURL: {url}\nLicense: {license}"
-				);*/
-				// Spacing between entries
+				entryContent.AddThemeFontSizeOverride("font_size", 10);
+				entryContent.AutowrapMode = TextServer.AutowrapMode.WordSmart;
+				entryContent.HorizontalAlignment = HorizontalAlignment.Center;
+				AddChild(entryContent);
 			}
 		}
 	}

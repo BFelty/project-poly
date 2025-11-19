@@ -1,6 +1,7 @@
 using Godot;
 using LastPolygon.Audio;
 using LastPolygon.Globals;
+using LastPolygon.UI.Credits;
 
 namespace LastPolygon.UI;
 
@@ -10,15 +11,15 @@ public partial class MainMenu : CanvasLayer
 	PackedScene _creditsScene = GD.Load<PackedScene>("uid://haajv6ak1h32");
 
 	// Menu Nodes
-	Credits _credits;
+	CreditsMenu _creditsMenu;
 
 	public override void _Ready()
 	{
 		AudioManager.Instance.ChangeMusic(Music.MusicTrack.EerieAmbience);
 
-		_credits = _creditsScene.Instantiate<Credits>();
-		AddChild(_credits);
-		_credits.Hide();
+		_creditsMenu = _creditsScene.Instantiate<CreditsMenu>();
+		AddChild(_creditsMenu);
+		_creditsMenu.Hide();
 	}
 
 	private void OnPlayButtonPressed()
@@ -31,7 +32,7 @@ public partial class MainMenu : CanvasLayer
 	private void OnCreditsButtonPressed()
 	{
 		GD.Print("Credits button pressed!");
-		_credits.Show();
+		_creditsMenu.Show();
 	}
 
 	private void OnQuitButtonPressed()
