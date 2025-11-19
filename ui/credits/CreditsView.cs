@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using LastPolygon.Util;
 using LastPolygon.Util.Credits;
 
-namespace LastPolygon.Util;
+namespace LastPolygon.UI.Credits;
 
-public partial class JsonParser : VBoxContainer
+public partial class CreditsView : VBoxContainer
 {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -13,9 +14,11 @@ public partial class JsonParser : VBoxContainer
 		string creditsJson = FileAccess
 			.Open("res://ui/credits/credits.json", FileAccess.ModeFlags.Read)
 			?.GetAsText();
+
 		List<CreditSection> credits = JsonUtils.Deserialize<
 			List<CreditSection>
 		>(creditsJson);
+
 		GenerateCreditsUi(credits);
 	}
 

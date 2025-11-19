@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://haajv6ak1h32"]
 
 [ext_resource type="Script" uid="uid://ci2acyhoxn1in" path="res://ui/credits/CreditsMenu.cs" id="1_yavqu"]
-[ext_resource type="Script" uid="uid://cuvncqgulm1o3" path="res://util/JsonParser.cs" id="2_xcp01"]
+[ext_resource type="Script" uid="uid://cuvncqgulm1o3" path="res://ui/credits/CreditsView.cs" id="2_xcp01"]
 
 [node name="CreditsMenu" type="CanvasLayer"]
 layer = 2
