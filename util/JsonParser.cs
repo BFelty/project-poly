@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Text.Json;
 using Godot;
@@ -43,15 +45,17 @@ public partial class JsonParser : VBoxContainer
 			foreach (CreditEntry entry in section.Entries)
 			{
 				RichTextLabel entryContent = new();
-				foreach (PropertyInfo prop in entry.GetType().GetProperties())
-				{
-					string value = prop.GetValue(entry, null)?.ToString();
-					if (value != null)
-					{
-						entryContent.Text += $"{value}\n";
-					}
-				}
-				entryContent.Text += "\n";
+
+				entryContent.Text =
+					string.Join(
+						"\n",
+						entry
+							.GetType()
+							.GetProperties()
+							.Select(p => p.GetValue(entry, null)?.ToString())
+							.Where(v => v is not null)
+					) + "\n\n";
+
 				entryContent.AddThemeFontSizeOverride("normal_font_size", 10);
 				entryContent.FitContent = true;
 				entryContent.HorizontalAlignment = HorizontalAlignment.Center;
