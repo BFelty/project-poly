@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
 using Godot;
 using LastPolygon.Util.Credits;
 
@@ -14,18 +13,10 @@ public partial class JsonParser : VBoxContainer
 		string creditsJson = FileAccess
 			.Open("res://ui/credits/credits.json", FileAccess.ModeFlags.Read)
 			?.GetAsText();
-		List<CreditSection> credits = ParseJson(creditsJson);
+		List<CreditSection> credits = JsonUtils.Deserialize<
+			List<CreditSection>
+		>(creditsJson);
 		GenerateCreditsUi(credits);
-	}
-
-	public List<CreditSection> ParseJson(string json)
-	{
-		JsonSerializerOptions options = new()
-		{
-			PropertyNameCaseInsensitive = true,
-		};
-
-		return JsonSerializer.Deserialize<List<CreditSection>>(json, options);
 	}
 
 	public void GenerateCreditsUi(List<CreditSection> credits)
