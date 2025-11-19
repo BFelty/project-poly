@@ -1,4 +1,4 @@
-namespace LastPolygon.UI;
+namespace LastPolygon.Util.Credits;
 
 #nullable enable
 public class CreditEntry

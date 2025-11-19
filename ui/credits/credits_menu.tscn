@@ -1,10 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://haajv6ak1h32"]
 
-[ext_resource type="Script" uid="uid://ci2acyhoxn1in" path="res://ui/credits/Credits.cs" id="1_ydyd3"]
+[ext_resource type="Script" uid="uid://ci2acyhoxn1in" path="res://ui/credits/CreditsMenu.cs" id="1_yavqu"]
 
-[node name="Credits" type="CanvasLayer"]
+[node name="CreditsMenu" type="CanvasLayer"]
 layer = 2
-script = ExtResource("1_ydyd3")
+script = ExtResource("1_yavqu")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false

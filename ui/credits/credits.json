@@ -92,7 +92,7 @@
 		"license": "https://godotengine.org/license/"
 	  },
 	  {
-		"name": " VS Code",
+		"name": "VS Code",
 		"author": "Microsoft",
 		"url": "https://code.visualstudio.com/",
 		"license": "https://github.com/microsoft/vscode/blob/main/LICENSE.txt"

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace LastPolygon.UI;
+namespace LastPolygon.Util.Credits;
 
 public class CreditSection
 {
