@@ -29,6 +29,10 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "Play"
 
+[node name="TutorialButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Tutorial"
+
 [node name="CreditsButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Credits"
@@ -38,5 +42,6 @@ layout_mode = 2
 text = "Quit"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PlayButton" to="." method="OnPlayButtonPressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/TutorialButton" to="." method="OnTutorialButtonPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/CreditsButton" to="." method="OnCreditsButtonPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="OnQuitButtonPressed"]

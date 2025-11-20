@@ -2,6 +2,7 @@ using Godot;
 using LastPolygon.Audio;
 using LastPolygon.Globals;
 using LastPolygon.UI.Credits;
+using LastPolygon.UI.Tutorial;
 
 namespace LastPolygon.UI;
 
@@ -11,10 +12,14 @@ public partial class MainMenu : CanvasLayer
 	private PackedScene _creditsScene = GD.Load<PackedScene>(
 		"uid://haajv6ak1h32"
 	);
+	private PackedScene _tutorialScene = GD.Load<PackedScene>(
+		"uid://s3cr3xxq5ndh"
+	);
 
 	// Menu Nodes
 	private VBoxContainer _centerMenu;
 	private CreditsMenu _creditsMenu;
+	private TutorialMenu _tutorialMenu;
 
 	public override void _Ready()
 	{
@@ -23,10 +28,14 @@ public partial class MainMenu : CanvasLayer
 		_centerMenu = GetNode<VBoxContainer>("CenterContainer/VBoxContainer");
 		_creditsMenu = _creditsScene.Instantiate<CreditsMenu>();
 		AddChild(_creditsMenu);
+		_tutorialMenu = _tutorialScene.Instantiate<TutorialMenu>();
+		AddChild(_tutorialMenu);
 
 		_creditsMenu.Hide();
+		_tutorialMenu.Hide();
 
 		_creditsMenu.CreditsMenuClosed += ToggleMenuVisibility;
+		_tutorialMenu.TutorialMenuClosed += ToggleMenuVisibility;
 	}
 
 	private void OnPlayButtonPressed()
@@ -43,13 +52,20 @@ public partial class MainMenu : CanvasLayer
 		_creditsMenu.Show();
 	}
 
-	private void ToggleMenuVisibility()
+	private void OnTutorialButtonPressed()
 	{
-		_centerMenu.Visible = !_centerMenu.Visible;
+		GD.Print("Tutorial button pressed!");
+		ToggleMenuVisibility();
+		_tutorialMenu.Show();
 	}
 
 	private void OnQuitButtonPressed()
 	{
 		GetTree().Quit();
+	}
+
+	private void ToggleMenuVisibility()
+	{
+		_centerMenu.Visible = !_centerMenu.Visible;
 	}
 }

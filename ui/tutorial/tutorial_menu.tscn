@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://s3cr3xxq5ndh"]
+[gd_scene load_steps=2 format=3 uid="uid://s3cr3xxq5ndh"]
+
+[ext_resource type="Script" uid="uid://beda8hkh07gtu" path="res://ui/tutorial/TutorialMenu.cs" id="1_lo26w"]
 
 [node name="TutorialMenu" type="CanvasLayer"]
+script = ExtResource("1_lo26w")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 15
@@ -52,3 +55,5 @@ custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Back"
+
+[connection signal="pressed" from="CenterContainer/Panel/VBoxContainer/BackButton" to="." method="OnBackButtonPressed"]
