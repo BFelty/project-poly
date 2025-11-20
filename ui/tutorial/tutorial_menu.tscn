@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://s3cr3xxq5ndh"]
+[gd_scene load_steps=3 format=3 uid="uid://s3cr3xxq5ndh"]
 
 [ext_resource type="Script" uid="uid://beda8hkh07gtu" path="res://ui/tutorial/TutorialMenu.cs" id="1_lo26w"]
+[ext_resource type="Script" uid="uid://bgurn5ymmetcp" path="res://ui/tutorial/TutorialView.cs" id="2_fyr8m"]
 
 [node name="TutorialMenu" type="CanvasLayer"]
 script = ExtResource("1_lo26w")
@@ -46,6 +47,7 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("2_fyr8m")
 
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/Panel/VBoxContainer"]
 layout_mode = 2

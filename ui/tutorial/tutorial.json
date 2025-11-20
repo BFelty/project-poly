@@ -1,0 +1,131 @@
+[
+  {
+    "sectionName": "Welcome",
+    "entries": [
+      {
+        "title": "Objective",
+        "description": "Survive as long as possible against endless waves of enemies. Build up your firing squad, hold the line, and see how far you can get before you are overwhelmed.",
+        "hint": "There is no final level — the challenge is to push your personal best a little further each run."
+      },
+      {
+        "title": "Basic Flow",
+        "description": "Enemies spawn from the right side of the screen and march toward your squad. You control the squad's position and aim with your mouse, and your troops will fire automatically when in range.",
+        "hint": "Stay calm in the early waves and focus on positioning. Later waves demand faster reactions."
+      }
+    ]
+  },
+  {
+    "sectionName": "Controls",
+    "entries": [
+      {
+        "title": "Mouse Movement",
+        "description": "Move your mouse to position your firing squad. Each soldier will try to move toward the cursor, stopping when they are close enough. If other soldiers are in the way, they will shuffle around to find a nearby spot.",
+        "hint": "You don't need to be perfectly precise. Just move the cursor roughly where you want the squad to gather."
+      },
+      {
+        "title": "Shooting",
+        "description": "Your squad automatically fires at enemies when they are in range and the weapon cooldown allows it.",
+        "hint": "You don’t have to mash any buttons to fire — focus on positioning so more of your shots actually hit."
+      },
+      {
+        "title": "Menus",
+        "description": "Use the mouse to navigate the main menu, start a new run, open the tutorial, or view the credits."
+      }
+    ]
+  },
+  {
+    "sectionName": "Enemies",
+    "entries": [
+      {
+        "title": "Standard Enemies",
+        "description": "Standard enemies march straight toward your squad at a normal speed with moderate health. They form the backbone of most waves.",
+        "hint": "Use these early enemies to build up your numbers and get comfortable with movement and aiming."
+      },
+      {
+        "title": "Fast Enemies",
+        "description": "Fast enemies move quickly but usually have lower health. They are dangerous because they can close the distance before you expect it.",
+        "hint": "Keep your squad slightly farther back from the spawn side when you know fast enemies are coming."
+      },
+      {
+        "title": "Tough Enemies",
+        "description": "Tough enemies move slowly but have higher health. They soak up multiple hits before going down.",
+        "hint": "Focus fire on tough enemies before they get too close, especially if they are mixed in with faster units."
+      },
+      {
+        "title": "Enemy Scaling",
+        "description": "As waves progress, enemies become stronger. Their health increases every few waves, and the game gradually becomes more demanding.",
+        "hint": "Early waves are your chance to expand your squad. Later waves are about survival and smart positioning."
+      }
+    ]
+  },
+  {
+    "sectionName": "Reinforcements & Pickups",
+    "entries": [
+      {
+        "title": "Reinforcement Pickups",
+        "description": "Some pickups will add an extra soldier to your firing line when collected. These appear on the battlefield and are collected when your squad touches them.",
+        "hint": "More soldiers mean more bullets, but they also take up more space. Be mindful of how your group moves as it grows."
+      },
+      {
+        "title": "Other Pickups",
+        "description": "Certain pickups may temporarily boost your effectiveness (for example, stronger shots or other experimental effects depending on the version you are playing).",
+        "hint": "If a pickup looks useful, reposition your squad to grab it when it’s safe. Don’t sacrifice your entire line for a single bonus."
+      }
+    ]
+  },
+  {
+    "sectionName": "Waves & Difficulty",
+    "entries": [
+      {
+        "title": "Wave Progression",
+        "description": "The game is organized into waves. Each wave spawns a set of enemies, and once they are all defeated, the next wave begins.",
+        "hint": "You can see the current wave number on the HUD. Use it as a rough indicator of how intense things will feel."
+      },
+      {
+        "title": "Health Scaling",
+        "description": "Every few waves, enemies gain additional health. Even familiar enemy types will take more hits to bring down as the game progresses.",
+        "hint": "If enemies start surviving too many shots, it may be time to adjust your positioning so more bullets connect."
+      },
+      {
+        "title": "Pacing",
+        "description": "Early waves are intentionally gentle to give you time to learn the controls and build your squad. Later waves spawn more enemies, more quickly, with higher health.",
+        "hint": "Treat each run as practice — learning where to stand and when to reposition is key to long-term survival."
+      }
+    ]
+  },
+  {
+    "sectionName": "Tips & Strategy",
+    "entries": [
+      {
+        "title": "Positioning",
+        "description": "Your cursor determines where your squad tries to stand. Stay far enough back to give your soldiers time to shoot, but not so far that enemies walk past your firing angles.",
+        "hint": "Small adjustments are often better than large ones. Nudging your squad a little can fix awkward positioning without creating chaos."
+      },
+      {
+        "title": "Focus Fire",
+        "description": "Many soldiers firing at the same target will drop it quickly. Let enemies walk into your line of fire instead of chasing them all over the map.",
+        "hint": "Holding a consistent firing line is usually safer than constantly trying to surround enemies."
+      },
+      {
+        "title": "Learning from Defeat",
+        "description": "You are meant to lose eventually — the game is endless by design. Each run teaches you something about movement, timing, and wave pacing.",
+        "hint": "If a particular enemy type or wave keeps ending your run, pay attention to where you were standing right before it went wrong."
+      }
+    ]
+  },
+  {
+    "sectionName": "HUD & Information",
+    "entries": [
+      {
+        "title": "Wave Counter",
+        "description": "The current wave number is displayed on the HUD. Higher waves mean tougher enemies and more intense spawns.",
+        "hint": "Use the wave number to compare different runs and track your personal best."
+      },
+      {
+        "title": "Audio Cues",
+        "description": "Gunshots, impacts, and enemy sounds can help you feel the pace of the battle. If things feel overwhelming, you can adjust audio levels in your system settings.",
+        "hint": "If you notice overlapping sounds becoming too noisy, focus visually on the wave counter and the enemy positions."
+      }
+    ]
+  }
+]
