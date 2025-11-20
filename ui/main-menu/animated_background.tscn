@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c5oh5iipspoew" path="res://game/levels/common/enemy-spawner/enemy_spawner.tscn" id="3_s23k3"]
 
 [node name="AnimatedBackground" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_tvbv6")
 
 [node name="LevelMainMenu" parent="." instance=ExtResource("1_mxhsw")]
