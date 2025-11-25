@@ -25,7 +25,7 @@ public partial class Player : CharacterBody2D, IDamageable
 	private AnimationPlayer _animationPlayer;
 	public bool HasMoved { get; set; } = false;
 	private bool _hasShot = false;
-	private bool _isControlled = true;
+	private bool _isControlled = false;
 
 	public override void _Ready()
 	{
@@ -76,7 +76,7 @@ public partial class Player : CharacterBody2D, IDamageable
 		}
 		else
 		{
-			if (HasMoved)
+			if (HasMoved || !_isControlled)
 			{
 				_animationPlayer.Play("run");
 			}
@@ -139,5 +139,11 @@ public partial class Player : CharacterBody2D, IDamageable
 	private void KillPlayerOnGameEnded(int _1, float _2)
 	{
 		HandleDeath();
+	}
+
+	private void OnVisibleOnScreenNotifier2DScreenExited()
+	{
+		GD.Print("Player freed!");
+		QueueFree();
 	}
 }
