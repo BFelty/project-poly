@@ -1,6 +1,8 @@
+using System.Reflection.Metadata.Ecma335;
 using Godot;
 using LastPolygon.Audio;
 using LastPolygon.Components;
+using LastPolygon.Components.Movement;
 using LastPolygon.Globals;
 using LastPolygon.Interfaces;
 using LastPolygon.Weapons;
@@ -17,13 +19,13 @@ public partial class Player : CharacterBody2D, IDamageable
 
 	private HealthComponent _health = new(1);
 
-	private Vector2 _target;
-	private float _minimumDistanceToMove = 10f;
-	private float _movementEpsilonSquared = 1f;
+	private StandardMovementStrategy _aiMovement = new();
+	private PlayerMovementStrategy _playerMovement = new();
 
 	private AnimationPlayer _animationPlayer;
-	private bool _hasMoved = false;
+	public bool HasMoved { get; set; } = false;
 	private bool _hasShot = false;
+	private bool _isControlled = true;
 
 	public override void _Ready()
 	{
@@ -56,24 +58,14 @@ public partial class Player : CharacterBody2D, IDamageable
 
 	private void HandleMovement(double delta)
 	{
-		_target = GetGlobalMousePosition();
-		Velocity = GlobalPosition.DirectionTo(_target) * Speed;
-
-		if (GlobalPosition.DistanceTo(_target) < _minimumDistanceToMove)
+		if (_isControlled)
 		{
-			_hasMoved = false;
+			_playerMovement.Move(this, Speed, delta);
 		}
 		else
 		{
-			MoveAndSlide();
-
-			// Check if the player actually moved
-			_hasMoved =
-				GetPositionDelta().LengthSquared() > _movementEpsilonSquared;
+			_aiMovement.Move(this, Speed, delta);
 		}
-
-		// Keep the player from exiting the viewport
-		Position = Position.Clamp(Vector2.Zero, GetViewportRect().Size);
 	}
 
 	private void HandleAnimation(double delta)
@@ -84,7 +76,7 @@ public partial class Player : CharacterBody2D, IDamageable
 		}
 		else
 		{
-			if (_hasMoved)
+			if (HasMoved)
 			{
 				_animationPlayer.Play("run");
 			}
