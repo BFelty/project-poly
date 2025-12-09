@@ -1,4 +1,3 @@
-using System.Reflection.Metadata.Ecma335;
 using Godot;
 using LastPolygon.Audio;
 using LastPolygon.Components;
@@ -18,6 +17,7 @@ public partial class Player : CharacterBody2D, IDamageable
 	public PackedScene Weapon { get; set; }
 
 	private HealthComponent _health = new(1);
+	public Area2D DetectionArea;
 
 	private StandardMovementStrategy _aiMovement = new();
 	private PlayerMovementStrategy _playerMovement = new();
@@ -25,7 +25,7 @@ public partial class Player : CharacterBody2D, IDamageable
 	private AnimationPlayer _animationPlayer;
 	public bool HasMoved { get; set; } = false;
 	private bool _hasShot = false;
-	private bool _isControlled = false;
+	public bool IsControlled { get; set; } = false;
 
 	public override void _Ready()
 	{
@@ -37,6 +37,7 @@ public partial class Player : CharacterBody2D, IDamageable
 		// freed at the same time
 		_health.ActorDied += HandleDeath;
 
+		DetectionArea = GetNode<Area2D>("Area2D");
 		_animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 	}
 
@@ -58,7 +59,7 @@ public partial class Player : CharacterBody2D, IDamageable
 
 	private void HandleMovement(double delta)
 	{
-		if (_isControlled)
+		if (IsControlled)
 		{
 			_playerMovement.Move(this, Speed, delta);
 		}
@@ -76,7 +77,7 @@ public partial class Player : CharacterBody2D, IDamageable
 		}
 		else
 		{
-			if (HasMoved || !_isControlled)
+			if (HasMoved || !IsControlled)
 			{
 				_animationPlayer.Play("run");
 			}
@@ -129,16 +130,30 @@ public partial class Player : CharacterBody2D, IDamageable
 			SoundEffect.SoundEffectType.PlayerDeath
 		);
 
-		// Let the PlayerManager know a player has died
-		if (GetParent() is PlayerManager playerManager)
-		{
-			playerManager.OnPlayerDeath(this);
-		}
+		EventBus.InvokePlayerDied(this);
 	}
 
 	private void KillPlayerOnGameEnded(int _1, float _2)
 	{
 		HandleDeath();
+	}
+
+	private void OnAreaEntered(Area2D area)
+	{
+		bool isPlayer = area.GetCollisionLayerValue(1);
+		if (isPlayer)
+		{
+			Player player = area.GetParent<Player>();
+			if (player.IsControlled == false)
+			{
+				GD.Print("invoke player recruited");
+				EventBus.InvokePlayerRecruited(player);
+			}
+			else
+			{
+				GD.Print("player already controlled");
+			}
+		}
 	}
 
 	private void OnVisibleOnScreenNotifier2DScreenExited()

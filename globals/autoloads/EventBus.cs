@@ -12,6 +12,16 @@ public partial class EventBus : Node
 	public static void InvokePlayerDamaged(Player player) =>
 		PlayerDamaged?.Invoke(player);
 
+	public static event Action<Player> PlayerDied;
+
+	public static void InvokePlayerDied(Player player) =>
+		PlayerDied?.Invoke(player);
+
+	public static event Action<Player> PlayerRecruited;
+
+	public static void InvokePlayerRecruited(Player newPlayer) =>
+		PlayerRecruited?.Invoke(newPlayer);
+
 	public static event Action<int> PlayerCountChanged;
 
 	public static void InvokePlayerCountChanged(int playerCount) =>
@@ -21,13 +31,6 @@ public partial class EventBus : Node
 	public static event Action EnemyLeak;
 
 	public static void InvokeEnemyLeak() => EnemyLeak?.Invoke();
-
-	// Pickup Events
-	public static event Action<Vector2> PlayerPickupCollected;
-
-	public static void InvokePlayerPickupCollected(
-		Vector2 collidedPlayerPosition
-	) => PlayerPickupCollected?.Invoke(collidedPlayerPosition);
 
 	// Game Events
 	public static event Action<int> WaveCompleted;

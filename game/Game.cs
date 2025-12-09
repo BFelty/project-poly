@@ -4,7 +4,6 @@ using LastPolygon.Enemies;
 using LastPolygon.Globals;
 using LastPolygon.Players;
 using LastPolygon.UI;
-using LastPolygon.Upgrades;
 
 namespace LastPolygon.Game;
 
@@ -27,13 +26,13 @@ public partial class Game : Node
 	// Managers / Spawners
 	private WaveManager _waveManager = new();
 	private EnemySpawner _enemySpawner;
-	private PickupSpawner _pickupSpawner;
+	private PlayerSpawner _playerSpawner;
 	private PlayerManager _playerManager;
 	private Vector2 _playerOrigin = new(85, 270);
 
 	// Timers
-	private Timer _enemySpawnerTimer;
-	private Timer _pickupSpawnerTimer;
+	private Timer _enemySpawnTimer;
+	private Timer _uncontrolledPlayerSpawnTimer;
 
 	// Scoring variables
 	private Timer _survivalTimer;
@@ -44,21 +43,23 @@ public partial class Game : Node
 		GD.Print("Game ready");
 
 		// Enable UI elements relevant to the game
-		_pauseMenu = _pauseMenuScene.Instantiate() as PauseMenu;
+		_pauseMenu = _pauseMenuScene.Instantiate<PauseMenu>();
 		AddChild(_pauseMenu);
-		_gameOverMenu = _gameOverScene.Instantiate() as GameOverMenu;
+		_gameOverMenu = _gameOverScene.Instantiate<GameOverMenu>();
 		AddChild(_gameOverMenu);
-		_hud = _hudScene.Instantiate() as Hud;
+		_hud = _hudScene.Instantiate<Hud>();
 		AddChild(_hud);
 
 		// Find nodes that were placed in the editor
-		_playerManager = FindChild("PlayerManager") as PlayerManager;
-		_enemySpawner = FindChild("EnemySpawner") as EnemySpawner;
-		_pickupSpawner = FindChild("PickupSpawner") as PickupSpawner;
+		_playerManager = GetNode<PlayerManager>("PlayerManager");
+		_enemySpawner = GetNode<EnemySpawner>("EnemySpawner");
+		_playerSpawner = GetNode<PlayerSpawner>("PlayerSpawner");
 
-		_enemySpawnerTimer = FindChild("EnemySpawnTimer") as Timer;
-		_pickupSpawnerTimer = FindChild("PickupTimer") as Timer;
-		_survivalTimer = FindChild("SurvivalTimer") as Timer;
+		_enemySpawnTimer = GetNode<Timer>("EnemySpawnTimer");
+		_uncontrolledPlayerSpawnTimer = GetNode<Timer>(
+			"UncontrolledPlayerSpawnTimer"
+		);
+		_survivalTimer = GetNode<Timer>("SurvivalTimer");
 
 		GameStart();
 	}
@@ -88,13 +89,13 @@ public partial class Game : Node
 	{
 		var (enemyScene, spawnDelay) = _waveManager.NextEnemyWithDelay();
 		_enemySpawner.SpawnEnemy(enemyScene);
-		_enemySpawnerTimer.WaitTime = spawnDelay;
-		_enemySpawnerTimer.Start(); // Restart the timer with proper wait time
+		_enemySpawnTimer.WaitTime = spawnDelay;
+		_enemySpawnTimer.Start(); // Restart the timer with proper wait time
 	}
 
-	public void OnPlayerPickupTimerTimeout()
+	public void OnUncontrolledPlayerSpawnTimerTimeout()
 	{
-		_pickupSpawner.SpawnPlayerPickup();
+		_playerSpawner.SpawnUncontrolledPlayer();
 	}
 
 	private void OnSurvivalTimerTimeout()
@@ -112,9 +113,9 @@ public partial class Game : Node
 		_gameOverMenu.ProcessMode = ProcessModeEnum.Disabled;
 		_gameOverMenu.Visible = false;
 
-		_playerManager.SpawnPlayer(_playerOrigin);
-		_enemySpawnerTimer.Start();
-		_pickupSpawnerTimer.Start();
+		_playerSpawner.SpawnControlledPlayerAtPoint(_playerOrigin);
+		_enemySpawnTimer.Start();
+		_uncontrolledPlayerSpawnTimer.Start();
 		_survivalTimer.Start();
 
 		AudioManager.Instance.ChangeMusic(Music.MusicTrack.ZombieMoans);

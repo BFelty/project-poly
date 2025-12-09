@@ -6,11 +6,6 @@ namespace LastPolygon.Players;
 
 public partial class PlayerManager : Node
 {
-	private PackedScene _playerSpawnerScene = GD.Load<PackedScene>(
-		"uid://ib7e2mistls3"
-	);
-	private PlayerSpawner _playerSpawner;
-
 	private List<Player> _playerList = new();
 	private int _currentPlayerIndex = 0;
 	private bool canShoot = true;
@@ -25,10 +20,8 @@ public partial class PlayerManager : Node
 	public override void _Ready()
 	{
 		// Connect to global events
-		EventBus.PlayerPickupCollected += OnPlayerPickupCollected;
-
-		_playerSpawner = _playerSpawnerScene.Instantiate() as PlayerSpawner;
-		AddChild(_playerSpawner);
+		EventBus.PlayerRecruited += ControlPlayer;
+		EventBus.PlayerDied += OnPlayerDeath;
 
 		_fireRateTimer = FindChild("FireRateTimer") as Timer;
 		_fireRateTimer.WaitTime = PlayerFireRate;
@@ -37,7 +30,8 @@ public partial class PlayerManager : Node
 	public override void _ExitTree()
 	{
 		// Disconnect from global events to prevent disposed object errors
-		EventBus.PlayerPickupCollected -= OnPlayerPickupCollected;
+		EventBus.PlayerRecruited -= ControlPlayer;
+		EventBus.PlayerDied -= OnPlayerDeath;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -45,10 +39,11 @@ public partial class PlayerManager : Node
 		HandleShooting();
 	}
 
-	public void SpawnPlayer(Vector2 spawnPoint)
+	public void ControlPlayer(Player player)
 	{
-		Player newPlayer = _playerSpawner.SpawnPlayer(spawnPoint);
-		_playerList.Add(newPlayer); // Track newly-spawned player
+		player.Scale = new Vector2(-player.Scale.X, player.Scale.Y);
+		player.IsControlled = true;
+		_playerList.Add(player);
 		GD.Print("Updated player count: " + _playerList.Count);
 		RecalculateFireRateTimerWaitTime();
 	}
@@ -60,14 +55,6 @@ public partial class PlayerManager : Node
 		RecalculateFireRateTimerWaitTime();
 
 		EventBus.InvokePlayerCountChanged(_playerList.Count);
-	}
-
-	private void OnPlayerPickupCollected(Vector2 collidedPlayerPosition)
-	{
-		GD.Print("Player at " + collidedPlayerPosition + " collected pickup!");
-
-		Vector2 offset = new(5, 0);
-		CallDeferred(MethodName.SpawnPlayer, collidedPlayerPosition + offset);
 	}
 
 	private void HandleShooting()

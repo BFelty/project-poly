@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://osokqpha3208"]
+[gd_scene load_steps=18 format=3 uid="uid://osokqpha3208"]
 
 [ext_resource type="Script" uid="uid://b55jdx6k24sp" path="res://entities/player/Player.cs" id="1_symyc"]
 [ext_resource type="PackedScene" uid="uid://dhkrftqkqybko" path="res://entities/projectile/bullet.tscn" id="2_abrql"]
@@ -610,6 +610,10 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bls4j"]
+radius = 4.0
+height = 10.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bectd"]
 radius = 5.0
 height = 12.0
 
@@ -643,8 +647,14 @@ libraries = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_bls4j")
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_bectd")
+
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 rect = Rect2(-5, -8, 10, 16)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="OnAnimationPlayerAnimationFinished"]
+[connection signal="area_entered" from="Area2D" to="." method="OnAreaEntered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="OnVisibleOnScreenNotifier2DScreenExited"]
