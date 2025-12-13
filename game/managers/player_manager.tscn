@@ -5,7 +5,7 @@
 [node name="PlayerManager" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_537qr")
-PlayerFireRate = 1.0
+PlayerFireRate = 0.8
 
 [node name="FireRateTimer" type="Timer" parent="."]
 one_shot = true

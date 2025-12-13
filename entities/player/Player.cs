@@ -65,7 +65,7 @@ public partial class Player : CharacterBody2D, IDamageable
 		}
 		else
 		{
-			_aiMovement.Move(this, Speed, delta);
+			_aiMovement.Move(this, Speed * 0.6f, delta);
 		}
 	}
 
