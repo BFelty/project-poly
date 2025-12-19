@@ -6,12 +6,6 @@ namespace LastPolygon.Globals;
 
 public partial class EventBus : Node
 {
-	// Player Events
-	public static event Action<Player> PlayerDamaged;
-
-	public static void InvokePlayerDamaged(Player player) =>
-		PlayerDamaged?.Invoke(player);
-
 	public static event Action<Player> PlayerDied;
 
 	public static void InvokePlayerDied(Player player) =>
