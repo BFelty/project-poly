@@ -14,7 +14,8 @@ public partial class Settings : Node
 
 	public void ToggleFullscreen()
 	{
-		bool isFullscreen = GetTree().Root.Mode == Window.ModeEnum.Fullscreen;
+		bool isFullscreen =
+			GetTree().Root.Mode == Window.ModeEnum.ExclusiveFullscreen;
 
 		if (isFullscreen)
 		{
@@ -22,7 +23,7 @@ public partial class Settings : Node
 		}
 		else
 		{
-			GetTree().Root.Mode = Window.ModeEnum.Fullscreen;
+			GetTree().Root.Mode = Window.ModeEnum.ExclusiveFullscreen;
 		}
 	}
 }

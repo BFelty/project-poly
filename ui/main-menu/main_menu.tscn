@@ -41,6 +41,16 @@ text = "Credits"
 layout_mode = 2
 text = "Quit"
 
+[node name="FullscreenLabel" type="Label" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -14.0
+offset_right = 112.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = " Toggle Fullscreen - F11"
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PlayButton" to="." method="OnPlayButtonPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TutorialButton" to="." method="OnTutorialButtonPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/CreditsButton" to="." method="OnCreditsButtonPressed"]
