@@ -38,6 +38,7 @@ public partial class TutorialView : Tree
 			{
 				TreeItem entryContent = CreateItem(sectionHeader);
 
+				// Join non-null entry properties with two newline characters
 				entryContent.SetText(
 					0,
 					string.Join(
@@ -45,7 +46,7 @@ public partial class TutorialView : Tree
 						entry
 							.GetType()
 							.GetProperties()
-							.Select(p => p.GetValue(entry, null)?.ToString())
+							.Select(p => p.GetValue(entry)?.ToString())
 							.Where(v => v is not null)
 					)
 				);

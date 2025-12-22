@@ -38,13 +38,14 @@ public partial class CreditsView : VBoxContainer
 			{
 				RichTextLabel entryContent = new();
 
+				// Join non-null entry properties with newline characters
 				entryContent.Text =
 					string.Join(
 						"\n",
 						entry
 							.GetType()
 							.GetProperties()
-							.Select(p => p.GetValue(entry, null)?.ToString())
+							.Select(p => p.GetValue(entry)?.ToString())
 							.Where(v => v is not null)
 					) + "\n\n";
 
